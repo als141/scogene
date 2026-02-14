@@ -8,12 +8,10 @@ Code Interpreter で数式検証・画像注釈を行う。
 
 from __future__ import annotations
 
-import asyncio
-import json
 from collections.abc import AsyncIterator
 from typing import Any
 
-from agents import Agent, CodeInterpreterTool, ItemHelpers, ModelSettings, Runner
+from agents import Agent, CodeInterpreterTool, ModelSettings, Runner
 from openai import AsyncOpenAI
 from openai.types.responses import ResponseTextDeltaEvent
 from openai.types.shared import Reasoning
