@@ -1,0 +1,25 @@
+<svg viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded square background -->
+  <rect width="192" height="192" rx="44" fill="#4338ca"/>
+
+  <!-- Decorative accent circle -->
+  <circle cx="152" cy="152" r="28" fill="#ffffff" opacity="0.15"/>
+
+  <!-- Main "S" letter -->
+  <g transform="translate(96, 96)">
+    <!-- Stylized S shape -->
+    <path d="M -18 -28 Q -28 -28 -28 -18 Q -28 -8 -18 -4 Q 0 0 18 4 Q 28 8 28 18 Q 28 28 18 28 Q 8 28 0 24"
+          fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Pen/Checkmark element overlay -->
+  <g transform="translate(96, 96)">
+    <!-- Checkmark integrated with pen design -->
+    <g transform="translate(20, -8)">
+      <!-- Pen nib -->
+      <path d="M 0 0 L 8 12 L -2 14 Z" fill="#ffffff"/>
+      <!-- Checkmark tick -->
+      <path d="M 8 12 L 16 4 L 20 8" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "name": "ScoGene - AI数学採点",
+  "short_name": "ScoGene",
+  "description": "AIが高校教師レベルで数学の解答を採点。途中式の評価、部分点、赤ペン添削まで対応。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fc",
+  "theme_color": "#4338ca",
+  "orientation": "any",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
