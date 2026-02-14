@@ -151,9 +151,9 @@ function StreamingView({
               ref={logScrollRef}
               className="max-h-32 overflow-y-auto rounded-lg bg-muted/30 p-3 font-mono text-xs space-y-1"
             >
-              {logs.map((log) => (
+              {logs.map((log, i) => (
                 <div
-                  key={log.id}
+                  key={`${log.id}-${i}`}
                   className={`flex gap-2 ${
                     log.type === "error"
                       ? "text-destructive"
