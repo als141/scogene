@@ -88,7 +88,7 @@ export interface StreamCallbacks {
   onTextDelta?: (delta: string) => void;
   onToolCalled?: (info: string) => void;
   onToolOutput?: (info: string) => void;
-  onResult?: (grading: GradingResult) => void;
+  onResult?: (grading: GradingResult, annotatedUrls: string[]) => void;
   onError?: (error: string) => void;
   onDone?: () => void;
 }
@@ -122,7 +122,10 @@ export function connectGradingStream(
   es.addEventListener("result", (e) => {
     try {
       const parsed = JSON.parse(e.data);
-      callbacks.onResult?.(parsed.grading);
+      callbacks.onResult?.(
+        parsed.grading,
+        parsed.annotated_image_urls || [],
+      );
     } catch {
       callbacks.onError?.("結果の解析に失敗しました");
     }
@@ -135,10 +138,16 @@ export function connectGradingStream(
         const parsed = JSON.parse(me.data);
         callbacks.onError?.(parsed.error || "エラーが発生しました");
       } else {
-        callbacks.onError?.("接続エラーが発生しました");
+        // ネットワークエラー → EventSource が自動再接続する
+        // readyState === CLOSED の場合はサーバーが 4xx/5xx を返した（永続エラー）
+        if (es.readyState === EventSource.CLOSED) {
+          callbacks.onError?.("接続が切断されました");
+        }
       }
     } catch {
-      callbacks.onError?.("エラーが発生しました");
+      if (es.readyState === EventSource.CLOSED) {
+        callbacks.onError?.("エラーが発生しました");
+      }
     }
   });
 
@@ -147,10 +156,9 @@ export function connectGradingStream(
     es.close();
   });
 
-  es.onerror = () => {
-    // EventSource の自動再接続を防ぐ（done が来なかった場合のフォールバック）
-    es.close();
-  };
+  // onerror: EventSource の自動再接続を妨げない
+  // ネットワーク切断時は Last-Event-ID 付きで自動再接続される
+  // サーバーが 4xx/5xx を返した場合は readyState=CLOSED となり再接続しない
 
   return es;
 }

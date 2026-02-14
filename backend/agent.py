@@ -8,7 +8,7 @@ Code Interpreter で数式検証・画像注釈を行う。
 
 from __future__ import annotations
 
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from typing import Any
 
 from agents import Agent, CodeInterpreterTool, ModelSettings, Runner
@@ -259,7 +259,7 @@ async def grade_submission_stream(
     answer_files: list[tuple[bytes, str, str]],
     answer_key_files: list[tuple[bytes, str, str]] | None = None,
     notes: str | None = None,
-) -> AsyncIterator[dict]:
+) -> AsyncGenerator[dict, None]:
     """
     採点をストリーミング実行する。
     SSE イベントとして dict を yield する。
@@ -329,11 +329,18 @@ async def grade_submission_stream(
                     }
 
         # ストリーム完了 → 最終結果を取得
-        final_result = streamed_result.result
-        annotated_images = await _extract_annotated_images(final_result.new_items)
+        # RunResultStreaming は .final_output / .new_items に直接アクセス
+        annotated_images = await _extract_annotated_images(streamed_result.new_items)
 
-        grading_result: GradingResult = final_result.final_output
+        grading_result: GradingResult = streamed_result.final_output
         result_dict = grading_result.model_dump()
+
+        # 注釈画像を内部イベントとして先に yield（main.py で Supabase にアップロード）
+        if annotated_images:
+            yield {
+                "event": "_images",
+                "data": annotated_images,
+            }
 
         yield {
             "event": "result",

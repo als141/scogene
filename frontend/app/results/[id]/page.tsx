@@ -263,8 +263,9 @@ export default function ResultsPage() {
           setStreamStatus("ツール完了、分析中...");
           addLog("tool", info);
         },
-        onResult: (grading) => {
+        onResult: (grading, urls) => {
           setResult(grading);
+          if (urls.length > 0) setAnnotatedUrls(urls);
           setIsStreaming(false);
           setStreamStatus("完了");
           addLog("status", `採点完了: ${grading.total_score}/${grading.max_total_score}点`);

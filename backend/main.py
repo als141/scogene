@@ -2,17 +2,24 @@
 ScoGene - 数学採点アプリ バックエンド API
 
 FastAPI + OpenAI Agents SDK + Supabase
+
+アーキテクチャ:
+  POST /api/grade/start → ファイル受信、submission 作成、バックグラウンドタスク起動
+  GET /api/grade/{id}/stream → SSE ストリーミング（Last-Event-ID によるリプレイ対応）
+  GET /api/grade/{id} → 完了後の結果取得
 """
 
 from __future__ import annotations
 
+import asyncio
 import json
+import time
 import traceback
-from collections import defaultdict
 
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
+from starlette.requests import Request
 
 from config import settings
 from models import (
@@ -28,6 +35,7 @@ from supabase_client import (
     update_submission_status,
     get_submission,
     list_submissions,
+    upload_annotated_image,
 )
 
 app = FastAPI(
@@ -55,8 +63,140 @@ ALLOWED_MIME_TYPES = {
     "application/pdf",
 }
 
-# 一時ファイルストレージ（submission_id → ファイルデータ）
-_pending_files: dict[str, dict] = {}
+# ── JobState: バックグラウンドタスクと SSE の橋渡し ──
+
+_JOB_TTL_SECONDS = 3600  # 1時間後にメモリから削除
+
+
+class JobState:
+    """
+    バックグラウンド採点タスクの状態管理。
+
+    - history: (event_id, event_dict) のリスト。全イベントを保持し、
+      EventSource の再接続時に Last-Event-ID 以降をリプレイする。
+    - notify: asyncio.Event で SSE コンシューマに新イベントを通知。
+    - done: タスク完了フラグ。
+    """
+
+    __slots__ = ("history", "notify", "done", "_counter", "task", "created_at")
+
+    def __init__(self) -> None:
+        self.history: list[tuple[int, dict]] = []
+        self.notify: asyncio.Event = asyncio.Event()
+        self.done: bool = False
+        self._counter: int = 0
+        self.task: asyncio.Task | None = None
+        self.created_at: float = time.monotonic()
+
+    def push_event(self, event: dict) -> int:
+        """イベントを履歴に追加し、待機中の SSE コンシューマを起こす。"""
+        self._counter += 1
+        self.history.append((self._counter, event))
+        self.notify.set()
+        return self._counter
+
+    def mark_done(self) -> None:
+        """タスク完了をマーク。"""
+        self.done = True
+        self.notify.set()
+
+
+# アクティブジョブ: submission_id → JobState
+_jobs: dict[str, JobState] = {}
+
+
+def _cleanup_old_jobs() -> None:
+    """TTL 超過のジョブをメモリから削除。"""
+    now = time.monotonic()
+    expired = [
+        sid for sid, job in _jobs.items()
+        if job.done and (now - job.created_at) > _JOB_TTL_SECONDS
+    ]
+    for sid in expired:
+        del _jobs[sid]
+
+
+# ── バックグラウンド採点タスク ──
+
+
+async def _run_grading_job(
+    job: JobState,
+    submission_id: str,
+    file_data: dict,
+) -> None:
+    """
+    バックグラウンドで採点エージェントを実行し、イベントを JobState に push する。
+    POST 時点で起動し、SSE 接続前でもイベントが蓄積される。
+    """
+    supabase = get_supabase_client()
+    await update_submission_status(supabase, submission_id, "grading")
+
+    try:
+        annotated_image_data: list[bytes] = []
+
+        async for ev in grade_submission_stream(
+            problem_files=file_data["problem"],
+            answer_files=file_data["answer"],
+            answer_key_files=file_data["answer_key"],
+            notes=file_data["notes"],
+        ):
+            event_type = ev["event"]
+
+            # 内部イベント: 注釈画像バイナリ（SSE には送らない）
+            if event_type == "_images":
+                annotated_image_data = ev["data"]
+                continue
+
+            if event_type == "result":
+                grading_data = ev["data"]["grading"]
+
+                # 注釈画像を Supabase Storage にアップロード
+                annotated_urls: list[str] = []
+                for i, img_bytes in enumerate(annotated_image_data):
+                    try:
+                        url = await upload_annotated_image(
+                            supabase, submission_id, img_bytes, i
+                        )
+                        annotated_urls.append(url)
+                    except Exception:
+                        traceback.print_exc()
+
+                grading_data["annotated_image_urls"] = annotated_urls
+                ev["data"]["annotated_image_urls"] = annotated_urls
+
+                await update_submission_status(
+                    supabase, submission_id, "completed", grading_data
+                )
+                job.push_event(ev)
+
+            elif event_type == "error":
+                await update_submission_status(
+                    supabase, submission_id, "error", {"error": ev["data"]}
+                )
+                job.push_event(ev)
+
+            else:
+                job.push_event(ev)
+
+        # done センチネル
+        job.push_event({"event": "done", "data": ""})
+
+    except Exception as e:
+        traceback.print_exc()
+        try:
+            await update_submission_status(
+                supabase, submission_id, "error", {"error": str(e)}
+            )
+        except Exception:
+            traceback.print_exc()
+        job.push_event({"event": "error", "data": str(e)})
+        job.push_event({"event": "done", "data": ""})
+
+    finally:
+        job.mark_done()
+
+
+# ── ヘルパー ──
 
 
 def _validate_files(files: list[UploadFile], label: str) -> None:
@@ -82,12 +222,16 @@ async def _read_upload_files(
     return result
 
 
+# ── エンドポイント ──
+
+
 @app.get("/api/health")
 async def health_check():
     return {"status": "ok", "model": settings.OPENAI_MODEL}
 
 
-# ── Step 1: ファイルアップロード → ID を即返却 ──
+# ── Step 1: ファイルアップロード → バックグラウンドタスク起動 → ID 即返却 ──
+
 
 @app.post("/api/grade/start", response_model=SubmissionResponse)
 async def start_grading(
@@ -98,7 +242,7 @@ async def start_grading(
     ),
     notes: str | None = Form(default=None, description="追加の指示"),
 ):
-    """ファイルを受け取り、submission を作成して ID を即返却"""
+    """ファイルを受け取り、submission を作成、バックグラウンド採点を開始して ID を即返却"""
     _validate_files(problem_files, "問題")
     _validate_files(answer_files, "解答")
     if answer_key_files:
@@ -117,111 +261,130 @@ async def start_grading(
     submission_id = submission["id"]
     await update_submission_status(supabase, submission_id, "pending")
 
-    # ファイルを一時保存（stream エンドポイントが取得する）
-    _pending_files[submission_id] = {
+    # 古いジョブのクリーンアップ
+    _cleanup_old_jobs()
+
+    # JobState を作成し、バックグラウンドタスクを起動
+    job = JobState()
+    file_data = {
         "problem": problem_data,
         "answer": answer_data,
         "answer_key": answer_key_data,
         "notes": notes,
     }
+    job.task = asyncio.create_task(
+        _run_grading_job(job, submission_id, file_data)
+    )
+    _jobs[submission_id] = job
 
     return SubmissionResponse(
         id=submission_id,
         status="pending",
-        message="採点準備完了。ストリームに接続してください。",
+        message="採点を開始しました。",
     )
 
 
-# ── Step 2: SSE ストリーミング（GET で結果ページから接続） ──
+# ── Step 2: SSE ストリーミング（Last-Event-ID リプレイ対応） ──
+
 
 @app.get("/api/grade/{submission_id}/stream")
-async def stream_grading(submission_id: str):
-    """採点の進捗を SSE でストリーミング"""
+async def stream_grading(submission_id: str, request: Request):
+    """
+    採点の進捗を SSE でストリーミング。
 
-    file_data = _pending_files.pop(submission_id, None)
-    if not file_data:
-        # 既に採点済みか、ファイルが見つからない
+    - JobState が存在する場合: 履歴からイベントをリプレイし、新しいイベントを待機
+    - Last-Event-ID ヘッダ: 再接続時にそれ以降のイベントのみ送信
+    - ジョブが存在しない場合: DB を確認し、完了済みならそのまま返却
+    """
+    job = _jobs.get(submission_id)
+
+    if not job:
+        # ジョブがメモリにない → DB を確認
         supabase = get_supabase_client()
         sub = await get_submission(supabase, submission_id)
+
         if sub and sub.get("status") == "completed":
-            # 既に完了している → 結果を返す
+            raw = sub.get("result")
+            if isinstance(raw, str):
+                raw = json.loads(raw)
+            annotated_urls = raw.pop("annotated_image_urls", [])
+
             async def already_done():
-                yield {"event": "status", "data": "既に採点完了"}
-                raw = sub.get("result")
-                if isinstance(raw, str):
-                    raw = json.loads(raw)
+                yield {
+                    "event": "status",
+                    "data": "既に採点完了",
+                    "id": "1",
+                }
                 yield {
                     "event": "result",
                     "data": json.dumps(
-                        {"grading": raw, "annotated_image_count": 0},
+                        {
+                            "grading": raw,
+                            "annotated_image_urls": annotated_urls,
+                        },
                         ensure_ascii=False,
                     ),
+                    "id": "2",
                 }
-                yield {"event": "done", "data": ""}
+                yield {"event": "done", "data": "", "id": "3"}
 
             return EventSourceResponse(already_done())
 
         raise HTTPException(status_code=404, detail="提出が見つかりません")
 
-    supabase = get_supabase_client()
-    await update_submission_status(supabase, submission_id, "grading")
+    # Last-Event-ID からカーソル位置を決定
+    last_event_id = 0
+    raw_id = request.headers.get("last-event-id")
+    if raw_id:
+        try:
+            last_event_id = int(raw_id)
+        except ValueError:
+            pass
 
     async def event_generator():
-        try:
-            async for ev in grade_submission_stream(
-                problem_files=file_data["problem"],
-                answer_files=file_data["answer"],
-                answer_key_files=file_data["answer_key"],
-                notes=file_data["notes"],
-            ):
+        cursor = last_event_id
+
+        while True:
+            # 利用可能なイベントを全てドレイン
+            while cursor < len(job.history):
+                event_id, ev = job.history[cursor]
+                cursor += 1
+
                 event_type = ev["event"]
                 data = ev["data"]
 
-                if event_type == "result":
-                    grading_data = data["grading"]
-                    grading_data["annotated_image_urls"] = []
-                    await update_submission_status(
-                        supabase, submission_id, "completed", grading_data
-                    )
-                    yield {
-                        "event": "result",
-                        "data": json.dumps(data, ensure_ascii=False),
-                    }
-                elif event_type == "error":
-                    await update_submission_status(
-                        supabase,
-                        submission_id,
-                        "error",
-                        {"error": data},
-                    )
-                    yield {
-                        "event": "error",
-                        "data": json.dumps({"error": data}, ensure_ascii=False),
-                    }
-                else:
-                    yield {
-                        "event": event_type,
-                        "data": data
-                        if isinstance(data, str)
-                        else json.dumps(data, ensure_ascii=False),
-                    }
+                yield {
+                    "event": event_type,
+                    "data": data
+                    if isinstance(data, str)
+                    else json.dumps(data, ensure_ascii=False),
+                    "id": str(event_id),
+                }
 
-            yield {"event": "done", "data": ""}
+                # done イベントで終了
+                if event_type == "done":
+                    return
 
-        except Exception as e:
-            traceback.print_exc()
-            await update_submission_status(
-                supabase, submission_id, "error", {"error": str(e)}
-            )
-            yield {
-                "event": "error",
-                "data": json.dumps({"error": str(e)}, ensure_ascii=False),
-            }
+            # タスク完了済みで全イベント送信完了
+            if job.done:
+                return
+
+            # 新しいイベントを待機
+            job.notify.clear()
+            # クリア後に再チェック（race condition 防止）
+            if cursor < len(job.history):
+                continue
+            try:
+                await asyncio.wait_for(job.notify.wait(), timeout=30.0)
+            except asyncio.TimeoutError:
+                # キープアライブ（接続維持）
+                yield {"comment": "keepalive"}
 
     return EventSourceResponse(event_generator())
 
 
-# ── 結果取得（ポーリング用・完了後の閲覧用） ──
+# ── 結果取得（完了後の閲覧用） ──
+
 
 @app.get("/api/grade/{submission_id}", response_model=GradeResultResponse)
 async def get_grading_result(submission_id: str):
