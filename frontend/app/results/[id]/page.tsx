@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import {
   connectGradingStream,
   getGradingResult,
@@ -68,7 +68,7 @@ function StreamingView({
         <div className="text-center">
           <p className="text-base font-semibold">{status}</p>
           <p className="text-xs text-muted-foreground mt-1">
-            OpenAI Agents SDK が採点を実行中
+            AI が採点を実行中
           </p>
         </div>
       </div>
@@ -308,8 +308,13 @@ export default function ResultsPage() {
     ]);
   }
 
+  const didInitRef = useRef(false);
+
   useEffect(() => {
     if (!id) return;
+    // Strict Mode の二重実行を防止
+    if (didInitRef.current) return;
+    didInitRef.current = true;
 
     // まず DB から既存の結果を確認
     getGradingResult(id)
@@ -356,7 +361,7 @@ export default function ResultsPage() {
           addLog("tool", info);
         },
         onToolOutput: (info) => {
-          setStreamStatus("ツール完了、分析中...");
+          setStreamStatus("分析結果を処理中...");
           addLog("tool", info);
         },
         onResult: (grading, urls) => {
@@ -438,6 +443,76 @@ export default function ResultsPage() {
               <Badge variant="secondary">{result.difficulty_assessment}</Badge>
             </div>
 
+            {/* 添削画像 — スコア直下にヒーロー表示 */}
+            {annotatedUrls.length > 0 && (
+              <div className="space-y-3">
+                <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                  </svg>
+                  添削結果
+                </h3>
+                {/* 1枚: フル幅 / 2枚以上: モバイル横スクロール・デスクトップグリッド */}
+                <div
+                  className={
+                    annotatedUrls.length === 1
+                      ? "grid grid-cols-1"
+                      : "flex gap-3 overflow-x-auto snap-x snap-mandatory pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0"
+                  }
+                >
+                  {annotatedUrls.map((url, i) => (
+                    <Dialog key={i}>
+                      <DialogTrigger asChild>
+                        <button
+                          className={`group relative overflow-hidden rounded-xl border bg-muted/30 hover:border-primary/30 transition-all snap-center ${
+                            annotatedUrls.length > 1
+                              ? "min-w-[85vw] sm:min-w-0"
+                              : ""
+                          }`}
+                        >
+                          <Image
+                            src={url}
+                            alt={`添削画像 ${i + 1}`}
+                            width={800}
+                            height={600}
+                            className="w-full h-auto object-contain"
+                            unoptimized
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 text-white text-xs px-3 py-1.5 rounded-full">
+                              拡大表示
+                            </span>
+                          </div>
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-4xl p-2" aria-describedby={undefined}>
+                        <DialogTitle className="sr-only">{`添削画像 ${i + 1}`}</DialogTitle>
+                        <Image
+                          src={url}
+                          alt={`添削画像 ${i + 1}`}
+                          width={1600}
+                          height={1200}
+                          className="w-full h-auto"
+                          unoptimized
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  ))}
+                </div>
+                {/* スクロールインジケータ（モバイル・複数枚時のみ） */}
+                {annotatedUrls.length > 1 && (
+                  <div className="flex justify-center gap-1.5 sm:hidden">
+                    {annotatedUrls.map((_, i) => (
+                      <span
+                        key={i}
+                        className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30"
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             <Separator />
 
             <Tabs defaultValue="details" className="w-full">
@@ -448,11 +523,6 @@ export default function ResultsPage() {
                 <TabsTrigger value="overview" className="flex-1 text-xs sm:text-sm">
                   総合評価
                 </TabsTrigger>
-                {annotatedUrls.length > 0 && (
-                  <TabsTrigger value="images" className="flex-1 text-xs sm:text-sm">
-                    添削画像
-                  </TabsTrigger>
-                )}
               </TabsList>
 
               <TabsContent value="details" className="mt-4">
@@ -519,28 +589,6 @@ export default function ResultsPage() {
                   </CardContent>
                 </Card>
               </TabsContent>
-
-              {annotatedUrls.length > 0 && (
-                <TabsContent value="images" className="mt-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    {annotatedUrls.map((url, i) => (
-                      <Dialog key={i}>
-                        <DialogTrigger asChild>
-                          <button className="group relative overflow-hidden rounded-xl border bg-muted/30 hover:border-primary/30 transition-all">
-                            <Image src={url} alt={`添削画像 ${i + 1}`} width={800} height={600} className="w-full h-auto object-contain" unoptimized />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/10 transition-colors">
-                              <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 text-white text-xs px-3 py-1.5 rounded-full">拡大表示</span>
-                            </div>
-                          </button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-4xl p-2">
-                          <Image src={url} alt={`添削画像 ${i + 1}`} width={1600} height={1200} className="w-full h-auto" unoptimized />
-                        </DialogContent>
-                      </Dialog>
-                    ))}
-                  </div>
-                </TabsContent>
-              )}
             </Tabs>
 
             <div className="pt-4">

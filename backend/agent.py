@@ -487,16 +487,14 @@ async def grade_submission_stream(
             # RunItem イベント
             elif event.type == "run_item_stream_event":
                 if event.item.type == "tool_call_item":
-                    raw = event.item.raw_item
-                    tool_type = getattr(raw, "type", "unknown")
                     yield {
                         "event": "tool_called",
-                        "data": f"ツール実行中: {tool_type}",
+                        "data": "解答を分析中...",
                     }
                 elif event.item.type == "tool_call_output_item":
                     yield {
                         "event": "tool_output",
-                        "data": "ツール実行完了",
+                        "data": "分析完了",
                     }
                 elif event.item.type == "reasoning_item":
                     yield {
