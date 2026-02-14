@@ -75,88 +75,158 @@ GRADING_INSTRUCTIONS = """\
 
 生徒の解答画像は Code Interpreter のサンドボックス内 `/mnt/data/` に配置済みです。
 **必ず** Code Interpreter を使い、元の解答用紙の上に直接赤ペン添削を描いてください。
+添削画像の生成は省略してはいけません。これがユーザーにとって最も重要な成果物です。
 
-### 必須の実装パターン
+### ステップ1: 画像の読み込みと解答位置の分析
+
+まず画像をビジョンで十分に観察してから Code Interpreter に取り掛かること。
+具体的に各問題の解答が画像のどの位置（上部、中部、下部、左右）にあるか、
+座標の概算（画像サイズに対する割合 0.0〜1.0）をメモしてから描画する。
+
+### ステップ2: 添削コードの実行
+
+**以下のコードを基本テンプレートとして必ず使用してください。**
+画像ごとに個別に実行し、各画像に必ず注釈を付けてください。
 
 ```python
 from PIL import Image, ImageDraw, ImageFont
-import math, os
+import os, math
 
-# 1. /mnt/data/ から生徒の解答画像を開く
-files = [f for f in os.listdir("/mnt/data/") if f.lower().endswith((".png",".jpg",".jpeg",".webp"))]
+RED = (220, 30, 30, 230)       # 全マーク共通の赤色
+RED_LIGHT = (220, 30, 30, 160) # 下線・囲みなど薄め
+WHITE_BG = (255, 255, 255, 210) # コメント背景
+
+# ── 画像を開く ──
+files = sorted([f for f in os.listdir("/mnt/data/")
+                if f.lower().endswith((".png",".jpg",".jpeg",".webp"))])
 img = Image.open(f"/mnt/data/{files[0]}").convert("RGBA")
 w, h = img.size
-scale = w / 1200  # 画像サイズに応じたスケーリング
+scale = max(w, h) / 1200  # 画像サイズに応じたスケーリング
 
-# 2. 透明オーバーレイを作成（元画像を損なわない）
 overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
 draw = ImageDraw.Draw(overlay)
 
-# 3. フォント（日本語フォント未搭載のためデフォルト使用）
-font = ImageFont.load_default(size=int(20 * scale))
-score_font = ImageFont.load_default(size=int(48 * scale))
+# フォントサイズ（見やすさ重視で大きめに）
+font = ImageFont.load_default(size=int(22 * scale))
+font_sm = ImageFont.load_default(size=int(16 * scale))
+score_font = ImageFont.load_default(size=int(56 * scale))
 
-# 4. 各問題の解答箇所に注釈を描画（以下は例）
-# ... ここで採点結果に基づいて描画 ...
+# ── ヘルパー関数 ──
 
-# 5. 合成して保存
+def draw_maru(cx, cy, r=None):
+    \"\"\"正解マーク ○ を描く\"\"\"
+    if r is None:
+        r = int(22 * scale)
+    lw = max(int(3.5 * scale), 2)
+    draw.ellipse([cx-r, cy-r, cx+r, cy+r], outline=RED, width=lw)
+
+def draw_batsu(cx, cy, r=None):
+    \"\"\"不正解マーク × を描く\"\"\"
+    if r is None:
+        r = int(18 * scale)
+    lw = max(int(3.5 * scale), 2)
+    draw.line([(cx-r, cy-r), (cx+r, cy+r)], fill=RED, width=lw)
+    draw.line([(cx+r, cy-r), (cx-r, cy+r)], fill=RED, width=lw)
+
+def draw_sankaku(cx, cy, r=None):
+    \"\"\"部分点マーク △ を描く\"\"\"
+    if r is None:
+        r = int(18 * scale)
+    lw = max(int(3 * scale), 2)
+    pts = [(cx, cy - r), (cx - r, cy + r), (cx + r, cy + r)]
+    draw.polygon(pts, outline=RED, width=lw)
+
+def draw_comment(x, y, text):
+    \"\"\"白背景付きコメントを描く\"\"\"
+    bbox = draw.textbbox((x, y), text, font=font_sm)
+    pad = int(4 * scale)
+    draw.rectangle(
+        [bbox[0]-pad, bbox[1]-pad, bbox[2]+pad, bbox[3]+pad],
+        fill=WHITE_BG
+    )
+    draw.text((x, y), text, fill=RED, font=font_sm)
+
+def draw_score_box(score_text):
+    \"\"\"右上に合計点を大きく表示\"\"\"
+    pad = int(12 * scale)
+    bbox = draw.textbbox((0, 0), score_text, font=score_font)
+    tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    x = w - tw - pad * 3
+    y = pad
+    # 白い角丸背景
+    draw.rounded_rectangle(
+        [x - pad, y - pad, x + tw + pad, y + th + pad],
+        radius=int(8 * scale),
+        fill=(255, 255, 255, 230),
+        outline=RED,
+        width=max(int(2.5 * scale), 2),
+    )
+    draw.text((x, y), score_text, fill=(200, 0, 0, 250), font=score_font)
+
+# ══════════════════════════════════════════
+# ここから各問題の採点結果に基づいて描画する
+# 座標はビジョン分析で特定した位置を使う
+# ══════════════════════════════════════════
+
+# 例: 問1 (正解) — 画像の上部 20% あたり
+# draw_maru(int(w * 0.85), int(h * 0.15))
+
+# 例: 問2 (不正解) — 画像の中部 45% あたり
+# draw_batsu(int(w * 0.85), int(h * 0.45))
+# draw_comment(int(w * 0.55), int(h * 0.48), "2x+3=7 -> x=2")
+
+# 例: 問3 (部分点) — 画像の下部 70% あたり
+# draw_sankaku(int(w * 0.85), int(h * 0.70))
+
+# 合計得点を右上に表示
+# draw_score_box("7/10")
+
+# ── 合成して保存 ──
 result = Image.alpha_composite(img, overlay)
 result.save("/mnt/data/annotated_answer.png")
+print("saved: /mnt/data/annotated_answer.png")
 ```
 
-### 日本式採点マーク（赤ペン）
+### 日本式採点マーク（赤ペン） — 全てのマークは赤色で統一
 
-日本の学校では、すべてのマークを**赤色**で統一します。
-- **○（マル）**: 正解を示す。解答の横に赤い丸を描く。
-- **×（バツ）**: 不正解を示す。解答の横に赤いバツを描く。
-- **△（サンカク）**: 部分正解・惜しい場合に使用。
+| マーク | 意味 | 関数 |
+|--------|------|------|
+| ○（マル） | 正解 | `draw_maru(cx, cy)` |
+| ×（バツ） | 不正解 | `draw_batsu(cx, cy)` |
+| △（サンカク） | 部分正解 | `draw_sankaku(cx, cy)` |
 
-| 要素 | 色 (RGBA) | 描画方法 |
-|------|-----------|----------|
-| 正解マル ○ | (220, 30, 30, 220) | draw.ellipse() で解答の横に赤い丸。線幅は int(3*scale) |
-| 不正解バツ × | (220, 30, 30, 220) | draw.line() で2本線の赤いバツ。線幅は int(3*scale) |
-| 部分点サンカク △ | (220, 30, 30, 220) | draw.polygon() で赤い三角形。線幅は int(3*scale) |
-| 誤答箇所の下線 | (220, 30, 30, 180) | draw.line() で赤い下線 |
-| コメント文字 | (220, 30, 30, 220) | 白背景 (255,255,255,200) 付きテキスト |
-| 得点表示 | (220, 0, 0, 240) | 右上に大きく「8/10」のように赤で表示、白枠付き |
+### 座標の決め方（重要）
 
-### ○（マル）の描き方（正解）
-```python
-# 解答の横に赤い丸を描く
-cx, cy = answer_x + offset, answer_y  # 解答の右横の座標
-r = int(20 * scale)
-draw.ellipse(
-    [cx - r, cy - r, cx + r, cy + r],
-    outline=(220, 30, 30, 220),
-    width=int(3 * scale),
-)
-```
+1. ビジョンで画像を観察し、問題番号・解答が書かれた位置を割合（0.0〜1.0）で推定する
+2. 各問題の解答の**右横**（x=幅の80〜90%, y=解答の縦位置）にマークを置く
+3. マークは解答文字に重ならないよう、解答領域の右外側に配置する
+4. コメントは解答の下や横の余白に配置する
+5. 合計得点は画像右上の角に `draw_score_box()` で配置する
 
-### ×（バツ）の描き方（不正解）
-```python
-# 解答の横に赤いバツを描く
-cx, cy = answer_x + offset, answer_y
-r = int(16 * scale)
-draw.line([(cx - r, cy - r), (cx + r, cy + r)], fill=(220, 30, 30, 220), width=int(3 * scale))
-draw.line([(cx + r, cy - r), (cx - r, cy + r)], fill=(220, 30, 30, 220), width=int(3 * scale))
-```
+### 描画の必須ルール
 
-### 描画の具体的な手順
-1. 画像のビジョン分析で各問題の解答位置を特定する
-2. 正解の問題 → 解答の横に赤い○（マル）を描く
-3. 不正解の問題 → 解答の横に赤い×（バツ）を描く、間違った箇所に赤い下線
-4. 部分点の問題 → 解答の横に赤い△（サンカク）を描く
-5. テキストコメント → 白背景付きで誤りの指摘や正解を赤で記述（英数字・記号で）
-6. 合計得点 → 画像右上に赤色で大きく「8/10」のように表示
-7. 全解答画像に対して処理を繰り返す
-8. **重要**: すべてのマーク・コメントは赤色系統 (220, 30, 30) で統一する。緑色は使わない。
+1. **全ての問題**に対して必ず ○/×/△ のいずれかのマークを付ける
+2. 不正解の問題には、間違いの指摘コメントを `draw_comment()` で追加する
+3. 合計得点を必ず `draw_score_box("得点/満点")` で右上に表示する
+4. **全ての解答画像**（複数ある場合）に対して処理を繰り返す
+5. 各画像ごとに `/mnt/data/annotated_N.png` として保存する（N=0,1,2,...）
+6. 複数画像がある場合は for ループで files リストを回す
+7. 緑色は一切使わない。全て赤色 (220, 30, 30) 系統で統一する
+
+### コメントの書き方
+
+- テキストは英数字・数式記号のみ（日本語フォント未搭載）
+  - 良い例: "OK!", "Correct", "x=2", "3x+1=7", "-2pts", "Ans: 96"
+  - 悪い例: "正解です"（日本語は文字化けする）
+- 計算の正解を示す場合: "Ans: 2x+3" のように書く
+- 減点を示す場合: "-3pts" のように書く
+- 途中式の誤りを示す場合: 該当行の横に下線 + コメント
 
 ### 重要な制約
-- テキストは英数字・数式記号のみ使用（日本語フォント未搭載のため）
-  例: "OK!", "x", "Ans: 96", "3x+2=8 -> x=2", "-2pts"
-- 透明オーバーレイ方式（Image.alpha_composite）で元画像を保持
-- 画像サイズに応じてマークをスケーリング（scale = w / 1200）
+- 透明オーバーレイ方式（Image.alpha_composite）で元画像を保持すること
+- 画像サイズに応じてマークをスケーリング（scale = max(w,h) / 1200）
 - 必ず /mnt/data/ に保存
+- **添削画像の出力を省略しないこと。これが最も重要な成果物。**
 
 ## 出力形式
 必ず指定された JSON 構造で結果を返してください。日本語で回答してください。
@@ -188,7 +258,7 @@ def create_grading_agent(container_file_ids: list[str] | None = None) -> Agent:
         ],
         output_type=GradingResult,
         model_settings=ModelSettings(
-            reasoning=Reasoning(effort="medium"),
+            reasoning=Reasoning(effort="high"),
             truncation="auto",
         ),
     )
@@ -273,8 +343,14 @@ def _build_input_content(
     if notes:
         instructions += f"\n\n追加の指示: {notes}"
     instructions += (
-        "\n\n重要: 必ず Code Interpreter で生徒の解答画像（/mnt/data/ 内）を開き、"
-        "赤ペン添削（✓/✗マーク、得点表示、エラー囲み、コメント）を描き込んだ画像を生成してください。"
+        "\n\n## 必ず実行すること（最重要）\n"
+        "1. まず画像をビジョンで観察し、各問題の解答位置を特定してください。\n"
+        "2. Code Interpreter で /mnt/data/ 内の全ての解答画像を開き、"
+        "上記テンプレートの draw_maru / draw_batsu / draw_sankaku / draw_comment / draw_score_box 関数を使って"
+        "日本式の赤ペン添削を描き込んでください。\n"
+        "3. 各問題に必ず ○/×/△ マークを付け、合計得点を右上に表示してください。\n"
+        "4. 添削済み画像を /mnt/data/ に保存してください。\n"
+        "5. 添削画像の出力を絶対に省略しないでください。"
     )
     content.append({"type": "input_text", "text": instructions})
 

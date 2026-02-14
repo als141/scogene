@@ -63,6 +63,14 @@ ALLOWED_MIME_TYPES = {
     "application/pdf",
 }
 
+ALLOWED_IMAGE_TYPES = {
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/webp",
+    "image/gif",
+}
+
 # ── JobState: バックグラウンドタスクと SSE の橋渡し ──
 
 _JOB_TTL_SECONDS = 3600  # 1時間後にメモリから削除
@@ -199,15 +207,20 @@ async def _run_grading_job(
 # ── ヘルパー ──
 
 
-def _validate_files(files: list[UploadFile], label: str) -> None:
+def _validate_files(
+    files: list[UploadFile], label: str, *, image_only: bool = False
+) -> None:
     if not files:
         raise HTTPException(status_code=400, detail=f"{label}ファイルが必要です")
+    allowed = ALLOWED_IMAGE_TYPES if image_only else ALLOWED_MIME_TYPES
     for f in files:
-        if f.content_type not in ALLOWED_MIME_TYPES:
-            raise HTTPException(
-                status_code=400,
-                detail=f"{label}: 非対応のファイル形式です ({f.content_type})",
+        if f.content_type not in allowed:
+            msg = (
+                f"{label}: 画像ファイルのみ対応しています（JPEG, PNG, WebP）"
+                if image_only
+                else f"{label}: 非対応のファイル形式です ({f.content_type})"
             )
+            raise HTTPException(status_code=400, detail=msg)
 
 
 async def _read_upload_files(
@@ -244,7 +257,7 @@ async def start_grading(
 ):
     """ファイルを受け取り、submission を作成、バックグラウンド採点を開始して ID を即返却"""
     _validate_files(problem_files, "問題")
-    _validate_files(answer_files, "解答")
+    _validate_files(answer_files, "解答", image_only=True)
     if answer_key_files:
         _validate_files(answer_key_files, "模範解答")
 
