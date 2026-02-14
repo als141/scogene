@@ -49,14 +49,32 @@ export interface SubmissionListItem {
   percentage: number | null;
 }
 
-export async function submitForGrading(
+// --- SSE ストリーミングイベント ---
+
+export interface StreamEvent {
+  event: string;
+  data: string;
+}
+
+export interface StreamCallbacks {
+  onSubmission?: (id: string) => void;
+  onStatus?: (message: string) => void;
+  onReasoning?: (text: string) => void;
+  onTextDelta?: (delta: string) => void;
+  onToolCalled?: (info: string) => void;
+  onToolOutput?: (info: string) => void;
+  onResult?: (grading: GradingResult) => void;
+  onError?: (error: string) => void;
+  onDone?: () => void;
+}
+
+function buildFormData(
   problemFiles: File[],
   answerFiles: File[],
   answerKeyFiles?: File[],
   notes?: string
-): Promise<SubmissionResponse> {
+): FormData {
   const formData = new FormData();
-
   for (const file of problemFiles) {
     formData.append("problem_files", file);
   }
@@ -71,6 +89,18 @@ export async function submitForGrading(
   if (notes) {
     formData.append("notes", notes);
   }
+  return formData;
+}
+
+// --- 通常の同期 API ---
+
+export async function submitForGrading(
+  problemFiles: File[],
+  answerFiles: File[],
+  answerKeyFiles?: File[],
+  notes?: string
+): Promise<SubmissionResponse> {
+  const formData = buildFormData(problemFiles, answerFiles, answerKeyFiles, notes);
 
   const res = await fetch(`${API_URL}/api/grade`, {
     method: "POST",
@@ -84,6 +114,105 @@ export async function submitForGrading(
 
   return res.json();
 }
+
+// --- SSE ストリーミング API ---
+
+export async function submitForGradingStream(
+  problemFiles: File[],
+  answerFiles: File[],
+  callbacks: StreamCallbacks,
+  answerKeyFiles?: File[],
+  notes?: string
+): Promise<void> {
+  const formData = buildFormData(problemFiles, answerFiles, answerKeyFiles, notes);
+
+  const res = await fetch(`${API_URL}/api/grade/stream`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ detail: "通信エラーが発生しました" }));
+    throw new Error(error.detail || "採点リクエストに失敗しました");
+  }
+
+  const reader = res.body?.getReader();
+  if (!reader) throw new Error("ストリームの読み取りに失敗しました");
+
+  const decoder = new TextDecoder();
+  let buffer = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() || "";
+
+    let currentEvent = "";
+    let currentData = "";
+
+    for (const line of lines) {
+      if (line.startsWith("event: ")) {
+        currentEvent = line.slice(7).trim();
+      } else if (line.startsWith("data: ")) {
+        currentData = line.slice(6);
+      } else if (line === "" && currentEvent) {
+        // イベント完了 → コールバック呼び出し
+        processStreamEvent(currentEvent, currentData, callbacks);
+        currentEvent = "";
+        currentData = "";
+      }
+    }
+  }
+
+  callbacks.onDone?.();
+}
+
+function processStreamEvent(
+  event: string,
+  data: string,
+  callbacks: StreamCallbacks
+) {
+  switch (event) {
+    case "submission": {
+      const parsed = JSON.parse(data);
+      callbacks.onSubmission?.(parsed.id);
+      break;
+    }
+    case "status":
+      callbacks.onStatus?.(data);
+      break;
+    case "reasoning":
+      callbacks.onReasoning?.(data);
+      break;
+    case "text_delta":
+      callbacks.onTextDelta?.(data);
+      break;
+    case "tool_called":
+      callbacks.onToolCalled?.(data);
+      break;
+    case "tool_output":
+      callbacks.onToolOutput?.(data);
+      break;
+    case "result": {
+      const parsed = JSON.parse(data);
+      callbacks.onResult?.(parsed.grading);
+      break;
+    }
+    case "error": {
+      const parsed = JSON.parse(data);
+      callbacks.onError?.(parsed.error || data);
+      break;
+    }
+    case "done":
+      callbacks.onDone?.();
+      break;
+  }
+}
+
+// --- 結果取得 ---
 
 export async function getGradingResult(
   submissionId: string

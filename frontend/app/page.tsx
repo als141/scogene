@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Header } from "@/components/header";
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { submitForGrading } from "@/lib/api";
+import { submitForGradingStream, type GradingResult } from "@/lib/api";
 
 export default function Home() {
   const router = useRouter();
@@ -19,6 +19,8 @@ export default function Home() {
   const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showAnswerKey, setShowAnswerKey] = useState(false);
+  const [streamStatus, setStreamStatus] = useState("");
+  const [submissionId, setSubmissionId] = useState<string | null>(null);
 
   // Register service worker
   useEffect(() => {
@@ -29,35 +31,65 @@ export default function Home() {
 
   const canSubmit = problemFiles.length > 0 && answerFiles.length > 0;
 
-  async function handleSubmit() {
+  const handleSubmit = useCallback(async () => {
     if (!canSubmit) return;
 
     setIsSubmitting(true);
+    setStreamStatus("接続中...");
+
     try {
-      const result = await submitForGrading(
+      await submitForGradingStream(
         problemFiles,
         answerFiles,
+        {
+          onSubmission: (id) => {
+            setSubmissionId(id);
+          },
+          onStatus: (message) => {
+            setStreamStatus(message);
+          },
+          onReasoning: () => {
+            setStreamStatus("推論中...");
+          },
+          onToolCalled: (info) => {
+            setStreamStatus(info);
+          },
+          onToolOutput: () => {
+            setStreamStatus("ツール実行完了、分析中...");
+          },
+          onTextDelta: () => {
+            setStreamStatus("回答を生成中...");
+          },
+          onResult: (grading: GradingResult) => {
+            toast.success(
+              `採点完了: ${grading.total_score}/${grading.max_total_score}点`
+            );
+            if (submissionId) {
+              router.push(`/results/${submissionId}`);
+            }
+          },
+          onError: (error) => {
+            toast.error(error);
+            setStreamStatus("");
+          },
+          onDone: () => {
+            if (submissionId) {
+              router.push(`/results/${submissionId}`);
+            }
+          },
+        },
         answerKeyFiles.length > 0 ? answerKeyFiles : undefined,
         notes || undefined
       );
-
-      if (result.status === "completed") {
-        toast.success("採点が完了しました");
-        router.push(`/results/${result.id}`);
-      } else if (result.status === "error") {
-        toast.error(result.message);
-      } else {
-        toast.success("採点を開始しました");
-        router.push(`/results/${result.id}`);
-      }
     } catch (err) {
       toast.error(
         err instanceof Error ? err.message : "エラーが発生しました"
       );
     } finally {
       setIsSubmitting(false);
+      setStreamStatus("");
     }
-  }
+  }, [canSubmit, problemFiles, answerFiles, answerKeyFiles, notes, submissionId, router]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -222,7 +254,7 @@ export default function Home() {
                     strokeLinecap="round"
                   />
                 </svg>
-                AIが採点中...
+                {streamStatus || "AIが採点中..."}
               </span>
             ) : (
               "採点を開始"

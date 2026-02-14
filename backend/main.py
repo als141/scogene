@@ -6,11 +6,13 @@ FastAPI + OpenAI Agents SDK + Supabase
 
 from __future__ import annotations
 
+import asyncio
 import json
 import traceback
 
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from sse_starlette.sse import EventSourceResponse
 
 from config import settings
 from models import (
@@ -19,7 +21,7 @@ from models import (
     SubmissionListItem,
     SubmissionResponse,
 )
-from agent import grade_submission
+from agent import grade_submission, grade_submission_stream
 from supabase_client import (
     get_supabase_client,
     create_submission,
@@ -68,6 +70,19 @@ def _validate_files(files: list[UploadFile], label: str) -> None:
             )
 
 
+async def _read_upload_files(
+    files: list[UploadFile],
+) -> list[tuple[bytes, str, str]]:
+    """UploadFile リストをバイトデータに変換"""
+    result = []
+    for f in files:
+        content = await f.read()
+        result.append(
+            (content, f.filename or "file.jpg", f.content_type or "image/jpeg")
+        )
+    return result
+
+
 @app.get("/api/health")
 async def health_check():
     return {"status": "ok", "model": settings.OPENAI_MODEL}
@@ -82,50 +97,25 @@ async def submit_for_grading(
     ),
     notes: str | None = Form(default=None, description="追加の指示"),
 ):
-    """採点リクエストを送信"""
+    """採点リクエストを送信（同期）"""
     _validate_files(problem_files, "問題")
     _validate_files(answer_files, "解答")
     if answer_key_files:
         _validate_files(answer_key_files, "模範解答")
 
     supabase = get_supabase_client()
-
-    # 提出レコード作成
     submission = await create_submission(supabase)
     submission_id = submission["id"]
 
     try:
         await update_submission_status(supabase, submission_id, "grading")
 
-        # ファイルデータを読み込み
-        problem_data = []
-        for f in problem_files:
-            content = await f.read()
-            problem_data.append(
-                (content, f.filename or "problem.jpg", f.content_type or "image/jpeg")
-            )
+        problem_data = await _read_upload_files(problem_files)
+        answer_data = await _read_upload_files(answer_files)
+        answer_key_data = (
+            await _read_upload_files(answer_key_files) if answer_key_files else None
+        )
 
-        answer_data = []
-        for f in answer_files:
-            content = await f.read()
-            answer_data.append(
-                (content, f.filename or "answer.jpg", f.content_type or "image/jpeg")
-            )
-
-        answer_key_data = None
-        if answer_key_files:
-            answer_key_data = []
-            for f in answer_key_files:
-                content = await f.read()
-                answer_key_data.append(
-                    (
-                        content,
-                        f.filename or "key.jpg",
-                        f.content_type or "image/jpeg",
-                    )
-                )
-
-        # 採点実行
         grading_result, annotated_images = await grade_submission(
             problem_files=problem_data,
             answer_files=answer_data,
@@ -133,13 +123,11 @@ async def submit_for_grading(
             notes=notes,
         )
 
-        # 注釈付き画像をアップロード
         annotated_urls = []
         for i, img_bytes in enumerate(annotated_images):
             url = await upload_annotated_image(supabase, submission_id, img_bytes, i)
             annotated_urls.append(url)
 
-        # 結果を保存
         result_data = grading_result.model_dump()
         result_data["annotated_image_urls"] = annotated_urls
         await update_submission_status(
@@ -162,6 +150,90 @@ async def submit_for_grading(
             status="error",
             message=f"採点中にエラーが発生しました: {str(e)}",
         )
+
+
+@app.post("/api/grade/stream")
+async def submit_for_grading_stream(
+    problem_files: list[UploadFile] = File(..., description="問題ファイル"),
+    answer_files: list[UploadFile] = File(..., description="解答ファイル"),
+    answer_key_files: list[UploadFile] | None = File(
+        default=None, description="模範解答ファイル（任意）"
+    ),
+    notes: str | None = Form(default=None, description="追加の指示"),
+):
+    """採点リクエストを送信（SSE ストリーミング）"""
+    _validate_files(problem_files, "問題")
+    _validate_files(answer_files, "解答")
+    if answer_key_files:
+        _validate_files(answer_key_files, "模範解答")
+
+    # ファイルを先に読み込み（SSE generator 内ではリクエストが閉じるため）
+    problem_data = await _read_upload_files(problem_files)
+    answer_data = await _read_upload_files(answer_files)
+    answer_key_data = (
+        await _read_upload_files(answer_key_files) if answer_key_files else None
+    )
+
+    supabase = get_supabase_client()
+    submission = await create_submission(supabase)
+    submission_id = submission["id"]
+    await update_submission_status(supabase, submission_id, "grading")
+
+    async def event_generator():
+        # 開始イベント
+        yield {
+            "event": "submission",
+            "data": json.dumps({"id": submission_id}, ensure_ascii=False),
+        }
+
+        try:
+            async for ev in grade_submission_stream(
+                problem_files=problem_data,
+                answer_files=answer_data,
+                answer_key_files=answer_key_data,
+                notes=notes,
+            ):
+                event_type = ev["event"]
+                data = ev["data"]
+
+                if event_type == "result":
+                    # 最終結果 → DB に保存
+                    grading_data = data["grading"]
+                    grading_data["annotated_image_urls"] = []
+                    await update_submission_status(
+                        supabase, submission_id, "completed", grading_data
+                    )
+                    yield {
+                        "event": event_type,
+                        "data": json.dumps(data, ensure_ascii=False),
+                    }
+                elif event_type == "error":
+                    await update_submission_status(
+                        supabase, submission_id, "error", {"error": data}
+                    )
+                    yield {
+                        "event": event_type,
+                        "data": json.dumps({"error": data}, ensure_ascii=False),
+                    }
+                else:
+                    yield {
+                        "event": event_type,
+                        "data": data if isinstance(data, str) else json.dumps(data, ensure_ascii=False),
+                    }
+
+            yield {"event": "done", "data": ""}
+
+        except Exception as e:
+            traceback.print_exc()
+            await update_submission_status(
+                supabase, submission_id, "error", {"error": str(e)}
+            )
+            yield {
+                "event": "error",
+                "data": json.dumps({"error": str(e)}, ensure_ascii=False),
+            }
+
+    return EventSourceResponse(event_generator())
 
 
 @app.get("/api/grade/{submission_id}", response_model=GradeResultResponse)

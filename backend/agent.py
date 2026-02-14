@@ -1,18 +1,22 @@
 """
 数学採点エージェント
 
-OpenAI Agents SDK を使用した単一エージェント設計。
+OpenAI Agents SDK v0.9.0 を使用した単一エージェント設計。
 Code Interpreter で数式検証・画像注釈を行う。
+ストリーミング対応。
 """
 
 from __future__ import annotations
 
-import base64
-import os
-from pathlib import Path
+import asyncio
+import json
+from collections.abc import AsyncIterator
+from typing import Any
 
-from agents import Agent, CodeInterpreterTool, ModelSettings, Runner
+from agents import Agent, CodeInterpreterTool, ItemHelpers, ModelSettings, Runner
 from openai import AsyncOpenAI
+from openai.types.responses import ResponseTextDeltaEvent
+from openai.types.shared import Reasoning
 
 from config import settings
 from models import GradingResult
@@ -84,10 +88,18 @@ def create_grading_agent() -> Agent:
         name="数学採点教師",
         model=settings.OPENAI_MODEL,
         instructions=GRADING_INSTRUCTIONS,
-        tools=[CodeInterpreterTool()],
+        tools=[
+            CodeInterpreterTool(
+                tool_config={
+                    "type": "code_interpreter",
+                    "container": {"type": "auto"},
+                }
+            ),
+        ],
         output_type=GradingResult,
         model_settings=ModelSettings(
-            temperature=0.1,
+            reasoning=Reasoning(effort="medium"),
+            truncation="auto",
         ),
     )
 
@@ -124,6 +136,7 @@ def _build_input_content(
             content.append({
                 "type": "input_image",
                 "file_id": file_id,
+                "detail": "high",
             })
         else:
             content.append({
@@ -141,6 +154,7 @@ def _build_input_content(
             content.append({
                 "type": "input_image",
                 "file_id": file_id,
+                "detail": "high",
             })
         else:
             content.append({
@@ -159,6 +173,7 @@ def _build_input_content(
                 content.append({
                     "type": "input_image",
                     "file_id": file_id,
+                    "detail": "high",
                 })
             else:
                 content.append({
@@ -170,12 +185,45 @@ def _build_input_content(
     instructions = "上記の問題と解答を確認し、詳細な採点を行ってください。"
     if notes:
         instructions += f"\n\n追加の指示: {notes}"
-    instructions += "\n\n生徒の解答画像がある場合は、Code Interpreter を使って赤ペン注釈付きの画像も生成してください。"
+    instructions += (
+        "\n\n生徒の解答画像がある場合は、Code Interpreter を使って"
+        "赤ペン注釈付きの画像も生成してください。"
+    )
 
     content.append({"type": "input_text", "text": instructions})
 
     return content
 
+
+async def _prepare_file_ids(
+    files: list[tuple[bytes, str, str]],
+) -> list[tuple[str, str]]:
+    """ファイル群を OpenAI にアップロードし (file_id, mime_type) のリストを返す"""
+    results = []
+    for file_bytes, filename, mime_type in files:
+        file_id = await upload_file_to_openai(file_bytes, filename)
+        results.append((file_id, mime_type))
+    return results
+
+
+async def _extract_annotated_images(new_items: list[Any]) -> list[bytes]:
+    """Code Interpreter 出力から注釈付き画像を抽出"""
+    annotated_images: list[bytes] = []
+    for item in new_items:
+        if not hasattr(item, "raw_item"):
+            continue
+        raw = item.raw_item
+        if not hasattr(raw, "type"):
+            continue
+        if raw.type == "code_interpreter_call":
+            for ci_result in getattr(raw, "results", []):
+                for f in getattr(ci_result, "files", []):
+                    file_content = await _openai_client.files.content(f.file_id)
+                    annotated_images.append(file_content.content)
+    return annotated_images
+
+
+# --- 通常実行（非ストリーミング） ---
 
 async def grade_submission(
     problem_files: list[tuple[bytes, str, str]],
@@ -183,63 +231,129 @@ async def grade_submission(
     answer_key_files: list[tuple[bytes, str, str]] | None = None,
     notes: str | None = None,
 ) -> tuple[GradingResult, list[bytes]]:
-    """
-    採点を実行する
+    """採点を実行する（同期的に完了を待つ）"""
 
-    Args:
-        problem_files: [(file_bytes, filename, mime_type), ...]
-        answer_files: [(file_bytes, filename, mime_type), ...]
-        answer_key_files: [(file_bytes, filename, mime_type), ...] or None
-        notes: 追加の指示
+    problem_file_ids = await _prepare_file_ids(problem_files)
+    answer_file_ids = await _prepare_file_ids(answer_files)
+    answer_key_file_ids = (
+        await _prepare_file_ids(answer_key_files) if answer_key_files else None
+    )
 
-    Returns:
-        (GradingResult, list[annotated_image_bytes])
-    """
-    # ファイルを OpenAI にアップロード
-    problem_file_ids: list[tuple[str, str]] = []
-    for file_bytes, filename, mime_type in problem_files:
-        file_id = await upload_file_to_openai(file_bytes, filename)
-        problem_file_ids.append((file_id, mime_type))
-
-    answer_file_ids: list[tuple[str, str]] = []
-    for file_bytes, filename, mime_type in answer_files:
-        file_id = await upload_file_to_openai(file_bytes, filename)
-        answer_file_ids.append((file_id, mime_type))
-
-    answer_key_file_ids: list[tuple[str, str]] | None = None
-    if answer_key_files:
-        answer_key_file_ids = []
-        for file_bytes, filename, mime_type in answer_key_files:
-            file_id = await upload_file_to_openai(file_bytes, filename)
-            answer_key_file_ids.append((file_id, mime_type))
-
-    # 入力コンテンツを構築
     input_content = _build_input_content(
         problem_file_ids, answer_file_ids, answer_key_file_ids, notes
     )
 
-    # エージェントを作成して実行
     agent = create_grading_agent()
     result = await Runner.run(
         agent,
         input=[{"role": "user", "content": input_content}],
     )
 
-    # 注釈付き画像を抽出
-    annotated_images: list[bytes] = []
-    for item in result.new_items:
-        # Code Interpreter の出力からファイルを取得
-        if hasattr(item, "raw_item"):
-            raw = item.raw_item
-            if hasattr(raw, "type") and raw.type == "code_interpreter_call":
-                if hasattr(raw, "results"):
-                    for ci_result in raw.results:
-                        if hasattr(ci_result, "files"):
-                            for f in ci_result.files:
-                                file_content = await _openai_client.files.content(
-                                    f.file_id
-                                )
-                                annotated_images.append(file_content.content)
-
+    annotated_images = await _extract_annotated_images(result.new_items)
     grading_result: GradingResult = result.final_output
     return grading_result, annotated_images
+
+
+# --- ストリーミング実行 ---
+
+async def grade_submission_stream(
+    problem_files: list[tuple[bytes, str, str]],
+    answer_files: list[tuple[bytes, str, str]],
+    answer_key_files: list[tuple[bytes, str, str]] | None = None,
+    notes: str | None = None,
+) -> AsyncIterator[dict]:
+    """
+    採点をストリーミング実行する。
+    SSE イベントとして dict を yield する。
+
+    イベント種類:
+      - {"event": "status", "data": "..."}         ステータス更新
+      - {"event": "reasoning", "data": "..."}       推論過程テキスト
+      - {"event": "text_delta", "data": "..."}      テキスト差分
+      - {"event": "tool_called", "data": "..."}     ツール呼び出し
+      - {"event": "tool_output", "data": "..."}     ツール出力
+      - {"event": "result", "data": {...}}           最終採点結果
+      - {"event": "error", "data": "..."}           エラー
+    """
+
+    yield {"event": "status", "data": "ファイルをアップロード中..."}
+
+    try:
+        problem_file_ids = await _prepare_file_ids(problem_files)
+        answer_file_ids = await _prepare_file_ids(answer_files)
+        answer_key_file_ids = (
+            await _prepare_file_ids(answer_key_files) if answer_key_files else None
+        )
+
+        yield {"event": "status", "data": "AIが採点を開始しました"}
+
+        input_content = _build_input_content(
+            problem_file_ids, answer_file_ids, answer_key_file_ids, notes
+        )
+
+        agent = create_grading_agent()
+        streamed_result = Runner.run_streamed(
+            agent,
+            input=[{"role": "user", "content": input_content}],
+        )
+
+        async for event in streamed_result.stream_events():
+            # 生の LLM イベント（テキスト差分・推論テキスト）
+            if event.type == "raw_response_event":
+                data = event.data
+                if isinstance(data, ResponseTextDeltaEvent):
+                    yield {"event": "text_delta", "data": data.delta}
+                # 推論サマリーイベント（gpt-5.2 の reasoning 出力）
+                elif hasattr(data, "type") and data.type == "response.reasoning_summary_text.delta":
+                    yield {
+                        "event": "reasoning",
+                        "data": getattr(data, "delta", ""),
+                    }
+
+            # RunItem イベント
+            elif event.type == "run_item_stream_event":
+                if event.item.type == "tool_call_item":
+                    raw = event.item.raw_item
+                    tool_type = getattr(raw, "type", "unknown")
+                    yield {
+                        "event": "tool_called",
+                        "data": f"ツール実行中: {tool_type}",
+                    }
+                elif event.item.type == "tool_call_output_item":
+                    yield {
+                        "event": "tool_output",
+                        "data": "ツール実行完了",
+                    }
+                elif event.item.type == "reasoning_item":
+                    yield {
+                        "event": "status",
+                        "data": "推論中...",
+                    }
+
+        # ストリーム完了 → 最終結果を取得
+        final_result = streamed_result.result
+        annotated_images = await _extract_annotated_images(final_result.new_items)
+
+        grading_result: GradingResult = final_result.final_output
+        result_dict = grading_result.model_dump()
+
+        yield {
+            "event": "result",
+            "data": {
+                "grading": result_dict,
+                "annotated_image_count": len(annotated_images),
+            },
+        }
+
+    except Exception as e:
+        yield {"event": "error", "data": str(e)}
+
+
+async def get_annotated_images_from_result(
+    problem_files: list[tuple[bytes, str, str]],
+    answer_files: list[tuple[bytes, str, str]],
+    answer_key_files: list[tuple[bytes, str, str]] | None = None,
+    notes: str | None = None,
+) -> tuple[GradingResult, list[bytes]]:
+    """ストリーミング後に注釈画像も含めた完全な結果を取得する（フォールバック用）"""
+    return await grade_submission(problem_files, answer_files, answer_key_files, notes)
