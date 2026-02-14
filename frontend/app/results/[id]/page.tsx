@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -19,23 +19,44 @@ import {
   type QuestionGrading,
 } from "@/lib/api";
 
-// ── ストリーミング中のログ表示 ──
+// ── ストリーミング中の表示 ──
 
-interface StreamLog {
+interface ActivityLog {
   id: number;
-  type: "status" | "reasoning" | "tool" | "text" | "error";
+  type: "status" | "tool" | "error";
   text: string;
   timestamp: number;
 }
 
-function StreamingView({ logs, status }: { logs: StreamLog[]; status: string }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
+function StreamingView({
+  logs,
+  status,
+  reasoningText,
+  streamingText,
+}: {
+  logs: ActivityLog[];
+  status: string;
+  reasoningText: string;
+  streamingText: string;
+}) {
+  const logScrollRef = useRef<HTMLDivElement>(null);
+  const reasoningScrollRef = useRef<HTMLDivElement>(null);
+  const textScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    logScrollRef.current?.scrollTo(0, logScrollRef.current.scrollHeight);
   }, [logs]);
+
+  useEffect(() => {
+    reasoningScrollRef.current?.scrollTo(
+      0,
+      reasoningScrollRef.current.scrollHeight,
+    );
+  }, [reasoningText]);
+
+  useEffect(() => {
+    textScrollRef.current?.scrollTo(0, textScrollRef.current.scrollHeight);
+  }, [streamingText]);
 
   return (
     <div className="space-y-4 animate-fade-in-up">
@@ -52,61 +73,120 @@ function StreamingView({ logs, status }: { logs: StreamLog[]; status: string }) 
         </div>
       </div>
 
-      {/* Live log */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-            採点ログ
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div
-            ref={scrollRef}
-            className="h-48 overflow-y-auto rounded-lg bg-muted/30 p-3 font-mono text-xs space-y-1"
-          >
-            {logs.map((log) => (
-              <div
-                key={log.id}
-                className={`flex gap-2 ${
-                  log.type === "error"
-                    ? "text-destructive"
-                    : log.type === "tool"
-                      ? "text-chart-3"
-                      : log.type === "reasoning"
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                }`}
+      {/* 推論過程 (reasoning) — トークン単位で累積表示 */}
+      {reasoningText && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-xs font-medium text-primary uppercase tracking-wider flex items-center gap-2">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <span className="shrink-0 opacity-50">
-                  {new Date(log.timestamp).toLocaleTimeString("ja-JP", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    second: "2-digit",
-                  })}
-                </span>
-                <span
-                  className={`shrink-0 w-14 text-right ${
-                    log.type === "tool"
-                      ? "text-chart-3"
-                      : log.type === "reasoning"
-                        ? "text-primary"
-                        : ""
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+              </svg>
+              推論過程
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div
+              ref={reasoningScrollRef}
+              className="max-h-64 overflow-y-auto rounded-lg bg-primary/5 border border-primary/10 p-3 text-sm leading-relaxed text-foreground/80 whitespace-pre-wrap"
+            >
+              {reasoningText}
+              <span className="inline-block w-[3px] h-[1.1em] bg-primary/60 ml-0.5 animate-pulse align-text-bottom rounded-full" />
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* 回答生成 (text_delta) — トークン単位で累積表示 */}
+      {streamingText && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+              </svg>
+              回答生成
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div
+              ref={textScrollRef}
+              className="max-h-48 overflow-y-auto rounded-lg bg-muted/30 p-3 font-mono text-xs leading-relaxed text-muted-foreground whitespace-pre-wrap break-all"
+            >
+              {streamingText}
+              <span className="inline-block w-[3px] h-[0.9em] bg-muted-foreground/40 ml-0.5 animate-pulse align-text-bottom rounded-full" />
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* アクティビティログ (status / tool のみ) */}
+      {logs.length > 0 && (
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              アクティビティ
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div
+              ref={logScrollRef}
+              className="max-h-32 overflow-y-auto rounded-lg bg-muted/30 p-3 font-mono text-xs space-y-1"
+            >
+              {logs.map((log) => (
+                <div
+                  key={log.id}
+                  className={`flex gap-2 ${
+                    log.type === "error"
+                      ? "text-destructive"
+                      : log.type === "tool"
+                        ? "text-chart-3"
+                        : "text-muted-foreground"
                   }`}
                 >
-                  [{log.type}]
-                </span>
-                <span className="break-all">{log.text}</span>
-              </div>
-            ))}
-            {logs.length === 0 && (
-              <div className="text-muted-foreground animate-gentle-pulse">
-                接続中...
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+                  <span className="shrink-0 opacity-50">
+                    {new Date(log.timestamp).toLocaleTimeString("ja-JP", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    })}
+                  </span>
+                  <span className="break-all">{log.text}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* 初期状態（何もまだ来ていない） */}
+      {!reasoningText && !streamingText && logs.length === 0 && (
+        <Card>
+          <CardContent className="p-6">
+            <div className="text-center text-muted-foreground animate-gentle-pulse text-sm">
+              接続中...
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 }
@@ -198,12 +278,29 @@ export default function ResultsPage() {
   const [annotatedUrls, setAnnotatedUrls] = useState<string[]>([]);
   const [isStreaming, setIsStreaming] = useState(true);
   const [streamStatus, setStreamStatus] = useState("接続中...");
-  const [logs, setLogs] = useState<StreamLog[]>([]);
+  const [logs, setLogs] = useState<ActivityLog[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  // トークン単位のテキスト累積（rAF でバッチ更新）
+  const [reasoningText, setReasoningText] = useState("");
+  const [streamingText, setStreamingText] = useState("");
+  const reasoningRef = useRef("");
+  const textRef = useRef("");
+  const flushRef = useRef<number | null>(null);
+
+  const scheduleFlush = useCallback(() => {
+    if (flushRef.current !== null) return;
+    flushRef.current = requestAnimationFrame(() => {
+      setReasoningText(reasoningRef.current);
+      setStreamingText(textRef.current);
+      flushRef.current = null;
+    });
+  }, []);
+
   const logIdRef = useRef(0);
   const esRef = useRef<EventSource | null>(null);
 
-  function addLog(type: StreamLog["type"], text: string) {
+  function addLog(type: ActivityLog["type"], text: string) {
     logIdRef.current += 1;
     setLogs((prev) => [
       ...prev,
@@ -218,7 +315,6 @@ export default function ResultsPage() {
     getGradingResult(id)
       .then((res) => {
         if (res.status === "completed" && res.result) {
-          // 既に完了 → 結果を直接表示
           setResult(res.result);
           setAnnotatedUrls(res.annotated_image_urls);
           setIsStreaming(false);
@@ -231,11 +327,9 @@ export default function ResultsPage() {
           return;
         }
 
-        // 未完了 → SSE ストリーム接続
         startStream();
       })
       .catch(() => {
-        // DB にまだない or エラー → ストリーム接続を試みる
         startStream();
       });
 
@@ -249,11 +343,13 @@ export default function ResultsPage() {
         },
         onReasoning: (text) => {
           setStreamStatus("推論中...");
-          addLog("reasoning", text);
+          reasoningRef.current += text;
+          scheduleFlush();
         },
         onTextDelta: (delta) => {
           setStreamStatus("回答を生成中...");
-          addLog("text", delta);
+          textRef.current += delta;
+          scheduleFlush();
         },
         onToolCalled: (info) => {
           setStreamStatus(info);
@@ -268,7 +364,10 @@ export default function ResultsPage() {
           if (urls.length > 0) setAnnotatedUrls(urls);
           setIsStreaming(false);
           setStreamStatus("完了");
-          addLog("status", `採点完了: ${grading.total_score}/${grading.max_total_score}点`);
+          addLog(
+            "status",
+            `採点完了: ${grading.total_score}/${grading.max_total_score}点`,
+          );
         },
         onError: (err) => {
           setError(err);
@@ -285,8 +384,9 @@ export default function ResultsPage() {
 
     return () => {
       esRef.current?.close();
+      if (flushRef.current !== null) cancelAnimationFrame(flushRef.current);
     };
-  }, [id]);
+  }, [id, scheduleFlush]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -306,7 +406,12 @@ export default function ResultsPage() {
 
         {/* ── ストリーミング中 ── */}
         {isStreaming && (
-          <StreamingView logs={logs} status={streamStatus} />
+          <StreamingView
+            logs={logs}
+            status={streamStatus}
+            reasoningText={reasoningText}
+            streamingText={streamingText}
+          />
         )}
 
         {/* ── エラー ── */}
