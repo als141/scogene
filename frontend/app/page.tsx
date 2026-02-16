@@ -87,8 +87,8 @@ export default function Home() {
 
           <FileUploadZone
             label="生徒の解答"
-            description="写真をアップロード（複数可・画像のみ対応）"
-            accept="image/jpeg,image/png,image/webp,image/gif"
+            description="写真またはPDFをアップロード（複数可）"
+            accept="image/*,.pdf"
             files={answerFiles}
             onFilesChange={setAnswerFiles}
             required

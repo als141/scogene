@@ -257,7 +257,7 @@ async def start_grading(
 ):
     """ファイルを受け取り、submission を作成、バックグラウンド採点を開始して ID を即返却"""
     _validate_files(problem_files, "問題")
-    _validate_files(answer_files, "解答", image_only=True)
+    _validate_files(answer_files, "解答")
     if answer_key_files:
         _validate_files(answer_key_files, "模範解答")
 

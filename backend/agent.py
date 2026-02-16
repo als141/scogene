@@ -72,13 +72,27 @@ RED = (220, 30, 30, 230)
 RED_LIGHT = (220, 30, 30, 160)
 WHITE_BG = (255, 255, 255, 210)
 
-# /mnt/data/ には解答画像のみが配置されている
-answer_files = sorted([f for f in os.listdir("/mnt/data/")
-    if f.lower().endswith((".png",".jpg",".jpeg",".webp"))
-    and not f.startswith("annotated_")])
+# /mnt/data/ には解答ファイル（画像またはPDF）が配置されている
+all_files = sorted([f for f in os.listdir("/mnt/data/")
+    if not f.startswith("annotated_")])
 
-for idx, fname in enumerate(answer_files):
-    img = Image.open(f"/mnt/data/{fname}").convert("RGBA")
+# PDFページを画像に変換し、画像ファイルと統合
+answer_images = []  # (PIL.Image, 元ファイル名) のリスト
+for f in all_files:
+    path = f"/mnt/data/{f}"
+    if f.lower().endswith(".pdf"):
+        import fitz  # PyMuPDF
+        doc = fitz.open(path)
+        for page_num in range(len(doc)):
+            pix = doc[page_num].get_pixmap(dpi=200)
+            page_img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+            answer_images.append((page_img, f"{f}_p{page_num+1}"))
+        doc.close()
+    elif f.lower().endswith((".png",".jpg",".jpeg",".webp",".gif")):
+        answer_images.append((Image.open(path), f))
+
+for idx, (raw_img, fname) in enumerate(answer_images):
+    img = raw_img.convert("RGBA")
     w, h = img.size
     scale = max(w, h) / 1200
 
@@ -292,7 +306,7 @@ def _build_input_content(
         "type": "input_text",
         "text": (
             f"【生徒の解答】（ファイル: {filenames}）\n"
-            f"/mnt/data/ にはこれらの解答画像のみが配置されています。"
+            f"/mnt/data/ にはこれらの解答ファイル（画像またはPDF）が配置されています。"
         ),
     })
     _add_files(answer_file_ids)
@@ -471,7 +485,7 @@ async def grade_submission(
         await _prepare_file_ids(answer_key_files) if answer_key_files else None
     )
 
-    # 解答画像のみ Code Interpreter コンテナに配置（添削対象）
+    # 解答ファイルを Code Interpreter コンテナに配置（添削対象）
     container_fids = [fid for fid, _, _ in answer_file_ids]
 
     input_content = _build_input_content(
@@ -522,7 +536,7 @@ async def grade_submission_stream(
             await _prepare_file_ids(answer_key_files) if answer_key_files else None
         )
 
-        # 解答画像のみ Code Interpreter コンテナに配置（添削対象）
+        # 解答ファイルを Code Interpreter コンテナに配置（添削対象）
         container_fids = [fid for fid, _, _ in answer_file_ids]
 
         yield {"event": "status", "data": "AIが採点を開始しました"}
