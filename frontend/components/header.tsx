@@ -9,6 +9,7 @@ import { useState } from "react";
 const NAV_ITEMS = [
   { href: "/", label: "採点する" },
   { href: "/history", label: "履歴" },
+  { href: "/install", label: "アプリ" },
 ];
 
 function NavLink({

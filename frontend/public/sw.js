@@ -1,5 +1,5 @@
 const CACHE_NAME = "scogene-v1";
-const STATIC_ASSETS = ["/", "/history"];
+const STATIC_ASSETS = ["/", "/history", "/install"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
