@@ -151,21 +151,18 @@
 
 \subsection{背景}
 
-\begin{wrapfigure}{r}{0.55\textwidth}
-  \vspace{-1.0em}
-  \centering
-  \includegraphics[width=0.53\textwidth]{mongene-compare.png}
-  \vspace{-0.5em}
-  \caption{モンジェネの提供価値}
-  \label{fig:manga}
-  \vspace{-1.0em}
-\end{wrapfigure}
-
 「問題を探している時間で、もっと生徒に教えたいな……」---私の5年間の塾講師経験で、何度もそう感じてきた。
 
 私が勤める個別指導塾では、先生1人に生徒2人、1コマ80分で指導する。1人の生徒に割ける時間は実質\textbf{40分}。この40分のうち、問題集から適切な問題を探す作業に\textbf{約10分}---指導時間の25\%が「紙をめくる時間」に消えてしまう。しかも、やっと見つけた問題が生徒の苦手にマッチしているかはわからない。私は約30人の生徒を受け持ち、月ごとに統一模試の結果を見ながら個別に対応するが、30人全員の苦手を正確に把握し続けることは人間の記憶力では限界がある。
 
 私は塾講師80名を束ねるリーダーとして同僚を指導するなかで、同じ悩みを持つ講師が多いことを実感している。そこで私たちは、問題を探すのではなく「作ってしまえばいい」と考え、経産省AKATSUKI事業 ETSUZAN（新潟県版未踏的人材育成事業）にて、無限問題生成AI「モンジェネ」を開発した。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{mongene-compare.png}
+  \caption{モンジェネの提供価値：問題探しの時間を問題生成に置き換え、講師が生徒と向き合う時間を最大化する}
+  \label{fig:manga}
+\end{figure}
 
 \subsubsection{ETSUZANでの成果と課題}
 
@@ -216,7 +213,7 @@
 
   \item \textbf{問題生成Agent}：LLM（GPT-5.4 / Claude）にCode Interpreter（Python実行環境）を組み合わせ、数学的に正確な問題を生成する。計算過程はSymPyで自動検証し、図形問題はMatplotlibで描画する。ETSUZANで開発した3パターン生成を基盤に、苦手プロファイルに基づく個別最適化に拡張する。
 
-  \item \textbf{知識グラフ}：中学数学の概念間の前提関係を有向非巡回グラフ（DAG）として定義する。生徒がつまずいた際にグラフを遡って根本原因の概念を特定し、そこから段階的に積み上げる学習パスを自動決定する。
+  \item \textbf{知識グラフ}：数学の概念間の前提関係を有向非巡回グラフ（DAG）として定義する。生徒がつまずいた際にグラフを遡って根本原因の概念を特定し、そこから段階的に積み上げる学習パスを自動決定する。
 
   \item \textbf{適応学習エンジン}：Bayesian Knowledge Tracing（BKT）で概念ごとの習得確率をリアルタイムに推定し、習得度85\%を基準に次の概念への移行を判定する。FSRS v6（Free Spaced Repetition Scheduler）で最適な復習タイミングを決定し、忘却を防ぐ。
 
@@ -306,37 +303,39 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-  node distance=0.8cm and 1.2cm,
-  concept/.style={rectangle, rounded corners=3pt, draw=mainblue, fill=mainblue!8,
-    font=\small\sffamily, minimum height=0.7cm, minimum width=1.8cm, align=center},
-  weak/.style={rectangle, rounded corners=3pt, draw=dangerred, fill=dangerred!10,
-    font=\small\sffamily, minimum height=0.7cm, minimum width=1.8cm, align=center},
-  arr/.style={-{Stealth[length=4pt]}, thick, color=gray!70},
-  every node/.append style={inner sep=3pt}
+  node distance=0.6cm and 2.0cm,
+  mastered/.style={rectangle, rounded corners=4pt, draw=successgreen, fill=successgreen!10,
+    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
+  weak/.style={rectangle, rounded corners=4pt, draw=dangerred, fill=dangerred!10,
+    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
+  progress/.style={rectangle, rounded corners=4pt, draw=accentorange, fill=accentorange!10,
+    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
+  arr/.style={-{Stealth[length=5pt,width=4pt]}, thick, color=gray!60},
+  every node/.append style={inner sep=4pt}
 ]
-  \node[concept] (num) {正負の数};
-  \node[concept, right=of num] (expr) {文字式};
-  \node[concept, right=of expr] (eq1) {一次方程式};
-  \node[concept, right=of eq1] (eq2) {連立方程式};
+  % 横一列に並べる
+  \node[mastered] (sqrt) {平方根\\[-1pt]{\scriptsize\bfseries\color{successgreen}習得 92\%}};
+  \node[weak, right=of sqrt] (factor) {因数分解\\[-1pt]{\scriptsize\bfseries\color{dangerred}習得 38\%}};
+  \node[weak, right=of factor] (quad) {二次方程式\\[-1pt]{\scriptsize\bfseries\color{dangerred}習得 25\%}};
+  \node[weak, right=of quad] (space) {空間図形\\[-1pt]{\scriptsize\bfseries\color{dangerred}習得 12\%}};
 
-  \node[concept, below=0.7cm of num] (sqrt) {平方根};
-  \node[weak, below=0.7cm of expr] (factor) {因数分解};
-  \node[weak, right=of factor] (quad) {二次方程式};
+  % 下段：三平方の定理
+  \node[progress, below=0.8cm of $(factor)!0.5!(quad)$] (pyth) {三平方の定理\\[-1pt]{\scriptsize\bfseries\color{accentorange}習得 65\%}};
 
-  \node[concept, below=0.7cm of sqrt] (pyth) {三平方の定理};
-  \node[weak, right=2.5cm of pyth] (space) {空間図形};
-
-  \draw[arr] (num) -- (expr);
-  \draw[arr] (expr) -- (eq1);
-  \draw[arr] (eq1) -- (eq2);
-  \draw[arr] (expr) -- (factor);
-  \draw[arr] (sqrt) -- (quad);
-  \draw[arr] (factor) -- (quad);
+  % 矢印
+  \draw[arr] (sqrt) -- (factor);
   \draw[arr] (sqrt) -- (pyth);
+  \draw[arr] (factor) -- (quad);
   \draw[arr] (pyth) -- (space);
   \draw[arr] (quad) -- (space);
+
+  % 凡例（グラフ下部中央に配置）
+  \node[font=\scriptsize\sffamily, anchor=north] at ($(factor.south)+(0,-1.6)$) {%
+    \textcolor{successgreen}{\rule{6pt}{6pt}}\,習得済\quad
+    \textcolor{accentorange}{\rule{6pt}{6pt}}\,学習中\quad
+    \textcolor{dangerred}{\rule{6pt}{6pt}}\,苦手};
 \end{tikzpicture}
-\caption{知識グラフの例（赤枠＝苦手概念）。空間図形でつまずいた生徒の根本原因を因数分解まで遡って特定する。}
+\caption{知識グラフの例：空間図形（習得12\%）でつまずいた生徒の根本原因を因数分解（38\%）まで遡り、そこから段階的に習得させる。}
 \label{fig:knowledge_graph}
 \end{figure}
 \vspace{-0.5em}
@@ -490,7 +489,7 @@ AI/ML & OpenAI API (GPT-5.4), Gemini API, Bayesian Knowledge Tracing, FSRS v6 \\
 期間 & マイルストーン \\
 \midrule
 M1--M2 & 採点エンジンの精度向上。手書き答案のエラー分類精度を検証。統一模試データの取り込みとDB基盤構築 \\
-M3--M4 & 苦手プロファイル蓄積機能の実装。知識グラフ（中学数学の前提概念DAG）構築。塾講師によるアノテーション開始 \\
+M3--M4 & 苦手プロファイル蓄積機能の実装。知識グラフ（数学の前提概念DAG）構築。塾講師によるアノテーション開始 \\
 M5--M6 & 個別最適化問題生成エンジン実装。BKT・FSRSによる適応的出題。LLM生成問題の数学的検証パイプライン構築 \\
 M7--M8 & 教師向けFBダッシュボード実装。完全習得学習フロー（マスタリー判定・矯正問題自動生成）の統合 \\
 M8--M9 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテストによる学習効果の定量評価と改善サイクル \\
