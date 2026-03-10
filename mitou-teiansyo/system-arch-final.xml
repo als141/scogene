@@ -1,0 +1,110 @@
+<mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="600" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="z_user" value="ユーザー" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#555555;spacingTop=5;arcSize=8;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="10" y="30" width="130" height="330" as="geometry"/>
+    </mxCell>
+    <mxCell id="u_teacher" value="&lt;b&gt;塾講師&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size:10px&quot;&gt;FB確認・解説指導&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDDDDD;fontSize=12;" vertex="1" parent="z_user">
+      <mxGeometry x="10" y="45" width="110" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="u_student" value="&lt;b&gt;生徒&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888888&quot; style=&quot;font-size:10px&quot;&gt;答案撮影・問題演習&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDDDDD;fontSize=12;" vertex="1" parent="z_user">
+      <mxGeometry x="10" y="115" width="110" height="55" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="z_front" value="フロントエンド" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F7FF;strokeColor=#BDD7EE;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#1A5276;spacingTop=5;arcSize=6;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="190" y="30" width="180" height="330" as="geometry"/>
+    </mxCell>
+    <mxCell id="f_nj" value="&lt;b style=&quot;font-size:13px&quot;&gt;Next.js&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;TypeScript / React&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDDDDD;fontSize=12;" vertex="1" parent="z_front">
+      <mxGeometry x="10" y="40" width="160" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="f_vc" value="&lt;b style=&quot;font-size:13px&quot;&gt;▲ Vercel&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;ホスティング / Edge&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDDDDD;fontSize=12;" vertex="1" parent="z_front">
+      <mxGeometry x="10" y="105" width="160" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="f_ck" value="&lt;b style=&quot;font-size:13px&quot;&gt;Clerk&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;認証 / ユーザー管理&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDDDDD;fontSize=12;" vertex="1" parent="z_front">
+      <mxGeometry x="10" y="170" width="160" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="z_back" value="バックエンド" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#A7F3D0;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#059669;spacingTop=5;arcSize=5;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="420" y="30" width="260" height="330" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_gcp" value="&lt;b style=&quot;font-size:13px&quot;&gt;Google Cloud&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;Cloud Run / Python + Go&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=12;" vertex="1" parent="z_back">
+      <mxGeometry x="15" y="35" width="230" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_grade" value="&lt;b&gt;採点エンジン&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;手書き答案→エラー分類&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_back">
+      <mxGeometry x="15" y="100" width="230" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_gen" value="&lt;b&gt;問題生成エンジン&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;苦手特化 / 模試対策 / 段階的&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_back">
+      <mxGeometry x="15" y="163" width="230" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="b_adapt" value="&lt;b&gt;適応学習エンジン&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;BKT / FSRS / 知識グラフ / マスタリー判定&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_back">
+      <mxGeometry x="15" y="226" width="230" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="z_ai" value="AI / LLM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#FED7AA;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#C2410C;spacingTop=5;arcSize=6;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="730" y="30" width="210" height="330" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_oai" value="&lt;b style=&quot;font-size:13px&quot;&gt;OpenAI&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;Agents SDK&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=12;" vertex="1" parent="z_ai">
+      <mxGeometry x="15" y="35" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_score" value="&lt;b&gt;採点 Agent&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;GPT + Vision&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_ai">
+      <mxGeometry x="15" y="100" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_gen" value="&lt;b&gt;問題生成 Agent&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;Code Interpreter&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_ai">
+      <mxGeometry x="15" y="163" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="a_fb" value="&lt;b&gt;FB生成 Agent&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;教師向けレポート生成&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#F59E0B;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_ai">
+      <mxGeometry x="15" y="226" width="180" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="z_data" value="データ基盤" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#DDD6FE;verticalAlign=top;fontSize=11;fontStyle=1;fontColor=#7C3AED;spacingTop=5;arcSize=6;container=1;collapsible=0;" vertex="1" parent="1">
+      <mxGeometry x="990" y="30" width="210" height="330" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_supa" value="&lt;b style=&quot;font-size:13px&quot;&gt;Supabase&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;PostgreSQL + Storage&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;strokeWidth=1.5;fontSize=12;" vertex="1" parent="z_data">
+      <mxGeometry x="15" y="35" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_prob" value="&lt;b&gt;問題 DB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;IRT較正 / 誤答パターン&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_data">
+      <mxGeometry x="15" y="100" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_student" value="&lt;b&gt;生徒プロファイル&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;苦手 / 知識状態 / 履歴&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_data">
+      <mxGeometry x="15" y="163" width="180" height="45" as="geometry"/>
+    </mxCell>
+    <mxCell id="d_vec" value="&lt;b&gt;pgvector&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#888&quot; style=&quot;font-size:10px&quot;&gt;埋め込みベクトル検索&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8B5CF6;strokeWidth=1.5;fontSize=11;" vertex="1" parent="z_data">
+      <mxGeometry x="15" y="226" width="180" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="e1" value="HTTPS" style="endArrow=block;endSize=8;endFill=1;html=1;strokeColor=#666;fontSize=10;fontColor=#999;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="z_user" target="z_front">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e2" value="REST / SSE" style="endArrow=block;endSize=8;endFill=1;html=1;strokeColor=#666;fontSize=10;fontColor=#999;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="z_front" target="z_back">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e3" value="API" style="endArrow=block;endSize=8;endFill=1;html=1;strokeColor=#666;fontSize=10;fontColor=#999;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="z_back" target="z_ai">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4" value="読み書き" style="endArrow=block;endSize=8;endFill=1;html=1;strokeColor=#666;fontSize=10;fontColor=#999;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="z_ai" target="z_data">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="d1" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="b_grade" target="a_score">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="d2" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="b_gen" target="a_gen">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="d3" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="b_adapt" target="a_fb">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="d4" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="a_score" target="d_prob">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="d5" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="a_gen" target="d_student">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="d6" style="endArrow=block;endSize=6;endFill=1;html=1;strokeColor=#AAA;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="a_fb" target="d_vec">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "ScoGene - AI数学採点",
   description:
     "AIが高校教師レベルで数学の解答を採点。途中式の評価、部分点、赤ペン添削まで対応。",
-  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

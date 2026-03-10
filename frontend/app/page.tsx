@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Header } from "@/components/header";
+import { InstallPrompt } from "@/components/install-prompt";
 import { FileUploadZone } from "@/components/file-upload-zone";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -54,6 +55,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <InstallPrompt />
 
       <main className="mx-auto max-w-2xl px-4 sm:px-6 py-6 sm:py-10">
         <div className="mb-8 sm:mb-10">

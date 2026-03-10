@@ -1,0 +1,67 @@
+direction: right
+
+users: 塾講師・生徒 {
+  shape: person
+  style.font-size: 14
+  style.fill: "#FFF"
+  style.stroke: "#333"
+}
+
+nextjs: Next.js\n(Vercel / Clerk) {
+  icon: https://cdn.simpleicons.org/nextdotjs/000000
+  style.font-size: 13; style.bold: true
+  style.fill: "#FFF"; style.stroke: "#333"; style.stroke-width: 2; style.border-radius: 6
+}
+
+cloudrun: Cloud Run\n(Python / Go) {
+  icon: https://cdn.simpleicons.org/googlecloud/4285F4
+  style.font-size: 13; style.bold: true
+  style.fill: "#FFF"; style.stroke: "#333"; style.stroke-width: 2; style.border-radius: 6
+}
+
+openai: OpenAI\nAgents SDK {
+  icon: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg
+  style.font-size: 13; style.bold: true
+  style.fill: "#FFF"; style.stroke: "#333"; style.stroke-width: 2; style.border-radius: 6
+}
+
+supabase: Supabase\nPostgreSQL {
+  icon: https://cdn.simpleicons.org/supabase/3ECF8E
+  style.font-size: 13; style.bold: true
+  style.fill: "#FFF"; style.stroke: "#333"; style.stroke-width: 2; style.border-radius: 6
+}
+
+# メインフロー
+users -> nextjs: 操作 { style.stroke: "#333"; style.stroke-width: 2; style.font-size: 11; style.font-color: "#888" }
+nextjs -> cloudrun: REST { style.stroke: "#333"; style.stroke-width: 2; style.font-size: 11; style.font-color: "#888" }
+cloudrun -> openai: 呼出 { style.stroke: "#333"; style.stroke-width: 2; style.font-size: 11; style.font-color: "#888" }
+openai -> supabase: R/W { style.stroke: "#333"; style.stroke-width: 2; style.font-size: 11; style.font-color: "#888" }
+
+# エンジン（Cloud Run配下）
+grade: 採点エンジン { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+qgen: 問題生成エンジン { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+irt: 適応学習エンジン { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+cloudrun -> grade { style.stroke: "#BBB" }
+cloudrun -> qgen { style.stroke: "#BBB" }
+cloudrun -> irt { style.stroke: "#BBB" }
+
+# Agent（OpenAI配下）
+a1: 採点Agent { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+a2: 生成Agent { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+a3: FBAgent { style.font-size: 11; style.fill: "#F5F5F5"; style.stroke: "#BBB"; style.border-radius: 4 }
+openai -> a1 { style.stroke: "#BBB" }
+openai -> a2 { style.stroke: "#BBB" }
+openai -> a3 { style.stroke: "#BBB" }
+
+# エンジン→Agent対応
+grade -> a1 { style.stroke: "#DDD"; style.stroke-dash: 3 }
+qgen -> a2 { style.stroke: "#DDD"; style.stroke-dash: 3 }
+irt -> a3 { style.stroke: "#DDD"; style.stroke-dash: 3 }
+
+# DB（Supabase配下）
+d1: 問題DB { shape: cylinder; style.font-size: 11; style.fill: "#FFF"; style.stroke: "#999" }
+d2: 生徒データ { shape: cylinder; style.font-size: 11; style.fill: "#FFF"; style.stroke: "#999" }
+d3: pgvector { shape: cylinder; style.font-size: 11; style.fill: "#FFF"; style.stroke: "#999" }
+supabase -> d1 { style.stroke: "#BBB" }
+supabase -> d2 { style.stroke: "#BBB" }
+supabase -> d3 { style.stroke: "#BBB" }

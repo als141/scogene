@@ -1,0 +1,1043 @@
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  2 MAR 2026 18:57
+ restricted system commands enabled.
+**system-arch.tex
+(./system-arch.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended collection.
+luaotfload | conf : Root cache directory is "/home/als0028/.TinyTeX/texmf-var/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-resolved path "/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/fontloader-2023-12-28.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.134
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/home/als0028/.TinyTeX/texmf-var/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. (/home/als0028/.TinyTeX/texmf-dist/tex/latex/standalone/standalone.cls
+Document Class: standalone 2025/02/22 v1.5a Class to compile TeX sub-files standalone
+(/home/als0028/.TinyTeX/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/home/als0028/.TinyTeX/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks17
+\XKV@tempa@toks=\toks18
+\XKV@tempb@toks=\toks19
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count273
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\sa@internal=\count274
+\c@sapage=\count275
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/standalone/standalone.cfg
+File: standalone.cfg 2025/02/22 v1.5a Default configuration file for 'standalone' class
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/home/als0028/.TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /home/als0028/.TinyTeX/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen147
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/luatex85/luatex85.sty
+Package: luatex85 2016/06/15 v1.4 pdftex aliases for luatex
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks20
+)
+\sa@box=\box53
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/addons/luatexja-preset.sty
+Package: luatexja-preset 2025-10-26 Japanese font presets
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-01-19 L3 programming layer (loader) 
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count284
+Inserting `l3color' in `luaotfload.parse_color'.)) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/luatexja.sty
+Package: luatexja 2026-01-30 Japanese Typesetting with Lua(La)TeX
+ (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/luatexja-core.sty
+Package: luatexja-core 2023-10-07 Core of LuaTeX-ja
+ (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexbase/luatexbase.sty
+Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
+ (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
+Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
+\@catcodetablestackcnt=\count285
+)
+\CatcodeTableOther=\catcodetable14
+\CatcodeTableExpl=\catcodetable15
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count286
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/everyhook/everyhook.sty (/home/als0028/.TinyTeX/texmf-dist/tex/latex/svn-prov/svn-prov.sty
+Package: svn-prov 2010/04/24 v3.1862 Package Date/Version from SVN Keywords
+)
+Package: everyhook 2014/11/26 v1.2 (SVN Rev: 12)\ Hooks for low level TeX everyX primitives.
+\everypar=\toks21
+\frozen@everymath=\toks22
+\frozen@everydisplay=\toks23
+\everyhbox=\toks24
+\everyvbox=\toks25
+\everycr=\toks26
+)
+\ltjlineendcomment=\count287
+\ltj@dimen@zw=\dimen148
+\ltj@dimen@zh=\dimen149
+\ltj@dimen@jQ=\dimen150
+\ltj@icflag=\attribute4
+\ltj@curjfnt=\attribute5
+\ltj@curtfnt=\attribute6
+\ltj@charclass=\attribute7
+\ltj@charcode=\attribute8
+\ltj@autospc=\attribute9
+\ltj@autoxspc=\attribute10
+\ltj@yablshift=\attribute11
+\ltj@ykblshift=\attribute12
+\ltj@tablshift=\attribute13
+\ltj@tkblshift=\attribute14
+\jfam=\attribute15
+\ltj@vert@ori=\attribute16
+\ltj@dir=\attribute17
+\ltj@@japanese=\language2
+\ltj@tempcnta=\count288
+\ltj@tempdima=\dimen151
+\ltj@@stack=\count289
+\ltj@@group@level=\count290
+\ltj@kcat0=\attribute18
+\ltj@kcat1=\attribute19
+\ltj@kcat2=\attribute20
+\ltj@kcat3=\attribute21
+\ltj@kcat4=\attribute22
+\ltj@kcat5=\attribute23
+\ltj@kcat6=\attribute24
+Custom whatsit inhibitglue = 1
+Custom whatsit stack_marker = 2
+Custom whatsit begin_par = 3
+Custom whatsit direction = 4
+Custom whatsit box_boundary = 5
+Custom whatsit ja_al_boundary = 6(load cache: ltj-cid-auto-adobe-japan1.luc)
+Lua module: luatexja.charrange 2022-08-19 Handling the range of Japanese characters
+Lua module: luatexja.stack 2022-08-20 LuaTeX-ja stack system
+Inserting `ltj.create_dir_whatsit' in `hpack_filter'.
+Inserting `ltj.create_dir_whatsit' in `post_linebreak_filter'.
+Inserting `ltj.direction' in `vpack_filter'.
+Inserting `ltj.direction' in `pre_output_filter'.
+Inserting `ltj.lineskip' in `post_linebreak_filter'.
+Inserting `ltj.lineskip' in `append_to_vlist_filter'.
+Lua module: luatexja.jfont 2025-05-04 Loader for Japanese fonts
+Removing  `luaotfload.define_font' from `define_font'.
+Inserting `luatexja.font_callback' in `define_font'.
+Removing  `luaotfload.aux.set_sscale_dimens' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_font_index' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.patch_cambria_domh' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_capheight' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_xheight' from `luaotfload.patch_font'.
+Removing  `luaotfload.rewrite_fontname' from `luaotfload.patch_font'.
+Inserting `ltj.prepare_extra_data' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `ltj.prepare_extra_data' in `luatexja.define_font'.(load cache: extra_lmroman10-regular.luc)
+Inserting `ltj.get_vert_form' in `luatexja.define_jfont'.
+Removing  `ltj.prepare_extra_data' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_sscale_dimens' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_font_index' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.patch_cambria_domh' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_capheight' from `luaotfload.patch_font'.
+Removing  `luaotfload.aux.set_xheight' from `luaotfload.patch_font'.
+Removing  `luaotfload.rewrite_fontname' from `luaotfload.patch_font'.
+Inserting `ltj.supply_tounicode' in `luaotfload.patch_font'.
+Inserting `ltj.prepare_extra_data' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `ltj.process_input_buffer' in `process_input_buffer'.
+Inserting `ltj.hyphenate' in `hyphenate'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Removing  `ltj.create_dir_whatsit' from `hpack_filter'.
+Inserting `ltj.set_stack_level' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `ltj.create_dir_whatsit' in `hpack_filter'.
+Removing  `luaotfload.node_processor' from `pre_linebreak_filter'.
+Inserting `ltj.set_stack_level' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Lua module: luatexja.jfmglue 2026-01-07 Insertion process of JFM glues, [x]kanjiskip and others
+Inserting `luatexja.beginpar.np_info' in `luatexja.jfmglue.whatsit_getinfo'.
+Inserting `luatexja.beginpar.np_info_after' in `luatexja.jfmglue.whatsit_after'.
+Inserting `ltj.mlist_to_hlist_pre' in `pre_mlist_to_hlist_filter'.
+Inserting `ltj.main' in `pre_linebreak_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Removing  `ltj.create_dir_whatsit' from `hpack_filter'.
+Inserting `ltj.main' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `ltj.create_dir_whatsit' in `hpack_filter'.
+Removing  `ltj.set_stack_level' from `pre_linebreak_filter'.
+Removing  `luaotfload.node_processor' from `pre_linebreak_filter'.
+Removing  `ltj.main' from `pre_linebreak_filter'.
+Inserting `ltj.adjust_icflag' in `pre_linebreak_filter'.
+Inserting `ltj.set_stack_level' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `ltj.main' in `pre_linebreak_filter'.
+Removing  `ltj.set_stack_level' from `hpack_filter'.
+Removing  `luaotfload.node_processor' from `hpack_filter'.
+Removing  `ltj.main' from `hpack_filter'.
+Removing  `luaotfload.harf.finalize_hlist' from `hpack_filter'.
+Removing  `ltj.create_dir_whatsit' from `hpack_filter'.
+Inserting `ltj.adjust_icflag' in `hpack_filter'.
+Inserting `ltj.set_stack_level' in `hpack_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `ltj.main' in `hpack_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `ltj.create_dir_whatsit' in `hpack_filter'. (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/ltj-base.sty
+Package: ltj-base 2021-03-16
+\ltj@tempcntb=\count291
+\ltj@tempcntc=\count292
+\ltj@afbox=\box54
+)
+\ltj@@italic@inner=\luafunction31
+\ltj@@start@time@measure@inner=\luafunction32
+\ltj@@stop@time@measure@inner=\luafunction33
+\ltj@@jfont@inner=\luafunction34
+\ltj@zw@inner=\luafunction35
+\ltj@zh@inner=\luafunction36
+\ltj@reset@globaldefs@inner=\luafunction37
+\ltj@restore@globaldefs@inner=\luafunction38
+\ltj@@disihb@inner=\luafunction39
+\ltj@@ihb@inner=\luafunction40
+\ltj@@fakeparbegin@inner=\luafunction41
+\ltj@@fakeboxbdd@inner=\luafunction42
+\ltj@@ins@xk@inner=\luafunction43
+\ltj@@ins@k@inner=\luafunction44
+\ltjsetkanjiskip@inner=\luafunction45
+\ltjsetxkanjiskip@inner=\luafunction46
+\ltj@@getparam@one@inner=\luafunction47
+\ltj@alljachar@inner=\luafunction48
+\ltj@@lua@populate@insertwhatsit@inner=\luafunction49
+\ltj@@vadjust@begin@inner=\luafunction50
+\ltj@@vadjust@dirhook@inner=\luafunction51
+\ltj@@vadjust@check@dir@inner=\luafunction52
+\ltj@@box@dirhook@inner=\luafunction53
+\ltj@@reset@badness@inner=\luafunction54
+\ltj@@lua@raisebox@inner=\luafunction55
+\ltj@@vsplit@inner=\luafunction56
+\ltj@@lua@unboxcheckdir@inner=\luafunction57
+\ltj@@lua@uncopycheckdir@inner=\luafunction58
+\ltj@@lua@uncopy@restore@whatsit@inner=\luafunction59
+(load cache: ltj-kinsoku_default.luc) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/ltj-latex.sty
+Package: ltj-latex 2025-06-08 LaTeX support of LuaTeX-ja
+Inserting `ltj.direction' in `pre_shipout_filter'. (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjfont.sty
+Package: lltjfont 2025-10-26 Patch to NFSS2 for LuaTeX-ja
+\ltj@@latex@plv=\count293
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/base/tuenc.def
+File: tuenc.def 2025/07/18 v2.1d Standard LaTeX file
+\@remove@tlig@@@=\luafunction60
+LaTeX Font Info:    Redeclaring font encoding TU on input line 105.
+LaTeX Encoding Info:    Redeclaring text command \textquotesingle (encoding TU) on input line 148.
+LaTeX Encoding Info:    Redeclaring text command \textasciigrave (encoding TU) on input line 149.
+LaTeX Encoding Info:    Redeclaring text command \textquotedbl (encoding TU) on input line 150.
+LaTeX Encoding Info:    Redeclaring text command \textdollar (encoding TU) on input line 151.
+LaTeX Encoding Info:    Redeclaring text command \textless (encoding TU) on input line 152.
+LaTeX Encoding Info:    Redeclaring text command \textgreater (encoding TU) on input line 153.
+LaTeX Encoding Info:    Redeclaring text command \textbackslash (encoding TU) on input line 154.
+LaTeX Encoding Info:    Redeclaring text command \textasciicircum (encoding TU) on input line 155.
+LaTeX Encoding Info:    Redeclaring text command \textunderscore (encoding TU) on input line 156.
+LaTeX Encoding Info:    Redeclaring text command \textbraceleft (encoding TU) on input line 157.
+LaTeX Encoding Info:    Redeclaring text command \textbar (encoding TU) on input line 158.
+LaTeX Encoding Info:    Redeclaring text command \textbraceright (encoding TU) on input line 159.
+LaTeX Encoding Info:    Redeclaring text command \textasciitilde (encoding TU) on input line 160.
+LaTeX Encoding Info:    Redeclaring text command \textexclamdown (encoding TU) on input line 161.
+LaTeX Encoding Info:    Redeclaring text command \textcent (encoding TU) on input line 162.
+LaTeX Encoding Info:    Redeclaring text command \textsterling (encoding TU) on input line 163.
+LaTeX Encoding Info:    Redeclaring text command \textcurrency (encoding TU) on input line 164.
+LaTeX Encoding Info:    Redeclaring text command \textyen (encoding TU) on input line 165.
+LaTeX Encoding Info:    Redeclaring text command \textbrokenbar (encoding TU) on input line 166.
+LaTeX Encoding Info:    Redeclaring text command \textsection (encoding TU) on input line 167.
+LaTeX Encoding Info:    Redeclaring text command \textasciidieresis (encoding TU) on input line 168.
+LaTeX Encoding Info:    Redeclaring text command \textcopyright (encoding TU) on input line 169.
+LaTeX Encoding Info:    Redeclaring text command \textordfeminine (encoding TU) on input line 170.
+LaTeX Encoding Info:    Redeclaring text command \guillemetleft (encoding TU) on input line 171.
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding TU) on input line 172.
+LaTeX Encoding Info:    Redeclaring text command \textlnot (encoding TU) on input line 173.
+LaTeX Encoding Info:    Redeclaring text command \textregistered (encoding TU) on input line 174.
+LaTeX Encoding Info:    Redeclaring text command \textasciimacron (encoding TU) on input line 175.
+LaTeX Encoding Info:    Redeclaring text command \textdegree (encoding TU) on input line 176.
+LaTeX Encoding Info:    Redeclaring text command \textpm (encoding TU) on input line 177.
+LaTeX Encoding Info:    Redeclaring text command \texttwosuperior (encoding TU) on input line 178.
+LaTeX Encoding Info:    Redeclaring text command \textthreesuperior (encoding TU) on input line 179.
+LaTeX Encoding Info:    Redeclaring text command \textasciiacute (encoding TU) on input line 180.
+LaTeX Encoding Info:    Redeclaring text command \textmu (encoding TU) on input line 181.
+LaTeX Encoding Info:    Redeclaring text command \textparagraph (encoding TU) on input line 182.
+LaTeX Encoding Info:    Redeclaring text command \textperiodcentered (encoding TU) on input line 183.
+LaTeX Encoding Info:    Redeclaring text command \textonesuperior (encoding TU) on input line 184.
+LaTeX Encoding Info:    Redeclaring text command \textordmasculine (encoding TU) on input line 185.
+LaTeX Encoding Info:    Redeclaring text command \guillemetright (encoding TU) on input line 186.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding TU) on input line 187.
+LaTeX Encoding Info:    Redeclaring text command \textonequarter (encoding TU) on input line 188.
+LaTeX Encoding Info:    Redeclaring text command \textonehalf (encoding TU) on input line 189.
+LaTeX Encoding Info:    Redeclaring text command \textthreequarters (encoding TU) on input line 190.
+LaTeX Encoding Info:    Redeclaring text command \textquestiondown (encoding TU) on input line 191.
+LaTeX Encoding Info:    Redeclaring text command \AE (encoding TU) on input line 192.
+LaTeX Encoding Info:    Redeclaring text command \DH (encoding TU) on input line 193.
+LaTeX Encoding Info:    Redeclaring text command \texttimes (encoding TU) on input line 194.
+LaTeX Encoding Info:    Redeclaring text command \O (encoding TU) on input line 195.
+LaTeX Encoding Info:    Redeclaring text command \TH (encoding TU) on input line 196.
+LaTeX Encoding Info:    Redeclaring text command \ss (encoding TU) on input line 197.
+LaTeX Encoding Info:    Redeclaring text command \ae (encoding TU) on input line 198.
+LaTeX Encoding Info:    Redeclaring text command \dh (encoding TU) on input line 199.
+LaTeX Encoding Info:    Redeclaring text command \textdiv (encoding TU) on input line 200.
+LaTeX Encoding Info:    Redeclaring text command \o (encoding TU) on input line 201.
+LaTeX Encoding Info:    Redeclaring text command \th (encoding TU) on input line 202.
+LaTeX Encoding Info:    Redeclaring text command \DJ (encoding TU) on input line 203.
+LaTeX Encoding Info:    Redeclaring text command \dj (encoding TU) on input line 204.
+LaTeX Encoding Info:    Redeclaring text command \i (encoding TU) on input line 205.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding TU) on input line 206.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding TU) on input line 207.
+LaTeX Encoding Info:    Redeclaring text command \L (encoding TU) on input line 208.
+LaTeX Encoding Info:    Redeclaring text command \l (encoding TU) on input line 209.
+LaTeX Encoding Info:    Redeclaring text command \NG (encoding TU) on input line 210.
+LaTeX Encoding Info:    Redeclaring text command \ng (encoding TU) on input line 211.
+LaTeX Encoding Info:    Redeclaring text command \OE (encoding TU) on input line 212.
+LaTeX Encoding Info:    Redeclaring text command \oe (encoding TU) on input line 213.
+LaTeX Encoding Info:    Redeclaring text command \textflorin (encoding TU) on input line 214.
+LaTeX Encoding Info:    Redeclaring text command \j (encoding TU) on input line 215.
+LaTeX Encoding Info:    Redeclaring text command \textasciicaron (encoding TU) on input line 216.
+LaTeX Encoding Info:    Redeclaring text command \textasciibreve (encoding TU) on input line 217.
+LaTeX Encoding Info:    Redeclaring text command \textacutedbl (encoding TU) on input line 218.
+LaTeX Encoding Info:    Redeclaring text command \textgravedbl (encoding TU) on input line 219.
+LaTeX Encoding Info:    Redeclaring text command \texttildelow (encoding TU) on input line 220.
+LaTeX Encoding Info:    Redeclaring text command \textbaht (encoding TU) on input line 221.
+LaTeX Encoding Info:    Redeclaring text command \SS (encoding TU) on input line 222.
+LaTeX Encoding Info:    Redeclaring text command \textcompwordmark (encoding TU) on input line 223.
+LaTeX Encoding Info:    Redeclaring text command \textendash (encoding TU) on input line 224.
+LaTeX Encoding Info:    Redeclaring text command \textemdash (encoding TU) on input line 225.
+LaTeX Encoding Info:    Redeclaring text command \textnonbreakinghyphen (encoding TU) on input line 226.
+LaTeX Encoding Info:    Redeclaring text command \textfiguredash (encoding TU) on input line 228.
+LaTeX Encoding Info:    Redeclaring text command \texthorizontalbar (encoding TU) on input line 230.
+LaTeX Encoding Info:    Redeclaring text command \textbardbl (encoding TU) on input line 232.
+LaTeX Encoding Info:    Redeclaring text command \textquoteleft (encoding TU) on input line 233.
+LaTeX Encoding Info:    Redeclaring text command \textquoteright (encoding TU) on input line 234.
+LaTeX Encoding Info:    Redeclaring text command \quotesinglbase (encoding TU) on input line 235.
+LaTeX Encoding Info:    Redeclaring text command \textquotedblleft (encoding TU) on input line 236.
+LaTeX Encoding Info:    Redeclaring text command \textquotedblright (encoding TU) on input line 237.
+LaTeX Encoding Info:    Redeclaring text command \quotedblbase (encoding TU) on input line 238.
+LaTeX Encoding Info:    Redeclaring text command \textdagger (encoding TU) on input line 239.
+LaTeX Encoding Info:    Redeclaring text command \textdaggerdbl (encoding TU) on input line 240.
+LaTeX Encoding Info:    Redeclaring text command \textbullet (encoding TU) on input line 241.
+LaTeX Encoding Info:    Redeclaring text command \textellipsis (encoding TU) on input line 242.
+LaTeX Encoding Info:    Redeclaring text command \textperthousand (encoding TU) on input line 243.
+LaTeX Encoding Info:    Redeclaring text command \textpertenthousand (encoding TU) on input line 244.
+LaTeX Encoding Info:    Redeclaring text command \guilsinglleft (encoding TU) on input line 245.
+LaTeX Encoding Info:    Redeclaring text command \guilsinglright (encoding TU) on input line 246.
+LaTeX Encoding Info:    Redeclaring text command \textreferencemark (encoding TU) on input line 247.
+LaTeX Encoding Info:    Redeclaring text command \textinterrobang (encoding TU) on input line 248.
+LaTeX Encoding Info:    Redeclaring text command \textfractionsolidus (encoding TU) on input line 249.
+LaTeX Encoding Info:    Redeclaring text command \textlquill (encoding TU) on input line 250.
+LaTeX Encoding Info:    Redeclaring text command \textrquill (encoding TU) on input line 251.
+LaTeX Encoding Info:    Redeclaring text command \textdiscount (encoding TU) on input line 252.
+LaTeX Encoding Info:    Redeclaring text command \textcolonmonetary (encoding TU) on input line 253.
+LaTeX Encoding Info:    Redeclaring text command \textlira (encoding TU) on input line 254.
+LaTeX Encoding Info:    Redeclaring text command \textnaira (encoding TU) on input line 255.
+LaTeX Encoding Info:    Redeclaring text command \textwon (encoding TU) on input line 256.
+LaTeX Encoding Info:    Redeclaring text command \textdong (encoding TU) on input line 257.
+LaTeX Encoding Info:    Redeclaring text command \texteuro (encoding TU) on input line 258.
+LaTeX Encoding Info:    Redeclaring text command \textpeso (encoding TU) on input line 259.
+LaTeX Encoding Info:    Redeclaring text command \textcelsius (encoding TU) on input line 260.
+LaTeX Encoding Info:    Redeclaring text command \textnumero (encoding TU) on input line 261.
+LaTeX Encoding Info:    Redeclaring text command \textcircledP (encoding TU) on input line 262.
+LaTeX Encoding Info:    Redeclaring text command \textrecipe (encoding TU) on input line 263.
+LaTeX Encoding Info:    Redeclaring text command \textservicemark (encoding TU) on input line 264.
+LaTeX Encoding Info:    Redeclaring text command \texttrademark (encoding TU) on input line 265.
+LaTeX Encoding Info:    Redeclaring text command \textohm (encoding TU) on input line 266.
+LaTeX Encoding Info:    Redeclaring text command \textmho (encoding TU) on input line 267.
+LaTeX Encoding Info:    Redeclaring text command \textestimated (encoding TU) on input line 268.
+LaTeX Encoding Info:    Redeclaring text command \textleftarrow (encoding TU) on input line 269.
+LaTeX Encoding Info:    Redeclaring text command \textuparrow (encoding TU) on input line 270.
+LaTeX Encoding Info:    Redeclaring text command \textrightarrow (encoding TU) on input line 271.
+LaTeX Encoding Info:    Redeclaring text command \textdownarrow (encoding TU) on input line 272.
+LaTeX Encoding Info:    Redeclaring text command \textminus (encoding TU) on input line 273.
+LaTeX Encoding Info:    Redeclaring text command \Hwithstroke (encoding TU) on input line 275.
+LaTeX Encoding Info:    Redeclaring text command \hwithstroke (encoding TU) on input line 276.
+LaTeX Encoding Info:    Redeclaring text command \textasteriskcentered (encoding TU) on input line 277.
+LaTeX Encoding Info:    Redeclaring text command \textsurd (encoding TU) on input line 288.
+LaTeX Encoding Info:    Redeclaring text command \textlangle (encoding TU) on input line 289.
+LaTeX Encoding Info:    Redeclaring text command \textrangle (encoding TU) on input line 290.
+LaTeX Encoding Info:    Redeclaring text command \textblank (encoding TU) on input line 291.
+LaTeX Encoding Info:    Redeclaring text command \textvisiblespace (encoding TU) on input line 292.
+LaTeX Encoding Info:    Redeclaring text command \textopenbullet (encoding TU) on input line 293.
+LaTeX Encoding Info:    Redeclaring text command \textbigcircle (encoding TU) on input line 294.
+LaTeX Encoding Info:    Redeclaring text command \textmusicalnote (encoding TU) on input line 295.
+LaTeX Encoding Info:    Redeclaring text command \textmarried (encoding TU) on input line 296.
+LaTeX Encoding Info:    Redeclaring text command \textdivorced (encoding TU) on input line 297.
+LaTeX Encoding Info:    Redeclaring text command \textinterrobangdown (encoding TU) on input line 298.
+LaTeX Encoding Info:    Redeclaring text command \` (encoding TU) on input line 299.
+LaTeX Encoding Info:    Redeclaring text command \' (encoding TU) on input line 300.
+LaTeX Encoding Info:    Redeclaring text command \^ (encoding TU) on input line 301.
+LaTeX Encoding Info:    Redeclaring text command \~ (encoding TU) on input line 302.
+LaTeX Encoding Info:    Redeclaring text command \= (encoding TU) on input line 303.
+LaTeX Encoding Info:    Redeclaring text command \u (encoding TU) on input line 304.
+LaTeX Encoding Info:    Redeclaring text command \. (encoding TU) on input line 305.
+LaTeX Encoding Info:    Redeclaring text command \" (encoding TU) on input line 306.
+LaTeX Encoding Info:    Redeclaring text command \r (encoding TU) on input line 307.
+LaTeX Encoding Info:    Redeclaring text command \H (encoding TU) on input line 308.
+LaTeX Encoding Info:    Redeclaring text command \v (encoding TU) on input line 309.
+LaTeX Encoding Info:    Redeclaring text command \b (encoding TU) on input line 310.
+LaTeX Encoding Info:    Redeclaring text command \d (encoding TU) on input line 311.
+LaTeX Encoding Info:    Redeclaring text command \c (encoding TU) on input line 312.
+LaTeX Encoding Info:    Redeclaring text command \k (encoding TU) on input line 313.
+LaTeX Encoding Info:    Redeclaring text command \textcommabelow (encoding TU) on input line 314.
+)
+\Cht=\dimen152
+\cht=\dimen153
+\Cdp=\dimen154
+\cdp=\dimen155
+\Cwd=\dimen156
+\cwd=\dimen157
+\Cvs=\dimen158
+\cvs=\dimen159
+\Chs=\dimen160
+\chs=\dimen161
+\cHT=\dimen162
+\dstrutbox=\box55
+\tstrutbox=\box56
+\zstrutbox=\box57
+LaTeX Info: Redefining \strut on input line 71.
+\ltj@@add@fenc@@inner=\luafunction61
+\ltj@@add@kyenc@@inner=\luafunction62
+\ltj@@add@ktenc@@inner=\luafunction63
+\ltj@@is@kyenc@@inner=\luafunction64
+\ltj@@is@ktenc@@inner=\luafunction65
+\ltj@@is@kenc@@inner=\luafunction66
+\ltj@@is@ffam@@inner=\luafunction67
+\ltj@@add@ffam@@inner=\luafunction68
+\ltj@@add@kfam@@inner=\luafunction69
+\ltj@@adjust@baseline@inner=\luafunction70
+LaTeX Info: Redefining \fontencoding on input line 573.
+LaTeX Info: Redefining \fontfamily on input line 619.
+LaTeX Info: Redefining \fontseries on input line 813.
+LaTeX Info: Redefining \fontseriesforce on input line 814.
+LaTeX Info: Redefining \fontshape on input line 822.
+LaTeX Info: Redefining \fontshapeforce on input line 833.
+\ltj@@jfont@@jfmonly@@inner=\luafunction71
+\ltj@@does@alt@set@@inner=\luafunction72
+\ltj@@cipath@clear@inner=\luafunction73
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjdefs.sty
+Package: lltjdefs 2024-05-16 Default font settings of LuaTeX-ja
+LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 69.
+
+(/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/jfm-ujisv.lua)
+LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 69.
+(load cache: extra_haranoajimincho-regular.luc)
+(/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/jfm-ujis.lua)
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY3/mc/m/n --> JY3/gt/m/n on input line 78.
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjcore.sty
+Package: lltjcore 2025-06-12 Patch to LaTeX2e Kernel for LuaTeX-ja (for LaTeX2e >=2025-06-01)
+\@tombowwidth=\dimen163
+\@TL=\box58
+\@Tl=\box59
+\@TC=\box60
+\@TR=\box61
+\@Tr=\box62
+\@BL=\box63
+\@Bl=\box64
+\@BC=\box65
+\@BR=\box66
+\@Br=\box67
+\@CL=\box68
+\@CR=\box69
+(load cache: extra_lmmono9-regular.luc)
+\@bannertoken=\toks27
+\@@paperheight=\dimen164
+\@@paperwidth=\dimen165
+\@@topmargin=\dimen166
+LaTeX Info: Redefining \underline on input line 300.
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjp-atbegshi.sty
+Package: lltjp-atbegshi 2024-05-14 Patching \shipout hooks for LuaTeX-ja
+\l__platex_shipout_dummy_box=\box70
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjp-geometry.sty
+Package: lltjp-geometry 2024-05-16 Patch to geometry for LuaTeX-ja with vertical writing mode
+))
+\ltj@temp@cctb=\catcodetable16
+) (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/luatexja-compat.sty
+Package: luatexja-compat 2025-09-21 Compatibility with pTeX
+(load cache: ltj-jisx0208.luc)
+\hour=\count294
+\minute=\count295
+))
+\g__ltjpreset_applycount_int=\count296
+(load cache: extra_lmroman17-regular.luc)
+LaTeX Font Info:    Font shape `JT3/mc/m/n' will be
+(Font)              scaled to size 15.39551pt on input line 734.
+LaTeX Font Info:    Font shape `JY3/mc/m/n' will be
+(Font)              scaled to size 15.39551pt on input line 734.
+
+
+Package luatexja-preset Warning: Japanese fonts will be scaled by
+(luatexja-preset)                0.96221923828125.
+
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `normal'
+(Font)                  JY3/mc/m/n --> JY3/ltjpmc1/m/n on input line 775.
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY3/gt/m/n --> JY3/ltjpmc1/b/n on input line 775.
+LaTeX Font Info:    Redeclaring math alphabet \mathgt on input line 775.
+LaTeX Font Info:    Overwriting math alphabet `\mathgt' in version `normal'
+(Font)                  JY3/gt/m/n --> JY3/ltjpgt1/m/n on input line 775.
+LaTeX Font Info:    Overwriting math alphabet `\mathgt' in version `bold'
+(Font)                  JY3/gt/m/n --> JY3/ltjpgt1/m/n on input line 775.
+LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 775.
+LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 775.
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks28
+\pgfutil@tempdima=\dimen167
+\pgfutil@tempdimb=\dimen168
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box71
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 106.
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen169
+\Gin@req@width=\dimen170
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks31
+))
+\pgf@x=\dimen171
+\pgf@y=\dimen172
+\pgf@xa=\dimen173
+\pgf@ya=\dimen174
+\pgf@xb=\dimen175
+\pgf@yb=\dimen176
+\pgf@xc=\dimen177
+\pgf@yc=\dimen178
+\pgf@xd=\dimen179
+\pgf@yd=\dimen180
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count297
+\c@pgf@countb=\count298
+\c@pgf@countc=\count299
+\c@pgf@countd=\count300
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
+\pgf@sys@id@count=\count301
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-luatex.def
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2025-08-29 v3.1.11a (3.1.11a)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+))) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count302
+\pgfsyssoftpath@bigbuffer@items=\count303
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 274.
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen181
+\pgfmath@count=\count304
+\pgfmath@box=\box72
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count305
+)) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen182
+\pgf@picmaxx=\dimen183
+\pgf@picminy=\dimen184
+\pgf@picmaxy=\dimen185
+\pgf@pathminx=\dimen186
+\pgf@pathmaxx=\dimen187
+\pgf@pathminy=\dimen188
+\pgf@pathmaxy=\dimen189
+\pgf@xx=\dimen190
+\pgf@xy=\dimen191
+\pgf@yx=\dimen192
+\pgf@yy=\dimen193
+\pgf@zx=\dimen194
+\pgf@zy=\dimen195
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen196
+\pgf@path@lasty=\dimen197
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen198
+\pgf@shorten@start@additional=\dimen199
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box73
+\pgf@hbox=\box74
+\pgf@layerbox@main=\box75
+\pgf@picture@serial@count=\count306
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen256
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen257
+\pgf@pt@y=\dimen258
+\pgf@pt@temp=\dimen259
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen260
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen261
+\pgf@sys@shading@range@num=\count307
+\pgf@shadingcount=\count308
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box76
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box77
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen262
+\pgf@nodesepend=\dimen263
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+)) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen264
+\pgffor@skip=\dimen265
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
+)) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count309
+\pgfplotmarksize=\dimen266
+)
+\tikz@lastx=\dimen267
+\tikz@lasty=\dimen268
+\tikz@lastxsaved=\dimen269
+\tikz@lastysaved=\dimen270
+\tikz@lastmovetox=\dimen271
+\tikz@lastmovetoy=\dimen272
+\tikzleveldistance=\dimen273
+\tikzsiblingdistance=\dimen274
+\tikz@figbox=\box78
+\tikz@figbox@bg=\box79
+\tikz@tempbox=\box80
+\tikz@tempbox@bg=\box81
+\tikztreelevel=\count310
+\tikznumberofchildren=\count311
+\tikznumberofcurrentchild=\count312
+\tikz@fig@count=\count313
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count314
+\pgfmatrixcurrentcolumn=\count315
+\pgf@matrix@numberofcolumns=\count316
+)
+\tikz@expandcount=\count317
+ (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowinset=\dimen275
+\pgfarrowlength=\dimen276
+\pgfarrowwidth=\dimen277
+\pgfarrowlinewidth=\dimen278
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfit.code.tex
+File: tikzlibraryfit.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/home/als0028/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.tex
+File: tikzlibrarybackgrounds.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@layerbox@background=\box82
+\pgf@layerboxsaved@background=\box83
+)(load cache: extra_lmsans10-regular.luc) (./system-arch.aux)
+\openout1 = system-arch.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+ (/home/als0028/.TinyTeX/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count318
+\scratchdimen=\dimen279
+\scratchbox=\box84
+\nofMPsegments=\count319
+\nofMParguments=\count320
+\everyMPshowfont=\toks40
+\MPscratchCnt=\count321
+\MPscratchDim=\dimen280
+\MPnumerator=\count322
+\makeMPintoPDFobject=\count323
+\everyMPtoPDFconversion=\toks41
+) (/home/als0028/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/home/als0028/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 15.
+LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 15.
+(load cache: extra_haranoajigothic-medium.luc)(load cache: extra_lmsans10-bold.luc)
+LaTeX Font Info:    Font shape `JT3/ltjpgt1/b/n' will be
+(Font)              scaled to size 9.6222pt on input line 40.
+LaTeX Font Info:    Font shape `JY3/ltjpgt1/b/n' will be
+(Font)              scaled to size 9.6222pt on input line 40.
+(load cache: extra_lmsans8-regular.luc)
+LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
+(Font)              scaled to size 5.77332pt on input line 41.
+LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
+(Font)              scaled to size 5.77332pt on input line 41.
+<logos/nextjs.png, id=4, 301.125pt x 301.125pt>
+File: logos/nextjs.png Graphic file (type png)
+<use logos/nextjs.png>
+Package luatex.def Info: logos/nextjs.png  used on input line 43.
+(luatex.def)             Requested size: 19.91382pt x 19.91684pt.
+<logos/vercel.png, id=5, 301.125pt x 301.125pt>
+File: logos/vercel.png Graphic file (type png)
+<use logos/vercel.png>
+Package luatex.def Info: logos/vercel.png  used on input line 47.
+(luatex.def)             Requested size: 11.3767pt x 11.38092pt.
+<logos/gcp.png, id=6, 301.125pt x 301.125pt>
+File: logos/gcp.png Graphic file (type png)
+<use logos/gcp.png>
+Package luatex.def Info: logos/gcp.png  used on input line 50.
+(luatex.def)             Requested size: 21.33821pt x 21.33955pt.
+<logos/openai.png, id=7, 240.9pt x 240.9pt>
+File: logos/openai.png Graphic file (type png)
+<use logos/openai.png>
+Package luatex.def Info: logos/openai.png  used on input line 54.
+(luatex.def)             Requested size: 19.91565pt x 19.91684pt.
+<logos/supabase.png, id=8, 301.125pt x 301.125pt>
+File: logos/supabase.png Graphic file (type png)
+<use logos/supabase.png>
+Package luatex.def Info: logos/supabase.png  used on input line 58.
+(luatex.def)             Requested size: 21.33821pt x 21.33955pt.
+LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
+(Font)              scaled to size 5.2922pt on input line 65.
+LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
+(Font)              scaled to size 5.2922pt on input line 65.
+
+! Undefined control sequence.
+l.74   \mt
+           採点エンジン\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.75   \ms
+           手書き答案→エラー分類󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.78   \mt
+           問題生成エンジン\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.79   \ms
+           苦手特化 / 模試対策󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.82   \mt
+           適応学習エンジン\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.83   \ms
+           BKT / FSRS / 知識グラフ󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.94   \mt
+           採点 Agent\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.95   \ms
+           GPT + Vision
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.98   \mt
+           問題生成 Agent\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.99   \ms
+           Code Interpreter
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.102   \mt
+            FB生成 Agent\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.103   \ms
+            教師向けレポート󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.114   \mt
+            問題 DB\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.115   \ms
+            IRT較正 / 誤答パターン󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.118   \mt
+            生徒プロファイル\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.119   \ms
+            苦手 / 知識状態 / 履歴󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.122   \mt
+            pgvector\\[1pt]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.123   \ms
+            埋め込み検索󿿿
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1
+
+
+Non-PDF special ignored!{/home/als0028/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./logos/nextjs.png><./logos/vercel.png><./logos/gcp.png><./logos/openai.png><./logos/supabase.png>] (./system-arch.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+)
+
+Here is how much of LuaTeX's memory you used:
+ 15693 strings out of 476076
+ 125244,794899 words of node,token memory allocated
+ 74180 words of node memory still in use:
+   322 hlist, 13 vlist, 120 rule, 10 disc, 3 local_par, 703 glue, 19 kern, 8 penalty, 290 glyph, 26585 attribute, 48 glue_spec, 2676 attribute_list, 2 write, 314 user_defined, 872 pdf_literal, 34 pdf_colorstack, 5 pdf_setmatrix, 5 pdf_save, 5 pdf_restore nodes
+   avail lists: 1:2,2:447,3:1795,4:716,5:52,6:8,7:2008,9:912,11:20
+ 37625 multiletter control sequences out of 65536+600000
+ 27 fonts using 24209351 bytes
+ 107i,8n,101p,2069b,960s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf>
+Output written on system-arch.pdf (1 page, 46663 bytes).
+
+PDF statistics: 45 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 131072)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
+
