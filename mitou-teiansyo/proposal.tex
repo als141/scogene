@@ -1,10 +1,10 @@
-\documentclass[a4paper,10.5pt]{ltjsarticle}
+\documentclass[a4paper,12pt]{ltjsarticle}
 
 % ===== Fonts & Language =====
 \usepackage[haranoaji,nfssonly]{luatexja-preset}
 
-% ===== Layout (margins tightened to compensate for larger font) =====
-\usepackage[top=17mm,bottom=17mm,left=20mm,right=20mm]{geometry}
+% ===== Layout (margins tightened for 12pt) =====
+\usepackage[top=15mm,bottom=15mm,left=18mm,right=18mm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{multicol}
@@ -38,9 +38,9 @@
 
 % ===== Section formatting =====
 \titleformat{\section}
-  {\Large\bfseries\sffamily\color{mainblue}}
-  {\thesection}{0.8em}{}
-  [\vspace{-0.5em}\textcolor{mainblue}{\rule{\textwidth}{1.5pt}}]
+  {\large\bfseries\sffamily\color{mainblue}}
+  {\thesection}{0.6em}{}
+  [\vspace{-0.5em}\textcolor{mainblue}{\rule{\textwidth}{1pt}}]
 
 \titleformat{\subsection}
   {\large\bfseries\sffamily\color{sectionblue}}
@@ -50,28 +50,28 @@
   {\normalsize\bfseries\sffamily\color{sectionblue}}
   {\thesubsubsection}{0.5em}{}
 
-\titlespacing*{\section}{0pt}{0.8em}{0.4em}
-\titlespacing*{\subsection}{0pt}{0.5em}{0.2em}
-\titlespacing*{\subsubsection}{0pt}{0.3em}{0.1em}
+\titlespacing*{\section}{0pt}{0.6em}{0.3em}
+\titlespacing*{\subsection}{0pt}{0.4em}{0.15em}
+\titlespacing*{\subsubsection}{0pt}{0.2em}{0.08em}
 
 % ===== Custom boxes =====
 \newtcolorbox{keybox}[1][]{
   colback=mainblue!5,colframe=mainblue,
   fonttitle=\bfseries\sffamily,
   title=#1,boxrule=0.8pt,arc=2pt,
-  left=4pt,right=4pt,top=3pt,bottom=3pt
+  left=3pt,right=3pt,top=2pt,bottom=2pt
 }
 
 \newtcolorbox{highlightbox}{
   colback=accentorange!8,colframe=accentorange,
   boxrule=0.8pt,arc=2pt,
-  left=4pt,right=4pt,top=3pt,bottom=3pt
+  left=3pt,right=3pt,top=2pt,bottom=2pt
 }
 
 \newtcolorbox{graybox}{
   colback=lightbg,colframe=lightbg!60!gray,
   boxrule=0.4pt,arc=2pt,
-  left=4pt,right=4pt,top=3pt,bottom=3pt
+  left=3pt,right=3pt,top=2pt,bottom=2pt
 }
 
 % ===== Header / Footer =====
@@ -83,12 +83,12 @@
 \fancyfoot[C]{\small\sffamily\color{gray}\thepage\,/\,10}
 
 % ===== List spacing =====
-\setlist{nosep,leftmargin=1.5em}
+\setlist{nosep,leftmargin=1.2em,topsep=0pt,partopsep=0pt}
 \setlist[itemize]{label={\color{mainblue}\textbullet}}
 
 % ===== Paragraph =====
 \setlength{\parindent}{1em}
-\setlength{\parskip}{0.1em}
+\setlength{\parskip}{0pt}
 
 % ============================================================
 \begin{document}
@@ -114,7 +114,7 @@
 \end{tcolorbox}
 \end{minipage}
 
-\vspace{0.3em}
+
 {\color{mainblue}\rule{\textwidth}{1.2pt}}
 \vspace{0.5em}
 
@@ -133,7 +133,7 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.85\textwidth]{mongene-compare.png}
+  \includegraphics[width=0.75\textwidth]{mongene-compare.png}
   \caption{モンジェネの提供価値：問題探しの時間を問題生成に置き換え、講師が生徒と向き合う時間を最大化する}
   \label{fig:manga}
 \end{figure}
@@ -158,11 +158,11 @@
 
 本システムは、\textbf{「採点・苦手分析」→「教師へのフィードバック＋対策問題生成」→「生徒が解く」}のサイクルを繰り返すことで、生徒の学力を着実に向上させる。
 
-\vspace{0.3em}
+
 \begin{keybox}[学術的根拠：Bloomの完全習得学習]
 教育心理学者 B.\,Bloom\,(1984) は、完全習得学習と1対1個別指導を組み合わせると、平均的な生徒が\textbf{上位2\%}の成績に到達する（2$\sigma$効果）と報告した\,[1]。近年、生成AIがこの2シグマ問題に対するスケーラブルな解決策となり得ることが実証されている\,[2]。本システムは、このサイクルをAIで自動化し、\textbf{1対1個別指導の効果を1対多の塾環境で再現する}ことを目指す。
 \end{keybox}
-\vspace{0.3em}
+
 
 本提案は\textbf{2つの柱}を掲げる。
 
@@ -175,7 +175,7 @@
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{system-arch-new.jpg}
+  \includegraphics[width=0.9\textwidth]{system-arch-new.jpg}
   \caption{システム構成図：フロントエンド・バックエンド・AI Agent・データベースの全体構成}
   \label{fig:system_overview}
 \end{figure}
@@ -183,19 +183,13 @@
 以下に、図\ref{fig:system_overview}に示した各コンポーネントの概要を述べる。
 
 \begin{itemize}
-  \item \textbf{採点Agent}：GPT-5.4のVision機能で生徒の手書き答案を読み取り、OpenAI Agents SDKを用いて途中式レベルの自動採点を行う。GPT-5.4は最大1,024万画素の画像をそのまま入力でき、従来モデルと比べ文書解析精度が大幅に向上している。Code Interpreter上でPython（PIL）を実行し、答案画像に直接赤ペンで添削マークを書き込む。間違いを4種類（読解・変換・処理・書き写し）に自動分類し、苦手の本質を特定する。
-
-  \item \textbf{問題生成Agent}：LLM（GPT-5.4 / Claude）にCode Interpreter（Python実行環境）を組み合わせ、数学的に正確な問題を生成する。計算過程はSymPyで自動検証し、図形問題はMatplotlibで描画する。ETSUZANで開発した3パターン生成を基盤に、苦手プロファイルに基づく個別最適化に拡張する。
-
-  \item \textbf{知識グラフ}：数学の概念間の前提関係を有向非巡回グラフ（DAG）として定義する。生徒がつまずいた際にグラフを遡って根本原因の概念を特定し、そこから段階的に積み上げる学習パスを自動決定する。
-
-  \item \textbf{適応学習エンジン}：Bayesian Knowledge Tracing（BKT）で概念ごとの習得確率をリアルタイムに推定し、習得度85\%を基準に次の概念への移行を判定する。FSRS v6（Free Spaced Repetition Scheduler）で最適な復習タイミングを決定し、忘却を防ぐ。
-
-  \item \textbf{問題データベース}：統一模試の正答率データからIRT（項目反応理論）で問題の難易度を客観的に較正する。LightGBMによる難易度推定モデルと、埋め込みベクトル（768次元）によるセマンティック検索を組み合わせ、生徒の苦手に最適な問題を高速に発見する。Supabase（PostgreSQL + pgvector）上に構築する。
-
-  \item \textbf{苦手プロファイル}：採点結果・エラー分類・習得確率を生徒ごとに蓄積するデータ構造である。時系列でのエラーパターン推移を追跡し、問題生成と教師向けフィードバックの両方に活用する。
-
-  \item \textbf{教師向けFBダッシュボード}：苦手ランキング・エラーパターンの推移・具体的な指導アクションを自動生成し、塾講師に提供する。講師が修正・補足を返すことでシステムの分析精度が継続的に改善される双方向ループを構築する。
+  \item \textbf{採点Agent}：GPT-5.4 Vision＋OpenAI Agents SDKで手書き答案を読み取り、途中式レベルの自動採点を行う。最大1,024万画素の高解像度入力に対応。Code Interpreterで答案に直接赤ペン添削を書き込み、間違いを4種類に自動分類する。
+  \item \textbf{問題生成Agent}：LLM（GPT-5.4 / Claude）＋Code Interpreterで数学的に正確な問題を生成。SymPyで計算検証、Matplotlibで図形描画。苦手プロファイルに基づく個別最適化問題を生成する。
+  \item \textbf{知識グラフ}：数学の概念間の前提関係をDAGとして定義。つまずいた際にグラフを遡り根本原因を特定、段階的な学習パスを自動決定する。
+  \item \textbf{適応学習エンジン}：BKTで概念ごとの習得確率を推定し、習得度85\%を基準に移行判定。FSRS v6で最適な復習タイミングを決定。
+  \item \textbf{問題DB}：統一模試データからIRTで難易度を較正。LightGBMによる難易度推定と埋め込みベクトル（768次元）のセマンティック検索を統合。Supabase（PostgreSQL + pgvector）上に構築。
+  \item \textbf{苦手プロファイル}：採点結果・エラー分類・習得確率を生徒ごとに蓄積。時系列のエラー推移を追跡し、問題生成とFBの両方に活用。
+  \item \textbf{教師向けFBダッシュボード}：苦手ランキング・エラー推移・指導アクションを自動生成。講師が修正を返す双方向ループでシステム精度を継続改善。
 \end{itemize}
 
 以下、各機能の詳細を述べる。
@@ -206,7 +200,7 @@
 
 生徒の手書き答案をLLMで採点し、「どのステップで間違えたか」を特定する。間違いのタイプを以下の4種類に自動分類する。
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l X X}
 \toprule
@@ -219,7 +213,7 @@
 \bottomrule
 \end{tabularx}
 \end{footnotesize}
-\vspace{0.3em}
+
 
 このエラー分類により、間違いの本質が「公式を\textbf{知らない}」のか「\textbf{忘れている}」のか「\textbf{使い方がわからない}」のかを区別する。この区別が、次の問題生成の精度を決定づける。
 
@@ -241,7 +235,7 @@
 
 ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づく3つのモードに拡張する。
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l X}
 \toprule
@@ -253,7 +247,7 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 \bottomrule
 \end{tabularx}
 \end{footnotesize}
-\vspace{0.3em}
+
 
 個別最適化問題の生成では、「元の問題文」「模範解答」「生徒の手書き答案」「採点フィードバック」の\textbf{4点をLLMに入力}し、エラー分類に応じた矯正問題を生成する。問題の提供は\textbf{DB検索とLLM新規生成のハイブリッド}で行い、Thompson Samplingにより探索と活用のバランスを最適化する。生成問題はPythonコード実行による数学的検証を経てから出題する。
 
@@ -273,17 +267,17 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 
 数学の概念には前提関係がある。この前提関係を\textbf{知識グラフ}（有向非巡回グラフ）として管理する。
 
-\vspace{0.3em}
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-  node distance=0.6cm and 2.0cm,
-  mastered/.style={rectangle, rounded corners=4pt, draw=successgreen, fill=successgreen!10,
-    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
-  weak/.style={rectangle, rounded corners=4pt, draw=dangerred, fill=dangerred!10,
-    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
-  progress/.style={rectangle, rounded corners=4pt, draw=accentorange, fill=accentorange!10,
-    font=\small\sffamily, minimum height=1.0cm, minimum width=2.8cm, align=center, line width=1pt},
+  node distance=0.5cm and 1.5cm,
+  mastered/.style={rectangle, rounded corners=3pt, draw=successgreen, fill=successgreen!10,
+    font=\footnotesize\sffamily, minimum height=0.8cm, minimum width=2.2cm, align=center, line width=0.8pt},
+  weak/.style={rectangle, rounded corners=3pt, draw=dangerred, fill=dangerred!10,
+    font=\footnotesize\sffamily, minimum height=0.8cm, minimum width=2.2cm, align=center, line width=0.8pt},
+  progress/.style={rectangle, rounded corners=3pt, draw=accentorange, fill=accentorange!10,
+    font=\footnotesize\sffamily, minimum height=0.8cm, minimum width=2.2cm, align=center, line width=0.8pt},
   arr/.style={-{Stealth[length=5pt,width=4pt]}, thick, color=gray!60},
   every node/.append style={inner sep=4pt}
 ]
@@ -320,7 +314,7 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 
 本システムの長期的な競争優位は、蓄積される独自データベースにある。
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l X}
 \toprule
@@ -332,15 +326,12 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 \bottomrule
 \end{tabularx}
 \end{footnotesize}
-\vspace{0.3em}
+
 
 DBに蓄積された問題は埋め込みベクトルによるセマンティック検索に対応し、「この生徒の苦手に最も適した問題」を高速に発見する。統一模試データからIRT（項目反応理論）パラメータを較正し、難易度の客観的評価を実現する。後発の競合がシステムを模倣しても、このデータ蓄積は即座に再現できない。
 
-\vspace{0.3em}
-\begin{graybox}
-\textbf{データの好循環（フライホイール効果）：}
-生徒が問題を解く → 回答データが蓄積 → IRT較正の精度向上 → 問題推薦の精度向上 → 学習効果が上がる → ユーザーが増える → さらにデータが蓄積。時間が経つほどシステムの価値が加速度的に高まる。
-\end{graybox}
+
+\noindent\textbf{データの好循環（フライホイール効果）：}生徒が問題を解く→回答データ蓄積→IRT較正精度向上→問題推薦精度向上→学習効果向上→ユーザー増加→さらにデータ蓄積。時間が経つほど価値が加速度的に高まる。
 
 \subsection{未踏期間中の目標}
 
@@ -381,7 +372,7 @@ Webアプリケーション「モンジェネ」として公開する。塾で�
 
 国内EdTech市場にはatama+（4,500教室導入）やQubena（100万人以上）といった先行サービスが存在する。しかし、これらは\textbf{タブレット完結型}であり、問題供給はDB内の既存問題の\textbf{検索・提供}にとどまる。モンジェネは知識グラフを用いて生徒の根本原因を特定した上で、その苦手に特化した問題をLLMで\textbf{動的に生成}するという本質的な違いがある。
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l X X}
 \toprule
@@ -396,7 +387,7 @@ Webアプリケーション「モンジェネ」として公開する。塾で�
 \bottomrule
 \end{tabularx}
 \end{footnotesize}
-\vspace{0.3em}
+
 
 \begin{highlightbox}
 \textbf{一言で表すなら}：atama+は「タブレットの中の完璧な先生」、モンジェネは「紙の現場に溶け込むAIアシスタント」。既存の紙ベースの指導を活かしたまま、採点と問題生成という最も時間のかかる作業をAIが肩代わりする。塾の指導モデルを置き換えるのではなく、\textbf{講師が生徒と向き合う時間を最大化する}。
@@ -430,7 +421,7 @@ Webアプリケーション「モンジェネ」として公開する。塾で�
 
 \subsection{技術スタックと開発体制}
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l X}
 \toprule
@@ -448,7 +439,7 @@ AI/ML & OpenAI API (GPT-5.4), Gemini API, Bayesian Knowledge Tracing, FSRS v6 \\
 
 \subsection{開発チームと役割分担}
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l l X}
 \toprule
@@ -478,9 +469,8 @@ M8--M9 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテス
 \end{tabularx}
 \end{footnotesize}
 
-\vspace{0.5em}
 \noindent
-各マイルストーンではPM面談でのデモを通じてフィードバックを受け、方針を柔軟に修正する。特にM8--M9の実証実験では、塾講師と生徒双方からのヒアリングを重点的に行い、「現場で本当に使われるか」を最重要KPIとして検証する。
+各マイルストーンではPM面談でデモを実施し、方針を柔軟に修正する。M8--M9の実証実験では「現場で本当に使われるか」を最重要KPIとして検証する。
 
 \subsection{計算機環境・開発時間}
 
@@ -490,7 +480,7 @@ M8--M9 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテス
 
 \subsection{予算内訳}
 
-\vspace{0.3em}
+
 \begin{footnotesize}\noindent
 \begin{tabularx}{\linewidth}{>{\bfseries}l r X}
 \toprule
@@ -522,36 +512,29 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[t]{0.32\textwidth}
+  \begin{minipage}[t]{0.24\textwidth}
     \centering
     \includegraphics[width=\textwidth]{image5.png}
     \caption{手書き答案の\\AI採点画面}
     \label{fig:grading_overview}
   \end{minipage}
   \hfill
-  \begin{minipage}[t]{0.32\textwidth}
+  \begin{minipage}[t]{0.35\textwidth}
     \centering
     \includegraphics[width=\textwidth]{image4.png}
-    \caption{採点結果の\\詳細フィードバック}
+    \caption{採点結果の詳細FB}
     \label{fig:grading_detail}
   \end{minipage}
   \hfill
-  \begin{minipage}[t]{0.32\textwidth}
+  \begin{minipage}[t]{0.22\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{image2.png}
-    \caption{途中式評価と\\改善アドバイス}
-    \label{fig:grading_feedback}
+    \includegraphics[width=\textwidth]{mongene-ui.png}
+    \caption{モンジェネ\\問題生成画面}
+    \label{fig:mongene_ui}
   \end{minipage}
 \end{figure}
 
-図\ref{fig:grading_overview}--\ref{fig:grading_feedback}に採点プロトタイプの画面を示す。問題文と答案のみを入力し（模範解答は渡していない状態でも）、LLMが自力で正答を計算し、生徒の手書き答案を正確に読み取っている。各問題に対して正誤判定、途中式・プロセスの評価、部分点の理由、改善アドバイスを構造化して出力する。
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.38\textwidth]{mongene-ui.png}
-  \caption{モンジェネの問題生成画面：問題・解答をアップロードし、未習単元を選択して生成}
-  \label{fig:mongene_ui}
-\end{figure}
+\noindent 図\ref{fig:grading_overview}--\ref{fig:grading_detail}に採点プロトタイプ「ScoGene」の画面を示す。問題文と答案のみを入力し（模範解答は渡していない状態でも）、LLMが自力で正答を計算し、手書き答案を正確に読み取る。正誤判定、途中式評価、部分点の理由、改善アドバイスを構造化して出力する。図\ref{fig:mongene_ui}はモンジェネの問題生成画面である。
 
 % ============================================================
 \section{提案者の腕前を証明できるもの}
@@ -568,13 +551,13 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[t]{0.48\textwidth}
+  \begin{minipage}[t]{0.42\textwidth}
     \centering
     \includegraphics[width=\textwidth]{etsuzan-team.png}
     \caption{ETSUZANでの開発風景}
   \end{minipage}
   \hfill
-  \begin{minipage}[t]{0.48\textwidth}
+  \begin{minipage}[t]{0.42\textwidth}
     \centering
     \includegraphics[width=\textwidth]{akatsuki-masuda.jpg}
     \caption{AKATSUKIカンファレンスで\\舛田が代表登壇}
@@ -627,37 +610,21 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 % ============================================================
 \section{IT以外の勉強、特技、生活、趣味}
 
-\subsection*{高橋 創真}
-趣味は野球。小学3年から始め、現在も軟式野球部に所属する。昨年は約40チームが出場する地域ナイター杯で準優勝。5番レフトとして体格を活かしたバッティングでチームに貢献している。もともと持久走が大の苦手だったが、厳しい練習を通じて粘り強さと困難に立ち向かう気概を培った。
-
-\subsection*{若月 耕紀}
-趣味は動物鑑賞。実家が動物病院を経営しており、犬9匹・猫6匹に囲まれて育った。言葉の通じない生き物を相手にする経験が、「相手が言葉にできない裏側を想像し引き出す」能力につながり、今のマネジメントスキルの基盤となっている。
-
-\subsection*{小武 壮太}
-趣味はデザイン制作。技大祭実行委員の広報としてInstagramの画像制作・運用を担当している。依頼者へのヒアリングを通じて企画意図を汲み取り、受け手がどう感じるか想像を巡らせて形にすることにこだわりがある。この「相手の想いを翻訳する力」がUI/UX設計の根幹を支えている。
-
-\subsection*{舛田 岳}
-趣味はバレーボールと映像制作。バレーは小・中・高と部活を続け、JOCで秋田県選抜に選ばれた経験を持つ。映像制作では、構成・撮影・編集を通じて「何を、どの順序で、どう見せれば伝わるか」を考える力を培った。
+\noindent\textbf{高橋 創真}：野球。小学3年から現在まで軟式野球部に所属し、地域ナイター杯で準優勝（5番レフト）。厳しい練習で培った粘り強さがプロジェクト推進の原動力。
+\textbf{若月 耕紀}：動物鑑賞。実家が動物病院で犬9匹・猫6匹に囲まれて育った。言葉の通じない相手の裏側を想像する力がマネジメントスキルの基盤。
+\textbf{小武 壮太}：デザイン制作。技大祭の広報としてInstagram運用を担当。「相手の想いを翻訳する力」がUI/UX設計を支える。
+\textbf{舛田 岳}：バレーボール（JOC秋田県選抜）と映像制作。「何を、どう見せれば伝わるか」を考える力を培った。
 
 % ============================================================
 \section{将来のITについて思うこと・期すること}
 
 AIの発展により様々な業務が効率化され、省人化・無人化された領域も多い。教育においてもAIの活用は急速に進んでいるが、教育と人は切り離すことができないと私たちは考える。
 
-誰しも学生時代に「この先生の話はちゃんと聞こう」と感じた経験があるだろう。この感覚は、先生との関係性のなかで生まれるものである。英語学習アプリや常時質問可能なAIチャットなど、時間的・空間的制約なく学べるツールが普及した今、「もはや先生はいらないのでは？」という問いが浮かぶかもしれない。
+しかし、生徒の\textbf{モチベーション管理}はAIが踏み込めない領域だと考える。感情、人間関係、そして\textbf{憧れや夢を抱かせること}は機械にはできない。
 
-しかし、生徒の\textbf{モチベーション管理}はAIが踏み込めない領域だと考える。感情、非合理的な判断、人間関係---これらは機械的なシステムでは構築も理解もできない。AIは生徒と対話できても、真にコミュニケーションを取っているとは言えない。そして何より、\textbf{憧れや夢を抱かせること}はできない。
-
-\begin{highlightbox}
-\textbf{「憧れや夢は、人と人との関わりのなかで創発する。」}
-
-人工知能的な1対1対応の対話は閉じた世界であり、憧れや夢が外部から「やってくる」ことはない。人と人との無限の可能性に満ちた空間でこそ、真の教育は生まれる。だからこそ教育ITは、\textbf{Human-in-the-Loop}のシステムでなくてはならない。
-\end{highlightbox}
-
-モンジェネは、AIが講師を\textbf{置き換える}のではなく、講師が生徒と向き合う時間を\textbf{最大化する}ためのツールである。採点や問題探しという機械的な作業をAIに任せ、解説・動機づけ・進路相談といった「人にしかできない教育」に講師が集中できる世界を、私たちは実現したい。
+\textbf{「憧れや夢は、人と人との関わりのなかで創発する。」}---だからこそ教育ITは、\textbf{Human-in-the-Loop}のシステムでなくてはならない。モンジェネは、AIが講師を\textbf{置き換える}のではなく、講師が生徒と向き合う時間を\textbf{最大化する}ためのツールである。採点や問題探しをAIに任せ、解説・動機づけ・進路相談といった「人にしかできない教育」に講師が集中できる世界を実現したい。
 
 % ============================================================
-\vspace{1em}
 \begin{small}
 \noindent\textbf{参考文献}
 \begin{enumerate}[leftmargin=2em,label={[\arabic*]}]
