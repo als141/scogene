@@ -93,56 +93,30 @@
 % ============================================================
 \begin{document}
 
-% ===== TITLE PAGE =====
-\thispagestyle{empty}
-\begin{center}
-\vspace*{1cm}
-
-{\color{mainblue}\rule{\textwidth}{2pt}}
-
-\vspace{0.8cm}
-
-{\LARGE\sffamily\bfseries\color{mainblue} 2026年度 未踏IT人材発掘・育成事業}
-
-\vspace{0.3cm}
-
-{\Large\sffamily 提案書}
-
-\vspace{1.2cm}
-
-{\Huge\sffamily\bfseries 生徒ごとに個別最適化された\\[0.3em]問題生成システムの開発}
-
-\vspace{0.4cm}
-
-{\Large\sffamily\color{accentorange} --- 無限問題作成AI「モンジェネ」---}
-
-\vspace{1.5cm}
-
-\begin{tcolorbox}[colback=lightbg,colframe=mainblue,width=0.85\textwidth,arc=3pt,boxrule=1pt]
-\centering\large\sffamily
-生徒の手書き答案をAIで解析し、間違え方や苦手を抽出し、\\
-それらを克服できる問題を\textbf{無限に}生成する。\\[0.5em]
-「問題生成」と「採点」のサイクルにより、\\
-これまでにない学習効果を実現する。
-\end{tcolorbox}
-
-\vspace{1.5cm}
-
-{\large\sffamily
-\begin{tabular}{ll}
-\textbf{申請者:} & 高橋創真（長岡技術科学大学大学院 修士1年）\\[0.3em]
-\textbf{共同開発者:} & 若月耕紀（長岡技術科学大学大学院 修士1年）\\
-& 小武壮太（長岡技術科学大学大学院 修士1年）\\
-& 舛田　岳（新潟大学大学院 修士1年）\\
-\end{tabular}
+% ===== COMPACT HEADER (no separate title page) =====
+\noindent
+\begin{minipage}[t]{0.62\textwidth}
+\vspace{0pt}
+{\large\sffamily\bfseries\color{mainblue} 生徒ごとに個別最適化された問題生成システムの開発}\\[2pt]
+{\normalsize\sffamily\color{accentorange} 無限問題作成AI「モンジェネ」}\\[4pt]
+{\small\sffamily
+\textbf{申請者:} 高橋創真（長岡技術科学大学大学院 修士1年）\\
+\textbf{共同開発者:} 若月耕紀（長岡技科大 院M1）、小武壮太（長岡技科大 院M1）、舛田岳（新潟大 院M1）
 }
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\vspace{0pt}
+\begin{tcolorbox}[colback=lightbg,colframe=mainblue,arc=2pt,boxrule=0.6pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt]
+\small\sffamily
+生徒の手書き答案をAIで解析し、間違え方や苦手を抽出し、それらを克服できる問題を\textbf{無限に}生成する。「問題生成」と「採点」のサイクルにより、これまでにない学習効果を実現する。
+\end{tcolorbox}
+\end{minipage}
 
-\vspace{1.5cm}
-
-{\color{mainblue}\rule{\textwidth}{2pt}}
-
-\end{center}
-\newpage
+\vspace{0.3em}
+{\color{mainblue}\rule{\textwidth}{1.2pt}}
+\vspace{0.5em}
 
 % ============================================================
 % ① なにをつくるか
@@ -178,7 +152,7 @@
 
 しかし、2026年1月〜3月の受験期に毎日モンジェネを使い込んだところ、\textbf{まだまだ足りない}と痛感した。難易度の調整ができない、出力は固定の3パターンのみ、そして何より---生徒一人ひとりの苦手が反映されていない。塾講師から\textbf{「生徒ごとの苦手が反映された問題があれば」}という声が挙がり、これが本提案の出発点となった。
 
-近年、LLMを活用した教育システムの研究が急速に進展している\,[6]。AIによる自動採点と個別最適化問題生成は、教育者の時間を「生徒と向き合う時間」に転換する本質的な解決策となり得る\,[7]。
+近年、LLMを活用した教育システムの研究が急速に進展しており\,[6]、AI駆動型ITSはK-12教育で一貫してポジティブな学習効果が確認されている\,[7]。LLMを用いた数学的エラーの自動分類も、専門家一致度F1スコア85\%超を達成した\,[8]。
 
 \subsection{提案システム}
 
@@ -186,7 +160,7 @@
 
 \vspace{0.3em}
 \begin{keybox}[学術的根拠：Bloomの完全習得学習]
-教育心理学者 B.\,Bloom\,(1984) は、完全習得学習と1対1個別指導を組み合わせると、平均的な生徒が\textbf{上位2\%}の成績に到達する（2$\sigma$効果）と報告した。103研究のメタ分析（Kulik~et~al.,~1990）でも効果量 $d = 0.52$ が確認されている。本システムは、このサイクルをAIで自動化し、\textbf{1対1個別指導の効果を1対多の塾環境で再現する}ことを目指す。
+教育心理学者 B.\,Bloom\,(1984) は、完全習得学習と1対1個別指導を組み合わせると、平均的な生徒が\textbf{上位2\%}の成績に到達する（2$\sigma$効果）と報告した\,[1]。近年、生成AIがこの2シグマ問題に対するスケーラブルな解決策となり得ることが実証されている\,[2]。本システムは、このサイクルをAIで自動化し、\textbf{1対1個別指導の効果を1対多の塾環境で再現する}ことを目指す。
 \end{keybox}
 \vspace{0.3em}
 
@@ -249,7 +223,7 @@
 
 このエラー分類により、間違いの本質が「公式を\textbf{知らない}」のか「\textbf{忘れている}」のか「\textbf{使い方がわからない}」のかを区別する。この区別が、次の問題生成の精度を決定づける。
 
-採点結果は蓄積型の\textbf{苦手プロファイル}として記録する。概念ごとの習得確率をBayesian Knowledge Tracing（Corbett \& Anderson, 1994）で追跡し、習得確率が85\%を超えた概念を「習得済み」と判定する。
+採点結果は蓄積型の\textbf{苦手プロファイル}として記録する。概念ごとの習得確率をBayesian Knowledge Tracing\,[3]で追跡し、LLMとの統合によりコールドスタート問題を解決する\,[4]。習得確率が85\%を超えた概念を「習得済み」と判定する。
 
 \subsubsection{【教師向けフィードバック】}
 
@@ -281,7 +255,7 @@ ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づ
 \end{footnotesize}
 \vspace{0.3em}
 
-問題の提供は\textbf{DB検索とLLM新規生成のハイブリッド}で行う。DBに適合する問題（IRT較正済みで品質保証済み）がある場合はそれを使用し、適合問題がない場合のみLLMが新規生成する。生成問題はPythonコード実行による数学的検証を経てから出題する。
+個別最適化問題の生成では、「元の問題文」「模範解答」「生徒の手書き答案」「採点フィードバック」の\textbf{4点をLLMに入力}し、エラー分類に応じた矯正問題を生成する。問題の提供は\textbf{DB検索とLLM新規生成のハイブリッド}で行い、Thompson Samplingにより探索と活用のバランスを最適化する。生成問題はPythonコード実行による数学的検証を経てから出題する。
 
 \subsubsection{【完全習得学習の仕組み】}
 
@@ -413,7 +387,7 @@ Webアプリケーション「モンジェネ」として公開する。塾で�
 \midrule
 入力方式 & タブレット操作のみ & \textbf{紙の手書き答案OK} \\
 問題供給 & 自社DB内の既存問題を選択 & \textbf{AIが無限に新規生成} \\
-エラー分析 & 正誤＋解答時間＋迷い挙動 & \textbf{途中式レベルの5段階分類} \\
+エラー分析 & 正誤＋解答時間＋迷い挙動 & \textbf{途中式レベルの4種類分類} \\
 講師の役割 & 見守り（コーチ） & \textbf{主役（AIのFBを元に解説）} \\
 講師の知見還元 & なし（一方通行） & \textbf{FBへのFBでDB改善} \\
 導入コスト & 高い（タブレット＋月額） & \textbf{低い（紙＋撮影＋従量課金）} \\
@@ -429,7 +403,7 @@ Webアプリケーション「モンジェネ」として公開する。塾で�
 \subsection{期待される効果}
 
 \begin{itemize}
-  \item \textbf{生徒の学力向上}：完全習得学習の効果量 $d = 0.52$（Kulik~et~al.,~1990, 103研究メタ分析）に基づき、ITS（知的チュータリングシステム）では $d = 0.66$（Kulik \& Fletcher, 2016, 50研究）が報告されている。本システムは両者を統合するアプローチであり、有意な学力向上を実証実験で検証する。
+  \item \textbf{生徒の学力向上}：AI駆動型ITSのシステマティックレビュー\,[7]では、従来の教師主導指導に対し中〜大の効果量で優位性が確認されている。生成AIチューターは対面指導の2倍の学習効率を数百分の一のコストで達成した事例もある\,[2]。本システムの学習効果を実証実験で検証する。
   \item \textbf{講師の負担軽減}：1コマ40分のうち問題探しに費やす約10分を1分以下に短縮し、\textbf{指導時間を25\%増加}させる。講師80名に展開すれば、塾全体で月間数百時間の指導時間が生まれる計算となる。
   \item \textbf{教育格差の縮小}：1対1の個別指導は高コストだが、AIがその品質を1対多で再現することで、経済的理由で質の高い指導を受けられなかった生徒にも届けられる。
 \end{itemize}
@@ -526,7 +500,16 @@ M8--M9 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテス
 % ============================================================
 \section{準備状況}
 
-ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問題生成機能は実稼働している。また、採点システムのプロトタイプも構築が完了している。
+ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問題生成機能は実稼働している。また、採点システム「ScoGene」のプロトタイプも構築が完了している（\url{https://scogene.vercel.app}）。
+
+\begin{graybox}
+\small\sffamily
+\textbf{モンジェネ体験用リンク：}\url{https://mon-gene.wakatsuki.app/login}\\
+\textbf{ログイン：}ID: 77777 \quad Pass: 20260312\\
+\textbf{入力用サンプル問題：}\url{https://drive.google.com/drive/folders/1IaukQ5o0XN11K0-HFi_p95K5nkjOLgd1}\\
+{\scriptsize 使い方：ログイン→問題生成ページでサンプル問題の問題と解答をアップロード→類似問題生成→完了後すぐ印刷可能}\\[3pt]
+\textbf{採点プロトタイプ「ScoGene」：}\url{https://scogene.vercel.app}
+\end{graybox}
 
 \begin{figure}[H]
   \centering
@@ -557,7 +540,7 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 % ============================================================
 \section{提案者の腕前を証明できるもの}
 
-本チームは、ドメイン知識（塾講師5年）、フルスタック開発力、デザイン力、AI/MLエンジニアリングの4つの専門性がバランスよく揃った構成である。全員が経産省AKATSUKI事業 ETSUZANの採択者であり、開発・発表の実績を持つ。
+本チームは、ドメイン知識（塾講師5年）、フルスタック開発力、デザイン力、AI/MLエンジニアリングの4つの専門性がバランスよく揃った構成である。全員が経産省AKATSUKI事業 ETSUZANの採択者であり、開発・発表の実績を持つ（ETSUZAN Makers: \url{https://meikan.etsuzan.org/}）。
 
 \begin{figure}[H]
   \centering
@@ -610,17 +593,24 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 % ============================================================
 \section{プロジェクト遂行にあたっての特記事項}
 
-高橋・若月・小武は長岡技術科学大学大学院 情報・経営システム工学分野 修士1年、舛田は新潟大学大学院 自然科学研究科 修士1年に所属する。全員が授業単位を取得済みであり、修士研究を抱えるのみである。研究室の指導教員との関係も良好で、未踏への応募についても容認されている。
+高橋・若月・小武は長岡技術科学大学大学院 情報・経営システム工学分野 修士1年、舛田は新潟大学大学院 自然科学研究科 修士1年に所属し、来年度修士2年に進級予定である。全員が授業単位を取得済みであり、修士研究を抱えるのみである。研究室の指導教員との関係も良好で、未踏への応募についても容認されている。
 
 開発場所は長岡技術科学大学工学研究科 機械学習理論研究室居室、および新潟大学自然科学研究科 計算知能研究室を使用する。高橋は塾に週複数日出勤しており、開発と実証実験のサイクルを高速に回すことが可能である。プロジェクト遂行に支障をきたす可能性は極めて低い。
 
 % ============================================================
 \section{IT以外の勉強、特技、生活、趣味}
 
-\noindent\textbf{高橋 創真}：趣味は野球。小学3年から現在まで軟式野球部に所属し、地域ナイター杯で準優勝。厳しい練習を通じて培った粘り強さがプロジェクト推進の原動力。
-\textbf{若月 耕紀}：実家が動物病院で犬9匹・猫6匹に囲まれて育った。言葉の通じない相手の裏側を想像する力が、マネジメントスキルの基盤。
-\textbf{小武 壮太}：趣味はデザイン制作。技大祭の広報としてInstagram運用を担当。「相手の想いを翻訳する力」がUI/UX設計を支える。
-\textbf{舛田 岳}：バレーボールでJOC秋田県選抜。映像制作を通じて「何を、どう見せれば伝わるか」を考える力を培った。
+\subsection*{高橋 創真}
+趣味は野球。小学3年から始め、現在も軟式野球部に所属する。昨年は約40チームが出場する地域ナイター杯で準優勝。5番レフトとして体格を活かしたバッティングでチームに貢献している。もともと持久走が大の苦手だったが、厳しい練習を通じて粘り強さと困難に立ち向かう気概を培った。
+
+\subsection*{若月 耕紀}
+趣味は動物鑑賞。実家が動物病院を経営しており、犬9匹・猫6匹に囲まれて育った。言葉の通じない生き物を相手にする経験が、「相手が言葉にできない裏側を想像し引き出す」能力につながり、今のマネジメントスキルの基盤となっている。
+
+\subsection*{小武 壮太}
+趣味はデザイン制作。技大祭実行委員の広報としてInstagramの画像制作・運用を担当している。依頼者へのヒアリングを通じて企画意図を汲み取り、受け手がどう感じるか想像を巡らせて形にすることにこだわりがある。この「相手の想いを翻訳する力」がUI/UX設計の根幹を支えている。
+
+\subsection*{舛田 岳}
+趣味はバレーボールと映像制作。バレーは小・中・高と部活を続け、JOCで秋田県選抜に選ばれた経験を持つ。映像制作では、構成・撮影・編集を通じて「何を、どの順序で、どう見せれば伝わるか」を考える力を培った。
 
 % ============================================================
 \section{将来のITについて思うこと・期すること}
@@ -645,12 +635,13 @@ AIの発展により様々な業務が効率化され、省人化・無人化さ
 \noindent\textbf{参考文献}
 \begin{enumerate}[leftmargin=2em,label={[\arabic*]}]
   \item Bloom, B.\,S. (1984). The 2 Sigma Problem. \textit{Educational Researcher}, 13(6), 4--16.
-  \item Kulik, C.\,C., Kulik, J.\,A., \& Bangert-Drowns, R.\,L. (1990). Effectiveness of Mastery Learning Programs: A Meta-Analysis. \textit{Review of Educational Research}, 60(2), 265--299.
-  \item Corbett, A.\,T. \& Anderson, J.\,R. (1994). Knowledge Tracing: Modeling the Acquisition of Procedural Knowledge. \textit{User Modeling and User-Adapted Interaction}, 4, 253--278.
-  \item Kulik, J.\,A. \& Fletcher, J.\,D. (2016). Effectiveness of Intelligent Tutoring Systems. \textit{Review of Educational Research}, 86(1), 42--78.
+  \item Raman, S.\,K. (2025). Generative AI as a Solution to the 2-Sigma Problem and Equity in Higher Education. \textit{ResearchGate}.
+  \item Corbett, A.\,T. \& Anderson, J.\,R. (1994). Knowledge Tracing. \textit{User Modeling and User-Adapted Interaction}, 4, 253--278.
+  \item Cho, Y.\,et~al. (2024). A Systematic Review of Knowledge Tracing and Large Language Models in Education. \textit{arXiv:2412.09248}.
   \item Newman, M.\,A. (1977). An Analysis of Sixth-Grade Pupils' Errors on Written Mathematical Tasks.
   \item Wang, S.\,et~al. (2024). Large Language Models for Education: A Survey and Outlook. \textit{arXiv:2403.18105}.
-  \item Emirtekin, E. (2025). Large Language Model-Powered Automated Assessment: A Systematic Review. \textit{Applied Sciences}, 15(10), 5683.
+  \item L\'{e}tourneau, A.\,et~al. (2025). A Systematic Review of AI-Driven ITS in K-12 Education. \textit{npj Science of Learning}, 10, 29.
+  \item Otieno, H.\,et~al. (2025). Leveraging LLMs to Identify and Classify Student Errors Using the STACK Dataset. \textit{ResearchGate}.
 \end{enumerate}
 \end{small}
 
