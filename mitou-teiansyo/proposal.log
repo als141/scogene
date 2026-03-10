@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  10 MAR 2026 17:59
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  10 MAR 2026 18:22
  restricted system commands enabled.
 **proposal.tex
 (./proposal.tex
@@ -1391,11 +1391,11 @@ LaTeX Font Info:    Font shape `JT3/ltjpgt1/bx/n' will be
 (Font)              scaled to size 11.09656pt on input line 152.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/bx/n' will be
 (Font)              scaled to size 11.09656pt on input line 152.
-<image3.png, id=139, 512.51476pt x 417.35925pt>
-File: image3.png Graphic file (type png)
-<use image3.png>
-Package luatex.def Info: image3.png  used on input line 157.
-(luatex.def)             Requested size: 188.92342pt x 153.84734pt.
+<mongene-compare.png, id=139, 2006.49625pt x 730.73pt>
+File: mongene-compare.png Graphic file (type png)
+<use mongene-compare.png>
+Package luatex.def Info: mongene-compare.png  used on input line 157.
+(luatex.def)             Requested size: 250.32677pt x 91.16261pt.
 (load cache: extra_lmroman9-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
 (Font)              scaled to size 8.32242pt on input line 159.
@@ -1419,68 +1419,75 @@ LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
 (Font)              scaled to size 8.32242pt on input line 201.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
 (Font)              scaled to size 8.32242pt on input line 201.
- [2<./image3.png>]
-<image1.png, id=153, 698.61pt x 465.74pt>
-File: image1.png Graphic file (type png)
-<use image1.png>
-Package luatex.def Info: image1.png  used on input line 213.
-(luatex.def)             Requested size: 401.47128pt x 267.64917pt.
- [3<./image1.png>]
+ [2<./mongene-compare.png>]
+<system-arch-new.jpg, id=153, 6359.76pt x 2698.08pt>
+File: system-arch-new.jpg Graphic file (type jpg)
+<use system-arch-new.jpg>
+Package luatex.def Info: system-arch-new.jpg  used on input line 213.
+(luatex.def)             Requested size: 472.31577pt x 200.37114pt.
+ [3<./system-arch-new.jpg>]
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
 (Font)              scaled to size 7.3977pt on input line 245.
 (load cache: extra_lmroman8-bold.luc) [4] [5] [6] [7]
-<image5.png, id=203, 539.01375pt x 484.81125pt>
+<image5.png, id=202, 539.01375pt x 484.81125pt>
 File: image5.png Graphic file (type png)
 <use image5.png>
 Package luatex.def Info: image5.png  used on input line 542.
 (luatex.def)             Requested size: 151.1445pt x 135.94595pt.
-<image4.png, id=204, 320.397pt x 491.436pt>
+<image4.png, id=203, 320.397pt x 491.436pt>
 File: image4.png Graphic file (type png)
 <use image4.png>
 Package luatex.def Info: image4.png  used on input line 549.
 (luatex.def)             Requested size: 151.1445pt x 231.8298pt.
-<image2.png, id=205, 342.078pt x 269.20575pt>
+<image2.png, id=204, 342.078pt x 269.20575pt>
 File: image2.png Graphic file (type png)
 <use image2.png>
 Package luatex.def Info: image2.png  used on input line 556.
 (luatex.def)             Requested size: 151.1445pt x 118.94792pt.
  [8<./image5.png><./image4.png><./image2.png>] [9](load cache: extra_lmroman9-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 8.32242pt on input line 627.
+(Font)              scaled to size 8.32242pt on input line 644.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 8.32242pt on input line 627.
+(Font)              scaled to size 8.32242pt on input line 644.
 (load cache: extra_lmroman9-italic.luc)
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 629.
+(Font)              No change on input line 646.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 630.
+(Font)              No change on input line 647.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 631.
+(Font)              No change on input line 648.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 632.
+(Font)              No change on input line 649.
  [10] (./proposal.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `proposal.out' has not changed.
-(rerunfilecheck)             Checksum: 91E5DF80AD5D7599D2A0F00223A58A5C;2789.
+
+
+Package rerunfilecheck Warning: File `proposal.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `proposal.out':
+(rerunfilecheck)             Before: 91E5DF80AD5D7599D2A0F00223A58A5C;2789
+(rerunfilecheck)             After:  2197A217DD33B2A7233FCC30BA26979A;2979.
 )
 
 Here is how much of LuaTeX's memory you used:
- 32640 strings out of 476076
- 244633,1144653 words of node,token memory allocated
+ 32642 strings out of 476076
+ 244635,1144653 words of node,token memory allocated
  3871 words of node memory still in use:
    34 hlist, 2 vlist, 17 rule, 2 glue, 4 kern, 1 glyph, 1186 attribute, 63 glue_spec, 139 attribute_list, 2 write, 37 user_defined, 24 pdf_literal, 24 pdf_colorstack nodes
-   avail lists: 1:34,2:69887,3:1408,4:523,5:134,6:90,7:7237,8:6,9:3362,10:46,11:134
- 54152 multiletter control sequences out of 65536+600000
+   avail lists: 1:37,2:64029,3:1408,4:523,5:158,6:90,7:6381,8:8,9:3004,10:46,11:140
+ 54153 multiletter control sequences out of 65536+600000
  81 fonts using 77125223 bytes
  119i,12n,112p,2032b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman8-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on proposal.pdf (10 pages, 1168497 bytes).
+Output written on proposal.pdf (10 pages, 2102937 bytes).
 
 PDF statistics: 325 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 131072)
+ 238 compressed objects within 3 object streams
+ 62 named destinations out of 1000 (max. 131072)
  432 words of extra memory for PDF output out of 10000 (max. 100000000)
 
