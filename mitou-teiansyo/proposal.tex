@@ -1,10 +1,10 @@
-\documentclass[a4paper,10pt,titlepage]{ltjsarticle}
+\documentclass[a4paper,10.5pt]{ltjsarticle}
 
 % ===== Fonts & Language =====
 \usepackage[haranoaji,nfssonly]{luatexja-preset}
 
-% ===== Layout =====
-\usepackage[top=20mm,bottom=20mm,left=22mm,right=22mm]{geometry}
+% ===== Layout (margins tightened to compensate for larger font) =====
+\usepackage[top=17mm,bottom=17mm,left=20mm,right=20mm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{multicol}
@@ -50,9 +50,9 @@
   {\normalsize\bfseries\sffamily\color{sectionblue}}
   {\thesubsubsection}{0.5em}{}
 
-\titlespacing*{\section}{0pt}{1.2em}{0.6em}
-\titlespacing*{\subsection}{0pt}{0.8em}{0.3em}
-\titlespacing*{\subsubsection}{0pt}{0.5em}{0.2em}
+\titlespacing*{\section}{0pt}{0.8em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0.2em}
+\titlespacing*{\subsubsection}{0pt}{0.3em}{0.1em}
 
 % ===== Custom boxes =====
 \newtcolorbox{keybox}[1][]{
@@ -88,7 +88,7 @@
 
 % ===== Paragraph =====
 \setlength{\parindent}{1em}
-\setlength{\parskip}{0.2em}
+\setlength{\parskip}{0.1em}
 
 % ============================================================
 \begin{document}
@@ -478,9 +478,11 @@ M8--M9 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテス
 \noindent
 各マイルストーンではPM面談でのデモを通じてフィードバックを受け、方針を柔軟に修正する。特にM8--M9の実証実験では、塾講師と生徒双方からのヒアリングを重点的に行い、「現場で本当に使われるか」を最重要KPIとして検証する。
 
-\subsection{開発時間}
+\subsection{計算機環境・開発時間}
 
-チームは大学院生4名で構成され、全員が授業単位を取得済みで修士研究のみを抱える状態である。1名あたり週20時間、4名$\times$720時間$=$\textbf{2,880時間}の開発工数を投入する。
+\noindent\textbf{計算機環境：}Google Cloud（Cloud Run, Ubuntu）上で開発・デプロイ。各メンバーはMacBook Proを使用。
+
+\noindent\textbf{開発時間：}チームは大学院生4名で構成され、全員が授業単位を取得済みで修士研究のみを抱える状態である。1名あたり週20時間、4名$\times$720時間$=$\textbf{2,880時間}の開発工数を投入する。平日夜間および土日を中心に開発し、M8--M9の実証実験期は塾での検証に時間を重点配分する。
 
 \subsection{予算内訳}
 
