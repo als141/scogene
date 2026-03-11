@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 16:16
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 16:22
  restricted system commands enabled.
 **proposal-final.tex
 (./proposal-final.tex
@@ -1723,7 +1723,7 @@ Package luatex.def Info: docs-hobby-wakatsuki.png  used on input line 708.
 File: docs-hobby-kotake.png Graphic file (type png)
 <use docs-hobby-kotake.png>
 Package luatex.def Info: docs-hobby-kotake.png  used on input line 720.
-(luatex.def)             Requested size: 108.11882pt x 135.15027pt.
+(luatex.def)             Requested size: 89.19966pt x 111.49959pt.
 
 
 Package fancyhdr Warning: \headheight is too small (10.53937pt): 
@@ -1780,12 +1780,12 @@ Here is how much of LuaTeX's memory you used:
  477825,1373583 words of node,token memory allocated
  4911 words of node memory still in use:
    42 hlist, 2 vlist, 19 rule, 4 glue, 5 kern, 5 penalty, 2 glyph, 1557 attribute, 59 glue_spec, 178 attribute_list, 2 write, 45 user_defined, 24 pdf_literal, 10 pdf_action, 26 pdf_colorstack, 1 pdf_setmatrix, 1 pdf_save, 1 pdf_restore nodes
-   avail lists: 1:33,2:99022,3:1815,4:799,5:575,6:126,7:9985,8:72,9:4482,10:48,11:160,12:1
+   avail lists: 1:33,2:99021,3:1815,4:799,5:575,6:126,7:9985,8:72,9:4482,10:48,11:160,12:1
  56186 multiletter control sequences out of 65536+600000
  82 fonts using 81371471 bytes
  119i,12n,112p,2025b,984s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-bold.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on proposal-final.pdf (10 pages, 25378490 bytes).
+Output written on proposal-final.pdf (10 pages, 25378507 bytes).
 
 PDF statistics: 436 PDF objects out of 1000 (max. 8388607)
  323 compressed objects within 4 object streams
