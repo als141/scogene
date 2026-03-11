@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 22:45
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 22:50
  restricted system commands enabled.
 **proposal-final-alpha.tex
 (./proposal-final-alpha.tex
@@ -1683,7 +1683,7 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `proposal-final-alpha.out' has not changed.
-(rerunfilecheck)             Checksum: F42EDAACF069C62A8FDB0344F36BDB8A;3996.
+(rerunfilecheck)             Checksum: 14949A8DE2B1980594F29D9FAFCDC170;3996.
 )
 
 Here is how much of LuaTeX's memory you used:
@@ -1696,7 +1696,7 @@ Here is how much of LuaTeX's memory you used:
  97 fonts using 97384871 bytes
  119i,13n,112p,2031b,976s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-bold.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on proposal-final-alpha.pdf (10 pages, 25389516 bytes).
+Output written on proposal-final-alpha.pdf (10 pages, 25389479 bytes).
 
 PDF statistics: 431 PDF objects out of 1000 (max. 8388607)
  316 compressed objects within 4 object streams
