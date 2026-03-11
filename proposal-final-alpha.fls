@@ -1,0 +1,17 @@
+PWD /home/als0028/study/etsuzan/scogene
+INPUT /home/als0028/.TinyTeX/texmf-var/web2c/luahbtex/lualatex.fmt
+INPUT /home/als0028/study/etsuzan/scogene/mitou-teiansyo/proposal-final-alpha.tex
+OUTPUT proposal-final-alpha.log
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/latex/tex-ini-files/lualatexquotejobname.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/latex/base/ltluatex.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/luaotfload-main.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/luaotfload.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/luaotfload-init.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs-basic.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs-basic-merged.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs-compat.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs-extended.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/lualibs/lualibs-extended-merged.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/luaotfload-log.lua
+INPUT /home/als0028/.TinyTeX/texmf-dist/tex/luatex/luaotfload/fontloader-basics-gen.lua
