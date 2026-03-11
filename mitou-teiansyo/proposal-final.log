@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 16:56
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 17:01
  restricted system commands enabled.
 **proposal-final.tex
 (./proposal-final.tex
@@ -1641,38 +1641,38 @@ Package luatex.def Info: docs-hobby-takahashi.png  used on input line 698.
 <docs-hobby-wakatsuki.png, id=280, 2006.49625pt x 2006.49625pt>
 File: docs-hobby-wakatsuki.png Graphic file (type png)
 <use docs-hobby-wakatsuki.png>
-Package luatex.def Info: docs-hobby-wakatsuki.png  used on input line 710.
+Package luatex.def Info: docs-hobby-wakatsuki.png  used on input line 712.
 (luatex.def)             Requested size: 97.3086pt x 97.29964pt.
 <docs-hobby-kotake.png, id=281, 260.172pt x 325.215pt>
 File: docs-hobby-kotake.png Graphic file (type png)
 <use docs-hobby-kotake.png>
-Package luatex.def Info: docs-hobby-kotake.png  used on input line 722.
+Package luatex.def Info: docs-hobby-kotake.png  used on input line 724.
 (luatex.def)             Requested size: 89.19966pt x 111.49959pt.
 <docs-hobby-masuda.jpg, id=283, 1112.155pt x 1483.5425pt>
 File: docs-hobby-masuda.jpg Graphic file (type jpg)
 <use docs-hobby-masuda.jpg>
-Package luatex.def Info: docs-hobby-masuda.jpg  used on input line 734.
+Package luatex.def Info: docs-hobby-masuda.jpg  used on input line 736.
 (luatex.def)             Requested size: 108.11882pt x 144.22037pt.
  [9<./docs-hobby-takahashi.png><./docs-hobby-wakatsuki.png><./docs-hobby-kotake.png><./docs-hobby-masuda.jpg>](load cache: extra_lmroman9-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 770.
+(Font)              scaled to size 9.48535pt on input line 772.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 770.
+(Font)              scaled to size 9.48535pt on input line 772.
 (load cache: extra_lmroman9-italic.luc)
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 772.
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 773.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 774.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 775.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 776.
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 777.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 778.
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 779.
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 780.
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 781.
  [10] (./proposal-final.aux)
  ***********
 LaTeX2e <2025-11-01>
@@ -1692,7 +1692,7 @@ Here is how much of LuaTeX's memory you used:
  94 fonts using 89686543 bytes
  119i,13n,112p,2025b,984s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-bold.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on proposal-final.pdf (10 pages, 25383067 bytes).
+Output written on proposal-final.pdf (10 pages, 25383397 bytes).
 
 PDF statistics: 431 PDF objects out of 1000 (max. 8388607)
  316 compressed objects within 4 object streams
