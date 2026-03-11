@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 16:22
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.2.16)  11 MAR 2026 16:56
  restricted system commands enabled.
 **proposal-final.tex
 (./proposal-final.tex
@@ -1363,37 +1363,37 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 29.
 <mongene-compare.png, id=41, 2006.49625pt x 730.73pt>
 File: mongene-compare.png Graphic file (type png)
 <use mongene-compare.png>
-Package luatex.def Info: mongene-compare.png  used on input line 107.
+Package luatex.def Info: mongene-compare.png  used on input line 108.
 (luatex.def)             Requested size: 551.98349pt x 201.02383pt.
  (/home/als0028/.TinyTeX/texmf-dist/tex/luatex/luatexja/patches/lltjp-array.sty
 Package: lltjp-array 2024-07-21 Patch to array for LuaTeX-ja
 ) (./proposal-final.aux)
 \openout1 = proposal-final.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for JY3/mc/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for JT3/mc/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1412,7 +1412,7 @@ LaTeX Font Info:    ... okay on input line 110.
 * \oddsidemargin=-49.5078pt
 * \evensidemargin=-49.5078pt
 * \topmargin=-74.17062pt
-* \headheight=10.53937pt
+* \headheight=14.0pt
 * \headsep=19.81401pt
 * \topskip=10.53937pt
 * \footskip=31.6181pt
@@ -1449,324 +1449,231 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count404
-Package hyperref Info: Link coloring ON on input line 110.
+Package hyperref Info: Link coloring ON on input line 111.
  (./proposal-final.out) (./proposal-final.out)
 \@outlinefile=\write5
 
 \openout5 = proposal-final.out
 (load cache: extra_lmroman12-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 (load cache: extra_lmsans12-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 (load cache: extra_haranoajigothic-medium.luc)(load cache: extra_lmsans10-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/b/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/b/n' will be
-(Font)              scaled to size 12.64725pt on input line 133.
+(Font)              scaled to size 12.64725pt on input line 134.
 (load cache: extra_lmsans10-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 133.
+(Font)              scaled to size 10.53937pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
-(Font)              scaled to size 10.53937pt on input line 133.
+(Font)              scaled to size 10.53937pt on input line 134.
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 (load cache: extra_lmsans9-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 133.
+(Font)              scaled to size 9.48535pt on input line 134.
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 (load cache: extra_lmroman12-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 14.75511pt on input line 139.
+(Font)              scaled to size 14.75511pt on input line 140.
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 12.64725pt on input line 141.
+(Font)              scaled to size 12.64725pt on input line 142.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 12.64725pt on input line 141.
+(Font)              scaled to size 12.64725pt on input line 142.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 12.64725pt on input line 141.
+(Font)              scaled to size 12.64725pt on input line 142.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 12.64725pt on input line 141.
+(Font)              scaled to size 12.64725pt on input line 142.
 (load cache: extra_lmroman10-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 10.53937pt on input line 146.
+(Font)              scaled to size 10.53937pt on input line 147.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 10.53937pt on input line 146.
+(Font)              scaled to size 10.53937pt on input line 147.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 10.53937pt on input line 153.
+(Font)              scaled to size 10.53937pt on input line 154.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/bx/n' will be
-(Font)              scaled to size 10.53937pt on input line 153.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[1{/home/als0028/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              scaled to size 10.53937pt on input line 154.
+ [1{/home/als0028/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 <./mongene-compare.png>]
 <docs-cycle.png, id=175, 2006.49625pt x 970.62625pt>
 File: docs-cycle.png Graphic file (type png)
 <use docs-cycle.png>
-Package luatex.def Info: docs-cycle.png  used on input line 182.
+Package luatex.def Info: docs-cycle.png  used on input line 183.
 (luatex.def)             Requested size: 386.38675pt x 186.90907pt.
-LaTeX Font Info:    Calculating math sizes for size <10.53937> on input line 189.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 189.
+LaTeX Font Info:    Calculating math sizes for size <10.53937> on input line 190.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 190.
  (/home/als0028/.TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 189.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 190.
  (/home/als0028/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 189.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 190.
  (/home/als0028/.TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 189.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 190.
  (/home/als0028/.TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.53937> on input line 189.
+(Font)              <10.53937> on input line 190.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.37752> on input line 189.
+(Font)              <7.37752> on input line 190.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.26968> on input line 189.
+(Font)              <5.26968> on input line 190.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 7.37752pt on input line 189.
+(Font)              scaled to size 7.37752pt on input line 190.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 189.
+(Font)              scaled to size 5.26968pt on input line 190.
 <system-arch-new.jpg, id=176, 6359.76pt x 2698.08pt>
 File: system-arch-new.jpg Graphic file (type jpg)
 <use system-arch-new.jpg>
-Package luatex.def Info: system-arch-new.jpg  used on input line 204.
+Package luatex.def Info: system-arch-new.jpg  used on input line 205.
 (luatex.def)             Requested size: 469.18933pt x 199.01256pt.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[2](load cache: extra_lmroman7-regular.luc)
+ [2](load cache: extra_lmroman7-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 235.
+(Font)              scaled to size 7.37756pt on input line 236.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 235.
-(load cache: extra_lmroman7-bold.luc)
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[3<./docs-cycle.png><./system-arch-new.jpg>](load cache: extra_lmsans8-regular.luc)
+(Font)              scaled to size 7.37756pt on input line 236.
+(load cache: extra_lmroman7-bold.luc) [3<./docs-cycle.png><./system-arch-new.jpg>](load cache: extra_lmsans8-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 312.
+(Font)              scaled to size 7.37756pt on input line 313.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
-(Font)              scaled to size 7.37756pt on input line 312.
+(Font)              scaled to size 7.37756pt on input line 313.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 312.
+(Font)              scaled to size 5.26968pt on input line 313.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 312.
+(Font)              scaled to size 5.26968pt on input line 313.
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/b/n' will be
-(Font)              scaled to size 5.26968pt on input line 312.
+(Font)              scaled to size 5.26968pt on input line 313.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/b/n' will be
-(Font)              scaled to size 5.26968pt on input line 312.
+(Font)              scaled to size 5.26968pt on input line 313.
 (load cache: extra_lmroman5-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/m/n' will be
-(Font)              scaled to size 5.26968pt on input line 322.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[4]
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[5](load cache: extra_lmmono10-regular.luc)
+(Font)              scaled to size 5.26968pt on input line 323.
+ [4] [5](load cache: extra_lmmono10-regular.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpgt1/b/n' will be
-(Font)              scaled to size 7.37756pt on input line 519.
+(Font)              scaled to size 7.37756pt on input line 520.
 LaTeX Font Info:    Font shape `JY3/ltjpgt1/b/n' will be
-(Font)              scaled to size 7.37756pt on input line 519.
+(Font)              scaled to size 7.37756pt on input line 520.
 (load cache: extra_lmmono8-regular.luc)
 <docs-scogene-overview.png, id=220, 539.01375pt x 484.81125pt>
 File: docs-scogene-overview.png Graphic file (type png)
 <use docs-scogene-overview.png>
-Package luatex.def Info: docs-scogene-overview.png  used on input line 532.
+Package luatex.def Info: docs-scogene-overview.png  used on input line 533.
 (luatex.def)             Requested size: 176.63875pt x 158.87856pt.
 <docs-scogene-detail1.png, id=221, 320.397pt x 491.436pt>
 File: docs-scogene-detail1.png Graphic file (type png)
 <use docs-scogene-detail1.png>
-Package luatex.def Info: docs-scogene-detail1.png  used on input line 539.
+Package luatex.def Info: docs-scogene-detail1.png  used on input line 540.
 (luatex.def)             Requested size: 176.63875pt x 270.93552pt.
 <docs-scogene-detail2.png, id=222, 342.078pt x 269.20575pt>
 File: docs-scogene-detail2.png Graphic file (type png)
 <use docs-scogene-detail2.png>
-Package luatex.def Info: docs-scogene-detail2.png  used on input line 546.
+Package luatex.def Info: docs-scogene-detail2.png  used on input line 547.
 (luatex.def)             Requested size: 176.63875pt x 139.01425pt.
-<mongene-ui.png, id=225, 761.09344pt x 615.80063pt>
-File: mongene-ui.png Graphic file (type png)
-<use mongene-ui.png>
-Package luatex.def Info: mongene-ui.png  used on input line 557.
-(luatex.def)             Requested size: 108.11882pt x 87.4706pt.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[6]
-Overfull \hbox (124.90709pt too wide) in paragraph at lines 564--564
-|[][][] 
- []
-
-
-Overfull \hbox (124.90709pt too wide) in paragraph at lines 564--564
-|[][][] 
- []
-
-
-Overfull \hbox (124.90709pt too wide) in paragraph at lines 573--573
-[] 
- []
-
-
-Overfull \hbox (124.90709pt too wide) in paragraph at lines 573--573
-[] 
- []
-
-<etsuzan-team.png, id=243, 710.655pt x 475.7775pt>
+ [6]
+<etsuzan-team.png, id=242, 710.655pt x 475.7775pt>
 File: etsuzan-team.png Graphic file (type png)
 <use etsuzan-team.png>
-Package luatex.def Info: etsuzan-team.png  used on input line 579.
+Package luatex.def Info: etsuzan-team.png  used on input line 571.
 (luatex.def)             Requested size: 264.9497pt x 177.38522pt.
-<akatsuki-masuda.jpg, id=244, 1505.625pt x 846.91406pt>
+<akatsuki-masuda.jpg, id=243, 1505.625pt x 846.91406pt>
 File: akatsuki-masuda.jpg Graphic file (type jpg)
 <use akatsuki-masuda.jpg>
-Package luatex.def Info: akatsuki-masuda.jpg  used on input line 585.
+Package luatex.def Info: akatsuki-masuda.jpg  used on input line 577.
 (luatex.def)             Requested size: 264.9497pt x 149.02632pt.
-<docs-robocon.jpg, id=245, 338.76563pt x 225.84375pt>
+LaTeX Font Info:    Calculating math sizes for size <9.48535> on input line 589.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9.48535> on input line 589.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6.63971> on input line 589.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <4.74268> on input line 589.
+LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
+(Font)              scaled to size 6.63971pt on input line 589.
+LaTeX Font Info:    Font shape `JY3/ltjpmc1/m/n' will be
+(Font)              scaled to size 4.74268pt on input line 589.
+<docs-robocon.jpg, id=247, 338.76563pt x 225.84375pt>
 File: docs-robocon.jpg Graphic file (type jpg)
 <use docs-robocon.jpg>
-Package luatex.def Info: docs-robocon.jpg  used on input line 595.
-(luatex.def)             Requested size: 102.71576pt x 68.47731pt.
-<docs-nutmeg.png, id=251, 2006.49625pt x 1337.99875pt>
+Package luatex.def Info: docs-robocon.jpg  used on input line 605.
+(luatex.def)             Requested size: 75.68399pt x 50.45425pt.
+<docs-nutmeg.png, id=250, 2006.49625pt x 1337.99875pt>
 File: docs-nutmeg.png Graphic file (type png)
 <use docs-nutmeg.png>
 Package luatex.def Info: docs-nutmeg.png  used on input line 623.
-(luatex.def)             Requested size: 102.71576pt x 68.47589pt.
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[7<./docs-scogene-overview.png><./docs-scogene-detail1.png><./docs-scogene-detail2.png><./docs-robocon.jpg><./docs-nutmeg.png>]
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[8<./etsuzan-team.png><./akatsuki-masuda.jpg>]
-<docs-hobby-takahashi.png, id=288, 1101.11375pt x 2006.49625pt>
+(luatex.def)             Requested size: 75.68399pt x 50.4484pt.
+ [7<./docs-scogene-overview.png><./docs-scogene-detail1.png><./docs-scogene-detail2.png><./docs-robocon.jpg><./docs-nutmeg.png>] [8<./etsuzan-team.png><./akatsuki-masuda.jpg>]
+<docs-hobby-takahashi.png, id=279, 1101.11375pt x 2006.49625pt>
 File: docs-hobby-takahashi.png Graphic file (type png)
 <use docs-hobby-takahashi.png>
-Package luatex.def Info: docs-hobby-takahashi.png  used on input line 696.
+Package luatex.def Info: docs-hobby-takahashi.png  used on input line 698.
 (luatex.def)             Requested size: 108.11882pt x 197.018pt.
-<docs-hobby-wakatsuki.png, id=289, 2006.49625pt x 2006.49625pt>
+<docs-hobby-wakatsuki.png, id=280, 2006.49625pt x 2006.49625pt>
 File: docs-hobby-wakatsuki.png Graphic file (type png)
 <use docs-hobby-wakatsuki.png>
-Package luatex.def Info: docs-hobby-wakatsuki.png  used on input line 708.
+Package luatex.def Info: docs-hobby-wakatsuki.png  used on input line 710.
 (luatex.def)             Requested size: 97.3086pt x 97.29964pt.
-<docs-hobby-kotake.png, id=290, 260.172pt x 325.215pt>
+<docs-hobby-kotake.png, id=281, 260.172pt x 325.215pt>
 File: docs-hobby-kotake.png Graphic file (type png)
 <use docs-hobby-kotake.png>
-Package luatex.def Info: docs-hobby-kotake.png  used on input line 720.
+Package luatex.def Info: docs-hobby-kotake.png  used on input line 722.
 (luatex.def)             Requested size: 89.19966pt x 111.49959pt.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[9<./docs-hobby-takahashi.png><./docs-hobby-wakatsuki.png><./docs-hobby-kotake.png>]
-<docs-hobby-masuda.jpg, id=304, 1112.155pt x 1483.5425pt>
+<docs-hobby-masuda.jpg, id=283, 1112.155pt x 1483.5425pt>
 File: docs-hobby-masuda.jpg Graphic file (type jpg)
 <use docs-hobby-masuda.jpg>
-Package luatex.def Info: docs-hobby-masuda.jpg  used on input line 732.
+Package luatex.def Info: docs-hobby-masuda.jpg  used on input line 734.
 (luatex.def)             Requested size: 108.11882pt x 144.22037pt.
-(load cache: extra_lmroman9-bold.luc)
+ [9<./docs-hobby-takahashi.png><./docs-hobby-wakatsuki.png><./docs-hobby-kotake.png><./docs-hobby-masuda.jpg>](load cache: extra_lmroman9-bold.luc)
 LaTeX Font Info:    Font shape `JT3/ltjpmc1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 768.
+(Font)              scaled to size 9.48535pt on input line 770.
 LaTeX Font Info:    Font shape `JY3/ltjpmc1/b/n' will be
-(Font)              scaled to size 9.48535pt on input line 768.
+(Font)              scaled to size 9.48535pt on input line 770.
 (load cache: extra_lmroman9-italic.luc)
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 770.
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 771.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 772.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 773.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 774.
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 775.
 LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
-(Font)              No change on input line 776.
-LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
 (Font)              No change on input line 777.
-
-
-Package fancyhdr Warning: \headheight is too small (10.53937pt): 
-(fancyhdr)                Make it at least 13.70117pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.70117pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-3.1618pt}.
-
-[10<./docs-hobby-masuda.jpg>] (./proposal-final.aux)
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 778.
+LaTeX Font Info:    Kanji font shape `JY3/ltjpmc1/m/it' undefined
+(Font)              No change on input line 779.
+ [10] (./proposal-final.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -1776,19 +1683,19 @@ Package rerunfilecheck Info: File `proposal-final.out' has not changed.
 )
 
 Here is how much of LuaTeX's memory you used:
- 34752 strings out of 476076
- 477825,1373583 words of node,token memory allocated
- 4911 words of node memory still in use:
-   42 hlist, 2 vlist, 19 rule, 4 glue, 5 kern, 5 penalty, 2 glyph, 1557 attribute, 59 glue_spec, 178 attribute_list, 2 write, 45 user_defined, 24 pdf_literal, 10 pdf_action, 26 pdf_colorstack, 1 pdf_setmatrix, 1 pdf_save, 1 pdf_restore nodes
-   avail lists: 1:33,2:99021,3:1815,4:799,5:575,6:126,7:9985,8:72,9:4482,10:48,11:160,12:1
- 56186 multiletter control sequences out of 65536+600000
- 82 fonts using 81371471 bytes
- 119i,12n,112p,2025b,984s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-bold.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on proposal-final.pdf (10 pages, 25378507 bytes).
+ 34758 strings out of 476076
+ 477823,1373583 words of node,token memory allocated
+ 4731 words of node memory still in use:
+   42 hlist, 2 vlist, 19 rule, 4 glue, 5 kern, 5 penalty, 2 glyph, 1491 attribute, 59 glue_spec, 172 attribute_list, 2 write, 45 user_defined, 24 pdf_literal, 4 pdf_action, 26 pdf_colorstack, 1 pdf_setmatrix, 1 pdf_save, 1 pdf_restore nodes
+   avail lists: 1:33,2:102694,3:1814,4:796,5:573,6:132,7:10167,8:72,9:4481,10:48,11:160
+ 56195 multiletter control sequences out of 65536+600000
+ 94 fonts using 89686543 bytes
+ 119i,13n,112p,2025b,984s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-italic.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-bold.otf>{/home/als0028/.TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}</home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans9-regular.otf></home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></home/als0028/.TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on proposal-final.pdf (10 pages, 25383067 bytes).
 
-PDF statistics: 436 PDF objects out of 1000 (max. 8388607)
- 323 compressed objects within 4 object streams
+PDF statistics: 431 PDF objects out of 1000 (max. 8388607)
+ 316 compressed objects within 4 object streams
  73 named destinations out of 1000 (max. 131072)
  488 words of extra memory for PDF output out of 10000 (max. 100000000)
 

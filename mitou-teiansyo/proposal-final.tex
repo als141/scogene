@@ -78,6 +78,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
 \fancyhead[L]{\small\sffamily\color{gray}未踏IT人材発掘・育成事業 提案書}
 \fancyhead[R]{\small\sffamily\color{gray}無限問題作成AI「モンジェネ」}
 \fancyfoot[C]{}
@@ -551,15 +552,6 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 
 図\ref{fig:grading_overview}--\ref{fig:grading_feedback}に採点プロトタイプの画面を示す。問題文と答案のみを入力し（模範解答は渡していない状態でも）、LLMが自力で正答を計算し、生徒の手書き答案を正確に読み取っている。各問題に対して正誤判定、途中式・プロセスの評価、部分点の理由、改善アドバイスを構造化して出力する。
 
-\begin{wrapfigure}{r}{0.42\columnwidth}
-  \centering
-  \vspace{-4pt}
-  \includegraphics[width=0.40\columnwidth]{mongene-ui.png}
-  \caption{モンジェネの問題生成画面：問題・解答をアップロードし、未習単元を選択して生成}
-  \label{fig:mongene_ui}
-  \vspace{-6pt}
-\end{wrapfigure}
-
 % ============================================================
 \section{提案者（たち）の腕前を証明できるもの}
 
@@ -589,54 +581,62 @@ ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問�
 
 \subsection*{高橋 創真}
 
-\begin{wrapfigure}{r}{0.40\columnwidth}
+\noindent\textbf{ETSUZAN採択}\\
+\textbf{無限問題生成AI「モンジェネ」チームリーダー}
+
+{\small\sffamily
+\noindent
+ETSUZAN最終報告会 \url{https://youtu.be/PCIbYSYGWrI}\\
+ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
+}
+
+\noindent\textbullet\ \textbf{塾講師アルバイト}：新潟県長岡市の個別指導塾で高専4年次から務めている（今年で5年目）。右も左もわからない新人先生時代から始まり、数々の受験期を乗り越え、現在は塾講師80名を束ねるリーダーとして、生徒の将来の選択肢の広がりを提供している。
+
+\noindent\textbullet\ \textbf{学園祭実行委員長}：長岡技術科学大学学園祭「技大祭」の実行委員会に所属。学部4年次、第43回技大祭実行委員長を務めた。1年間、約200名の組織のトップとして、責任ある立場を全うした。
+
+{\small\sffamily
+\noindent
+長岡技術科学大学広報誌掲載 \url{https://www.nagaokaut.ac.jp/outline/pr/assets/VOS231web.pdf}
+}
+
+\begin{wrapfigure}{r}{0.30\columnwidth}
   \centering
-  \vspace{-6pt}
-  \includegraphics[width=0.38\columnwidth]{docs-robocon.jpg}
+  \vspace{-4pt}
+  \includegraphics[width=0.28\columnwidth]{docs-robocon.jpg}
   \caption{NHK高専ロボコン2021関東甲信越地区大会}
-  \vspace{-6pt}
+  \vspace{-8pt}
 \end{wrapfigure}
 
-ETSUZAN採択 無限問題生成AI「モンジェネ」チームリーダー
+\noindent\textbullet\ \textbf{NHK高専ロボコン}：高専1年から4年まで、NHK高専ロボコンに出場。4年次に、「超絶技巧」がテーマの大会で、前人未踏な「ターザンロボット」を開発。チームリーダー兼部長。地区大会で本田技研工業株式会社特別賞を受賞。1年次は部品加工、2年次はロボット制御プログラムの開発、3年次はチームリーダー。モノづくりの流れを学び、手を動かすことができる実践力を身につけた。
 
-ETSUZAN最終報告会 \url{https://youtu.be/PCIbYSYGWrI}
-
-ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
-
-\begin{itemize}
-  \item \textbf{塾講師アルバイト}：新潟県長岡市の個別指導塾で高専4年次から務めている（今年で5年目）。右も左もわからない新人先生時代から始まり、数々の受験期を乗り越え、現在は塾講師80名を束ねるリーダーとして、生徒の将来の選択肢の広がりを提供している。
-  \item \textbf{学園祭実行委員長}：長岡技術科学大学学園祭「技大祭」の実行委員会に所属。学部4年次、第43回技大祭実行委員長を務めた。1年間、約200名の組織のトップとして、責任ある立場を全うした。
-
-  長岡技術科学大学広報誌掲載 \url{https://www.nagaokaut.ac.jp/outline/pr/assets/VOS231web.pdf}
-  \item \textbf{NHK高専ロボコン}：高専1年から4年まで、NHK高専ロボコンに出場。4年次に、「超絶技巧」がテーマの大会で、前人未踏な「ターザンロボット」を開発。チームリーダー兼部長。地区大会で本田技研工業株式会社特別賞を受賞。1年次は部品加工、2年次はロボット制御プログラムの開発、3年次はチームリーダー。モノづくりの流れを学び、手を動かすことができる実践力を身につけた。
-
-  高専ロボコン2021関東甲信越地区大会/長岡高専HP \url{https://www.nagaoka-ct.ac.jp/58563/}
-
-  高専ロボコン2021関東甲信越地区大会アーカイブ \url{https://youtu.be/S-8Iz0e02Xk}
-\end{itemize}
+{\small\sffamily
+\noindent
+高専ロボコン2021関東甲信越地区大会/長岡高専HP \url{https://www.nagaoka-ct.ac.jp/58563/}\\
+高専ロボコン2021関東甲信越地区大会アーカイブ \url{https://youtu.be/S-8Iz0e02Xk}
+}
 
 \subsection*{若月 耕紀}
 
-\begin{wrapfigure}{r}{0.40\columnwidth}
+\begin{wrapfigure}{r}{0.30\columnwidth}
   \centering
   \vspace{-6pt}
-  \includegraphics[width=0.38\columnwidth]{docs-nutmeg.png}
+  \includegraphics[width=0.28\columnwidth]{docs-nutmeg.png}
   \caption{NUTMEG（技大祭実行委員会 情報局）メンバー}
-  \vspace{-6pt}
+  \vspace{-8pt}
 \end{wrapfigure}
 
 \textbf{【開発実績】}
-\begin{itemize}
-  \item \textbf{NUTMEG}（学園祭実行委員会の開発部門）：シフトの管理・出展団体の管理・組織内の学習コンテンツ管理。Next.jsやRailsなどを用いた、学園祭を支えるアプリケーションの開発。開発団体の代表として、複数プロジェクトをまとめ上げた。
 
-  NUTMEG公式Blog \url{https://blog.nutmeg.cloud/}
-  \item \textbf{長岡インターンシップサイト}（業務委託）：Web制作会社からの業務委託。要件定義から実装、デプロイまでを1.5ヶ月で完遂。
-  \item \textbf{モンジェネ}（経産省AKATSUKI事業）：塾講師が抱える「問題不足」という課題に対し、LLMで数学の入試対策問題を無限に生成するアプリケーションを開発。数値計算プログラムや図形描画プログラムを生成させることで、信頼性の高い問題を生成。
+\noindent\textbullet\ \textbf{NUTMEG}（学園祭実行委員会の開発部門）：シフトの管理・出展団体の管理・組織内の学習コンテンツ管理。Next.jsやRailsなどを用いた、学園祭を支えるアプリケーションの開発。開発団体の代表として、複数プロジェクトをまとめ上げた。
 
-  ETSUZAN最終報告会 \url{https://youtu.be/PCIbYSYGWrI}
+{\small\sffamily
+\noindent
+NUTMEG公式Blog \url{https://blog.nutmeg.cloud/}
+}
 
-  ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
-\end{itemize}
+\noindent\textbullet\ \textbf{長岡インターンシップサイト}（業務委託）：Web制作会社からの業務委託。要件定義から実装、デプロイまでを1.5ヶ月で完遂。
+
+\noindent\textbullet\ \textbf{モンジェネ}（経産省AKATSUKI事業）：塾講師が抱える「問題不足」という課題に対し、LLMで数学の入試対策問題を無限に生成するアプリケーションを開発。数値計算プログラムや図形描画プログラムを生成させることで、信頼性の高い問題を生成。
 
 \textbf{【研究実績】}
 \begin{itemize}
@@ -650,9 +650,6 @@ ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
 \begin{itemize}
   \item \textbf{無限問題作成AI『モンジェネ』のUI設計}（ETSUZAN採択）：学習塾講師の業務負荷軽減を目指したWebアプリ。講師の認知負荷と操作コストを下げるため、検索以外のフローをクリック操作のみで完結させるUIを設計した。また、生成AIを活用して自らフロントエンドコードを出力・検証することで、エンジニアへのイメージ共有を円滑にし、開発効率を向上させた。
 
-  ETSUZAN最終報告会 \url{https://youtu.be/PCIbYSYGWrI}
-
-  ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
   \item \textbf{NUTMEG}（長岡技術科学大学 技大祭実行委員会 情報局）での開発：学内団体管理システム「GM2」のフロントエンドを担当。（使用技術: Vue.js, TypeScript）チームメンバーとして、FigmaデザインのUI実装に加え、CSV/PDF出力機能の追加や権限管理の修正などを行った。また、不要コンポーネントの削除やバリデーション修正など、既存コードの保守作業も担当した。
 
   NUTMEG公式Blog \url{https://blog.nutmeg.cloud/}
@@ -660,15 +657,20 @@ ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
 
 \subsection*{舛田 岳}
 
+\noindent\textbf{ETSUZAN採択}\\
+\textbf{日本酒AIソムリエ「SakeScope」開発者}
+
+{\small\sffamily
+\noindent
+ETSUZAN最終報告会 \url{https://youtu.be/noTHRUNfiwA}\\
+ポートフォリオ \url{https://portfolio.atoriba.jp}
+}
+
 \textbf{【開発実績】}
 \begin{itemize}
   \item \textbf{マーケティングAIエージェントシステム}（株式会社b\&qで開発中）：100以上のツール（GWS, GA4, Ahrefs, GSC, Meta Ads等）を統合。Multi-Agent Architecture設計・実装。
   \item \textbf{SEO記事生成SaaS}（株式会社新大陸でテックリード）：LLM、エージェントSDKを活用した記事自動生成システム。月間数千記事の生成実績。
   \item \textbf{SakeScope}（AI日本酒ソムリエ）（経産省AKATSUKI事業）：マルチモーダルLLMによる日本酒推薦システム。地域文化とAIの融合。
-
-  ETSUZAN最終報告会 \url{https://youtu.be/noTHRUNfiwA}
-
-  ETSUZAN名鑑 \url{https://meikan.etsuzan.org/}
 \end{itemize}
 
 \textbf{【研究実績】}
