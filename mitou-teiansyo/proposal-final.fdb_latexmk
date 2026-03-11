@@ -1,5 +1,5 @@
 # Fdb version 4
-["lualatex"] 1773216105.57543 "proposal-final.tex" "proposal-final.pdf" "proposal-final" 1773216114.2273 0
+["lualatex"] 1773216271.73035 "proposal-final.tex" "proposal-final.pdf" "proposal-final" 1773216280.32271 0
   "/home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiGothic-Medium.otf" 1755461869 4760392 2b663d1fb7e2425c94926535198454fc ""
   "/home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/haranoaji/HaranoAjiMincho-Regular.otf" 1755461869 6422896 22a59bd5a758ac1dcb12a9a2dc5e5242 ""
   "/home/als0028/.TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.otf" 1255129361 64684 15a2082c8e31f411875a86ea2d29a0ee ""
@@ -361,9 +361,9 @@
   "docs-scogene-overview.png" 1773206413.06043 503307 ddf8ff94cef31590362c87cdbe5c2603 ""
   "etsuzan-team.png" 1773135171.56723 4114514 4fc573c1d95cf26cc9ef9d73ff1c2e66 ""
   "mongene-compare.png" 1773134336.58862 415674 a5a998116c65a3564b2d0bdc781721e7 ""
-  "proposal-final.aux" 1773216113.27193 7492 e00d6ea132c490a51f18136d46435b15 "lualatex"
-  "proposal-final.out" 1773216113.27193 3996 f42edaacf069c62a8fdb0344f36bdb8a "lualatex"
-  "proposal-final.tex" 1773215997.30369 55320 39afff3bf98237fbf06b626049812c59 ""
+  "proposal-final.aux" 1773216279.31593 7492 e00d6ea132c490a51f18136d46435b15 "lualatex"
+  "proposal-final.out" 1773216279.31993 3996 f42edaacf069c62a8fdb0344f36bdb8a "lualatex"
+  "proposal-final.tex" 1773216175.89995 55317 b07eb756924b32f3434dcfaac2b30f8c ""
   "system-arch-new.jpg" 1773134336.58462 728217 417448002ab4b7cdc5a3d8d1de701791 ""
   (generated)
   "proposal-final.aux"
