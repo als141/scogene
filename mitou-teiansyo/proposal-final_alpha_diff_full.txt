@@ -39,7 +39,7 @@
 近年、LLMを活用した教育システムの研究が急速に進展しており\,[6]、AI駆動型ITSはK-12教育で一貫してポジティブな学習効果が確認されている\,[7]。LLMを用いた数学的エラーの自動分類も、専門家一致度F1スコア85\%超を達成しており\,[8]、LLMを用いた人間の能力の再現が実現に近づいている。
 ↓
 修正後
-近年、LLMを教育支援に活用する研究が進んでいる\,[6]。また、初等中等教育（K-12）を対象とした知的学習支援システム（ITS）の研究では、学習効果の改善が継続して報告されている\,[7]。一方で、数学の答案に対して誤り箇所を適切に見つけ、その誤りに応じたフィードバックを返すことはなお簡単ではなく、近年の研究でも課題として扱われている\,[8][9]。
+近年、LLMを教育支援に活用する研究が進んでいる\,[6]。また、初等中等教育（K-12）を対象とした知的学習支援システム（ITS）の研究では、学習効果の改善が継続して報告されている\,[7]。さらに、数学の誤答データをLLMで分類し、学習者がどの段階でつまずいているかを整理する試みも報告されており、誤答分析の自動化が現実味を帯びてきている\,[8]。
 
 変更箇所4
 元
@@ -118,7 +118,7 @@ ETSUZAN期間中に開発した3パターン生成を基盤とし、苦手プロ
 第1層：原データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
 ↓
 修正後
-第1層：基礎データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
+第1層：元データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
 
 変更箇所13
 元
@@ -158,14 +158,6 @@ AI/ML & OpenAI API (GPT-5.4), Claude API, Bayesian Knowledge Tracing, FSRS v6 \\
 \begin{enumerate}[leftmargin=1.4em,label={[\arabic*]},labelsep=0.4em]
 
 変更箇所18
-元
-  \item Otieno, H.\,et~al. (2025). Leveraging LLMs to Identify and Classify Student Errors Using the STACK Dataset. \textit{ResearchGate}.
-↓
-修正後
-  \item Daheim, N.\,et~al. (2024). Stepwise Verification and Remediation of Student Reasoning Errors with Large Language Model Tutors. \textit{EMNLP 2024}, 8386--8411.
-  \item Srivatsa, K.\,A.\,et~al. (2025). LLMs cannot spot math errors, even when allowed to peek into the solution. \textit{EMNLP 2025}, 10914--10928.
-
-変更箇所19
 元
 \end{small}
 ↓

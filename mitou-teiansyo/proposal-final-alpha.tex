@@ -183,7 +183,7 @@
 
 しかし、2026年2月の受験期にモンジェネを使い込んだところ、\textbf{まだまだ足りない}と痛感した。難易度の調整ができない、出力は固定の3パターンのみ、そして何より---生徒一人ひとりの苦手が反映されていない。「生徒ごとの苦手が反映されている問題だったらいいな」という塾講師の声が聞こえてきた。私は約20人の生徒を受け持ち、月ごとに統一模試結果や定期テスト結果、小テスト結果を見ながら個別に対応するが、20人全員の苦手を正確に把握し続けることは人間の記憶力では限界がある。しかも\textbf{単元が変わるたびに苦手な生徒が入れ替わる}。先月「方程式」で苦戦した生徒が今月は問題なく、代わりに別の生徒が「図形」で躓く---この動的なバラつきへの対応は5年の経験でも容易ではない。 これが本提案の出発点となった。
 
-近年、LLMを教育支援に活用する研究が進んでいる\,[6]。また、初等中等教育（K-12）を対象とした知的学習支援システム（ITS）の研究では、学習効果の改善が継続して報告されている\,[7]。一方で、数学の答案に対して誤り箇所を適切に見つけ、その誤りに応じたフィードバックを返すことはなお簡単ではなく、近年の研究でも課題として扱われている\,[8][9]。
+近年、LLMを教育支援に活用する研究が進んでいる\,[6]。また、初等中等教育（K-12）を対象とした知的学習支援システム（ITS）の研究では、学習効果の改善が継続して報告されている\,[7]。さらに、数学の誤答データをLLMで分類し、学習者がどの段階でつまずいているかを整理する試みも報告されており、誤答分析の自動化が現実味を帯びてきている\,[8]。
 
 私たちは、模試の結果や手書きの答案を採点し、生徒ごとの苦手を解析し、その苦手を反映した問題を作成する。学校学年・志望校や現状の学力という生徒データにあわせた学習体験、いわゆる「個別最適化された学習」が実現可能と考える。この「問題生成→採点→生徒の苦手をフィードバックした問題を生成」という学習サイクルにより、生徒の学力は着実に向上し、さらには、塾講師の負担軽減にもつながる。
 
@@ -358,7 +358,7 @@ ETSUZAN期間中に開発した3パターン生成を基盤とし、苦手プロ
 \toprule
 データ層 & 内容と意義 \\
 \midrule
-第1層：基礎データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
+第1層：元データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
 第2層：アノテーション & 塾講師が検証した難易度ラベル（正答率5\%刻み21段階）、公式タグ、誤答パターン。LLM構造化出力＋人間検証で構築 \\
 第3層：学習効果 & どの問題がどの苦手パターンの生徒に効果があったか。使うほど精度が上がるフライホイール効果 \\
 \bottomrule
@@ -796,8 +796,7 @@ AIの発展とその応用で様々な作業が効率化しており、省人化
   \item Newman, M.\,A. (1977). An Analysis of Sixth-Grade Pupils' Errors on Written Mathematical Tasks.
   \item Wang, S.\,et~al. (2024). Large Language Models for Education: A Survey and Outlook. \textit{arXiv:2403.18105}.
   \item L\'{e}tourneau, A.\,et~al. (2025). A Systematic Review of AI-Driven ITS in K-12 Education. \textit{npj Science of Learning}, 10, 29.
-  \item Daheim, N.\,et~al. (2024). Stepwise Verification and Remediation of Student Reasoning Errors with Large Language Model Tutors. \textit{EMNLP 2024}, 8386--8411.
-  \item Srivatsa, K.\,A.\,et~al. (2025). LLMs cannot spot math errors, even when allowed to peek into the solution. \textit{EMNLP 2025}, 10914--10928.
+  \item Otieno, H.\,et~al. (2025). Leveraging LLMs to Identify and Classify Student Errors Using the STACK Dataset. \textit{ResearchGate}.
 \end{enumerate}
 \endgroup
 
