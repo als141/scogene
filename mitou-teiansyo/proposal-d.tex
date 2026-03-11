@@ -1,0 +1,712 @@
+\documentclass[paper=a4,fontsize=10.5bp,jafontsize=10.5bp,twocolumn]{jlreq}
+
+% ===== Fonts & Language =====
+\usepackage[haranoaji,nfssonly]{luatexja-preset}
+
+% ===== Layout — version D: aggressive margins =====
+\usepackage[top=10mm,bottom=9mm,left=10mm,right=10mm]{geometry}
+\setlength{\columnsep}{5mm}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{float}
+
+% ===== Graphics & Color =====
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,arrows.meta,shapes.geometric,decorations.pathreplacing}
+\usepackage[most]{tcolorbox}
+\usepackage{wrapfig}
+
+% ===== Tables =====
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+
+% ===== Hyperlinks =====
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,urlcolor=blue!60!black,citecolor=blue!60!black}
+
+% ===== Color definitions =====
+\definecolor{mainblue}{HTML}{1A5276}
+\definecolor{accentorange}{HTML}{E67E22}
+\definecolor{lightbg}{HTML}{F4F6F7}
+\definecolor{successgreen}{HTML}{27AE60}
+\definecolor{dangerred}{HTML}{E74C3C}
+\definecolor{sectionblue}{HTML}{2C3E50}
+
+% ===== Section formatting — compact but readable =====
+\titleformat{\section}
+  {\large\bfseries\sffamily\color{mainblue}}
+  {\thesection}{0.7em}{}
+  [\vspace{-0.5em}\textcolor{mainblue}{\rule{\linewidth}{1.2pt}}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\sffamily\color{sectionblue}}
+  {\thesubsection}{0.5em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\sffamily\color{sectionblue}}
+  {\thesubsubsection}{0.4em}{}
+
+\titlespacing*{\section}{0pt}{0.5em}{0.2em}
+\titlespacing*{\subsection}{0pt}{0.3em}{0.1em}
+\titlespacing*{\subsubsection}{0pt}{0.2em}{0.06em}
+
+% ===== Custom boxes — minimal padding =====
+\newtcolorbox{keybox}[1][]{
+  colback=mainblue!5,colframe=mainblue,
+  fonttitle=\bfseries\sffamily\small,
+  title=#1,boxrule=0.6pt,arc=2pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt
+}
+
+\newtcolorbox{highlightbox}{
+  colback=accentorange!8,colframe=accentorange,
+  boxrule=0.6pt,arc=2pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt
+}
+
+\newtcolorbox{graybox}{
+  colback=lightbg,colframe=lightbg!60!gray,
+  boxrule=0.3pt,arc=2pt,
+  left=3pt,right=3pt,top=2pt,bottom=2pt
+}
+
+% ===== Header / Footer =====
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small\sffamily\color{gray}未踏IT人材発掘・育成事業 提案書}
+\fancyhead[R]{\small\sffamily\color{gray}無限問題作成AI「モンジェネ」}
+\fancyfoot[C]{\small\sffamily\color{gray}\thepage\,/\,10}
+
+% ===== List spacing =====
+\setlist{nosep,leftmargin=1.2em}
+\setlist[itemize]{label={\color{mainblue}\textbullet}}
+
+% ===== Paragraph =====
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0pt}
+
+% ===== Pre-save figure for use in twocolumn header =====
+\newsavebox{\mongenecompare}
+\savebox{\mongenecompare}{\includegraphics[width=0.85\textwidth]{mongene-compare.png}}
+
+% ============================================================
+\begin{document}
+
+% ===== COMPACT HEADER (spans both columns) =====
+\twocolumn[
+\noindent{\normalsize\sffamily\bfseries\color{mainblue} 生徒ごとに個別最適化された問題生成システムの開発}
+\hfill
+{\small\sffamily\color{accentorange} 無限問題作成AI「モンジェネ」}\par\vspace{1pt}
+{\small\sffamily
+\textbf{申請者:} 高橋創真（長岡技術科学大学大学院 修士1年）\quad
+\textbf{共同開発者:} 若月耕紀（長岡技科大 院M1）、小武壮太（長岡技科大 院M1）、舛田岳（新潟大 院M1）
+}\par\vspace{1pt}
+{\small\sffamily 生徒の手書き答案をAIで解析し、間違え方や苦手を抽出し、それらを克服できる問題を\textbf{無限に}生成する。
+塾講師は紙の問題集から時間をかけて探す手間がなくなり、生徒と向き合う時間を増やすことができる。
+「問題生成」と「採点」のサイクルにより、これまでにない学習効果を実現する。}\par\vspace{2pt}
+{\color{mainblue}\rule{\textwidth}{1.2pt}}
+\vspace{0.3em}
+\begin{center}
+\usebox{\mongenecompare}\par\vspace{1pt}
+\refstepcounter{figure}%
+{\small\sffamily 図\thefigure：モンジェネの提供価値：問題探しの時間を問題生成に置き換え、講師が生徒と向き合う時間を最大化する}
+\label{fig:manga}
+\end{center}
+\vspace{0.3em}
+]
+
+
+% ============================================================
+% 1 なにをつくるか
+% ============================================================
+\section{なにをつくるか}
+
+\subsection{背景}
+
+「はぁ、問題を探している時間で、もっと生徒に教えたいな、、、」---私(高橋)の5年間の塾講師経験で、何度もそう感じてきた。
+
+私が勤める個別指導塾では、先生1人に生徒2人、1コマ80分間で小4から高3まで指導している。
+塾講師の業務は「教えること」だが、解き直しの場面では生徒の要望にあった問題を探す業務が発生する。大量の紙の問題集から探し出す作業は5〜10分かかる。1人の生徒に割ける時間は実質\textbf{40分}。この40分のうち、問題探しに\textbf{約10分}---指導時間の25\%が「紙をめくる時間」に消える。さらに、見つけた問題が生徒の苦手にマッチしているかはわからない。
+
+この「紙をめくる時間」を「生徒と向き合う時間」に変えたい。私は塾講師80名を束ねるリーダーとして同僚を指導するなかで、同じ悩みを持つ講師が多いことを実感している。そこで私たちは、問題を探すのではなく「作ってしまえばいい」と考え、経産省AKATSUKIプロジェクトのETSUZAN（新潟県版未踏的人材育成事業）にて、無限問題生成AI「モンジェネ」を開発した。
+
+\subsubsection{ETSUZANでの成果と課題}
+
+モンジェネは、解き直したい問題を入力すると3パターンの類似問題を出力するWebアプリである。
+
+\begin{itemize}
+  \item \textbf{パターンA：}数値のみ変更（ケアレスミス克服用）
+  \item \textbf{パターンB：}文脈を変更（公式・定理の定着確認用）
+  \item \textbf{パターンC：}問われる内容が異なる（解法戦略の強化用）
+\end{itemize}
+
+数値計算精度や図形描画精度の課題に対しては、LLMで直接生成するのではなくPythonコードを生成・外部実行する方式を採用し、「会話なしに一気に問題を作成できる」仕組みを実現した。使用範囲は新潟県公立高校入試の数学の空間図形に限定している。
+
+しかし、2026年2月の受験期にモンジェネを使い込んだところ、\textbf{まだまだ足りない}と痛感した。難易度の調整ができない、出力は固定の3パターンのみ、そして何より---生徒一人ひとりの苦手が反映されていない。私は約20人の生徒を受け持ち、月ごとに模試結果や定期テスト結果を見ながら個別に対応するが、20人全員の苦手を正確に把握し続けることは人間の記憶力では限界がある。しかも\textbf{単元が変わるたびに苦手な生徒が入れ替わる}---この動的なバラつきへの対応は5年の経験でも容易ではない。これが本提案の出発点となった。
+
+近年、LLMを活用した教育システムの研究が急速に進展しており\,[6]、AI駆動型ITSはK-12教育で一貫してポジティブな学習効果が確認されている\,[7]。LLMを用いた数学的エラーの自動分類も、専門家一致度F1スコア85\%超を達成しており\,[8]、LLMを用いた人間の能力の再現が実現に近づいている。
+
+私たちは、模試の結果や手書きの答案を採点し、生徒ごとの苦手を解析し、その苦手を反映した問題を作成する。「個別最適化された学習」が実現可能と考える。この「問題生成→採点→苦手をフィードバックした問題を生成」という学習サイクルにより、生徒の学力は着実に向上し、塾講師の負担軽減にもつながる。
+
+ETSUZAN期間でのモンジェネを教育関係者に紹介したところ、高校教員や大学教員の業務負担軽減にもつながるとの声があった。教員の問題作成と採点作業は勤務時間を圧迫しており、離職率や教育の質低下を招いている。今回提案するソフトウェアは、採点結果・生徒データを活かした問題生成により、塾講師の負担軽減と生徒の学習効率向上を目的とする。この未踏期間では、まずは塾講師の私自身が使いやすい「問題作成・採点ソフト」を目指す。
+
+\subsection{提案システム}
+
+本システムは、塾講師の通常の授業の流れを大きく妨げないように設計する。図\ref{fig:cycle}のように、\textbf{「採点・苦手分析」→「教師へのフィードバック＋対策問題生成」→「生徒が解く」}のサイクルを繰り返すことで、生徒の学力を着実に向上させる。
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.65\textwidth]{docs-cycle.png}
+  \caption{学習サイクル：生徒の手書き答案を採点・分析し、苦手を反映した問題を生成。塾講師のFBがDBに蓄積され精度が向上する。}
+  \label{fig:cycle}
+\end{figure*}
+
+
+\begin{keybox}[学術的根拠：Bloomの完全習得学習]
+教育心理学者 B.\,Bloom\,(1984) は、完全習得学習と1対1個別指導を組み合わせると、平均的な生徒が\textbf{上位2\%}の成績に到達する（2$\sigma$効果）と報告した\,[1]。近年、生成AIがこの2シグマ問題に対するスケーラブルな解決策となり得ることが実証されている\,[2]。本システムは、このサイクルをAIで自動化し、\textbf{1対1個別指導の効果を1対多の塾環境で再現する}ことを目指す。
+\end{keybox}
+
+本提案は\textbf{2つの柱}を掲げる。
+
+\begin{highlightbox}
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{個別最適化（パーソナライズ）}：生徒一人ひとりの苦手を高解像度で分析し、その苦手にピンポイントの問題を無限に生成する。
+  \item \textbf{完全習得学習（マスタリーラーニング）}：できるようになるまで問題が出てくる。知識グラフで前提概念を管理し、根本原因から段階的に積み上げる。
+\end{enumerate}
+\end{highlightbox}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=0.85\textwidth]{system-arch-new.jpg}
+  \caption{システム構成図：フロントエンド・バックエンド・AI Agent・データベースの全体構成}
+  \label{fig:system_overview}
+\end{figure*}
+
+以下に、図\ref{fig:system_overview}に示した各コンポーネントの概要を述べる。
+
+\begin{itemize}
+  \item \textbf{採点Agent}：GPT-5.4のVision機能で生徒の手書き答案を読み取り、OpenAI Agents SDKを用いて途中式レベルの自動採点を行う。GPT-5.4は最大1,024万画素の画像をそのまま入力でき、従来モデルと比べ文書解析精度が大幅に向上している。Code Interpreter上でPython（PIL）を実行し、答案画像に直接赤ペンで添削マークを書き込む。間違いを4種類（読解・変換・処理・書き写し）に自動分類し、苦手の本質を特定する。
+
+  \item \textbf{問題生成Agent}：LLM（GPT-5.4 / Claude）にCode Interpreter（Python実行環境）を組み合わせ、数学的に正確な問題を生成する。計算過程はSymPyで自動検証し、図形問題はMatplotlibで描画する。ETSUZANで開発した3パターン生成を基盤に、苦手プロファイルに基づく個別最適化に拡張する。
+
+  \item \textbf{知識グラフ}：数学の概念間の前提関係を有向非巡回グラフ（DAG）として定義する。生徒がつまずいた際にグラフを遡って根本原因の概念を特定し、そこから段階的に積み上げる学習パスを自動決定する。
+
+  \item \textbf{適応学習エンジン}：Bayesian Knowledge Tracing（BKT）で概念ごとの習得確率をリアルタイムに推定し、習得度85\%を基準に次の概念への移行を判定する。FSRS v6で最適な復習タイミングを決定し、忘却を防ぐ。
+
+  \item \textbf{問題データベース}：統一模試の正答率データからIRT（項目反応理論）で問題の難易度を客観的に較正する。LightGBMによる難易度推定モデルと、埋め込みベクトル（768次元）によるセマンティック検索を組み合わせ、生徒の苦手に最適な問題を高速に発見する。Supabase（PostgreSQL + pgvector）上に構築する。
+
+  \item \textbf{苦手プロファイル}：採点結果・エラー分類・習得確率を生徒ごとに蓄積するデータ構造である。時系列でのエラーパターン推移を追跡し、問題生成と教師向けフィードバックの両方に活用する。
+
+  \item \textbf{教師向けFBダッシュボード}：苦手ランキング・エラーパターンの推移・具体的な指導アクションを自動生成し、塾講師に提供する。講師が修正・補足を返すことでシステムの分析精度が継続的に改善される双方向ループを構築する。
+\end{itemize}
+
+以下、各機能の詳細を述べる。
+
+\subsubsection{【採点・苦手分析エンジン】}
+
+\noindent\textbf{入力：}問題文＋正答、生徒の手書き答案\quad\textbf{出力：}正誤判定、途中式フィードバック、エラー分類
+
+私が所属している塾では紙とペンで問題を解くことを重要視している。単なる正誤判定ではなく、生徒の手書き答案をLLMで採点し、「どのステップで間違えたか」を特定する。間違いのタイプを以下の4種類に自動分類する。
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+エラー分類 & 内容 & 具体例 \\
+\midrule
+読解・理解 & 問題文の読み間違い & 面積と体積を取り違え \\
+変換 & 数式に変換する段階のミス & 「3倍より2大きい」を$3x-2$ \\
+処理 & 計算過程でのミス & 移項時の符号ミス \\
+書き写し & 最終解答の転記ミス & 正しい値を途中で出して誤記 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+このエラー分類により、間違いの本質が「公式を\textbf{知らない}」のか「\textbf{忘れている}」のか「\textbf{使い方がわからない}」のかを区別する。この区別が、次の問題生成の精度を決定づける。
+
+採点結果は蓄積型の\textbf{苦手プロファイル}として記録する。概念ごとの習得確率をBayesian Knowledge Tracing\,[3]で追跡し、LLMとの統合によりコールドスタート問題を解決する\,[4]。習得確率が85\%を超えた概念を「習得済み」と判定する。
+
+\subsubsection{【教師向けフィードバック】}
+
+塾講師にとって必要なのは「授業で何を教えるべきか」の判断材料である。本システムは以下を自動生成する。
+
+\begin{itemize}
+  \item \textbf{苦手ランキング（優先順位付き）}---志望校の出題傾向を加味して克服すべき苦手を優先順位付け
+  \item \textbf{エラーパターンの推移}---直近数週間での「計算ミスは減少」「概念誤解が増加」等のトレンド分析
+  \item \textbf{具体的な指導アクション}---「空間図形は展開図から復習が必要」等の具体的提案
+\end{itemize}
+
+さらに、塾講師はフィードバックに対して\textbf{修正・補足を返す}ことができる。この「FBに対するFB」がデータベースに蓄積され、システムの分析精度を継続的に改善する双方向ループである。
+
+\subsubsection{【個別最適化問題生成エンジン】}
+
+ETSUZANの3パターン生成を基盤とし、苦手プロファイルに基づく3つのモードに拡張する。
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X}
+\toprule
+モード & 内容 \\
+\midrule
+苦手克服 & 採点で特定された苦手にピンポイントの問題を生成。知識グラフを遡り根本原因から対処 \\
+段階的ステップアップ & 概念ごとに習得度85\%達成まで出題を継続。完全習得学習のAI実装 \\
+模試対策 & 志望校の出題傾向・難易度構成を解析し、\textbf{本番と同一構成の模擬テスト一式}を自動生成 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+個別最適化問題の生成では、「元の問題文」「模範解答」「生徒の手書き答案」「採点フィードバック」の\textbf{4点をLLMに入力}し、エラー分類に応じた苦手克服問題を生成する。問題の提供は\textbf{DB検索とLLM新規生成のハイブリッド}で行い、Thompson Samplingにより探索と活用のバランスを最適化する。生成問題はPythonコード実行による数学的検証を経てから出題する。
+
+\subsubsection{【完全習得学習の仕組み】}
+
+苦手をピンポイントで克服できる問題の生成が実現すると、完全習得学習が可能になる。生徒が確実にできるようになるまで、以下の判定基準でサイクルを繰り返す。
+
+\begin{graybox}
+\textbf{習得判定の3条件:}
+\begin{enumerate}[leftmargin=1.5em]
+  \item 概念ごとの習得確率（BKT）が\textbf{85\%以上}
+  \item 直近5問の正答率が\textbf{80\%以上}
+  \item \textbf{3問以上}の連続正答
+\end{enumerate}
+3条件を満たした概念は「習得済み」→次の概念へ。満たさない場合は克服問題を自動提供。
+\end{graybox}
+
+数学の概念には前提関係がある。この前提関係を\textbf{知識グラフ}（有向非巡回グラフ）として管理する。
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=0.3cm and 0.4cm,
+  mastered/.style={rectangle, rounded corners=3pt, draw=successgreen, fill=successgreen!10,
+    font=\scriptsize\sffamily, minimum height=0.8cm, minimum width=1.4cm, align=center, line width=0.8pt},
+  weak/.style={rectangle, rounded corners=3pt, draw=dangerred, fill=dangerred!10,
+    font=\scriptsize\sffamily, minimum height=0.8cm, minimum width=1.4cm, align=center, line width=0.8pt},
+  progress/.style={rectangle, rounded corners=3pt, draw=accentorange, fill=accentorange!10,
+    font=\scriptsize\sffamily, minimum height=0.8cm, minimum width=1.4cm, align=center, line width=0.8pt},
+  arr/.style={-{Stealth[length=4pt,width=3pt]}, thick, color=gray!60},
+  every node/.append style={inner sep=3pt}
+]
+  \node[mastered] (sqrt) {平方根\\[-1pt]{\tiny\bfseries\color{successgreen}92\%}};
+  \node[weak, right=of sqrt] (factor) {因数分解\\[-1pt]{\tiny\bfseries\color{dangerred}38\%}};
+  \node[weak, right=of factor] (quad) {二次方程式\\[-1pt]{\tiny\bfseries\color{dangerred}25\%}};
+  \node[weak, right=of quad] (space) {空間図形\\[-1pt]{\tiny\bfseries\color{dangerred}12\%}};
+  \node[progress, below=0.6cm of $(factor)!0.5!(quad)$] (pyth) {三平方の定理\\[-1pt]{\tiny\bfseries\color{accentorange}65\%}};
+  \draw[arr] (sqrt) -- (factor);
+  \draw[arr] (sqrt) -- (pyth);
+  \draw[arr] (factor) -- (quad);
+  \draw[arr] (pyth) -- (space);
+  \draw[arr] (quad) -- (space);
+  \node[font=\tiny\sffamily, anchor=north] at ($(factor.south)+(0,-1.2)$) {%
+    \textcolor{successgreen}{\rule{5pt}{5pt}}\,習得済\quad
+    \textcolor{accentorange}{\rule{5pt}{5pt}}\,学習中\quad
+    \textcolor{dangerred}{\rule{5pt}{5pt}}\,苦手};
+\end{tikzpicture}
+\caption{知識グラフの例：空間図形でつまずいた生徒の根本原因を因数分解まで遡り、段階的に習得させる。}
+\label{fig:knowledge_graph}
+\end{figure}
+
+生徒がつまずいた場合、知識グラフを遡って根本原因を特定する。国内3,200以上の塾で導入されているatama+の「根本原因分析」と同様のアプローチだが、モンジェネはAIによる\textbf{無限の問題生成}と\textbf{紙の手書き答案への対応}という独自の強みを持つ。
+
+\subsubsection{【データベースの構築】}
+
+蓄積される独自のデータベースによって、このシステムは成長し続ける。
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X}
+\toprule
+データ層 & 内容と意義 \\
+\midrule
+第1層：原データ & 統一模試協会の大規模問題データ（正答率付き）、各県入試問題。提携なしには入手不可能 \\
+第2層：アノテーション & 塾講師が検証した難易度ラベル（正答率5\%刻み21段階）、公式タグ、誤答パターン \\
+第3層：学習効果 & どの問題がどの苦手パターンの生徒に効果があったか。フライホイール効果 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+DBに蓄積された問題は埋め込みベクトルによるセマンティック検索に対応し、「この生徒の苦手に最も適した問題」を高速に発見する。統一模試データからIRTパラメータを較正し、難易度の客観的評価を実現する。後発の競合がシステムを模倣しても、このデータ蓄積は即座に再現できない。
+
+\begin{graybox}
+\textbf{データの好循環（フライホイール効果）：}
+生徒が問題を解く→回答データが蓄積→IRT較正の精度向上→問題推薦の精度向上→学習効果が上がる→ユーザーが増える→さらにデータが蓄積。時間が経つほどシステムの価値が加速度的に高まる。
+\end{graybox}
+
+\subsection{未踏期間中の目標}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item 生徒の手書き答案を採点し、間違えたステップとエラータイプを自動抽出する
+  \item 苦手プロファイルに基づく個別最適化問題を生成する
+  \item 採点→問題生成のサイクルを塾の現場で実証実験し、学習効果を検証する
+\end{enumerate}
+
+% ============================================================
+\section{どんな出し方を考えているか}
+
+\subsection{公開方法}
+
+Webアプリケーション「モンジェネ」として公開する。塾で用いるタブレット端末やPCでの使用を想定しており、幅広いハードウェアに対応可能なWebアプリが最適である。生徒の手書き答案はスマートフォンやタブレットのカメラで撮影しアップロードする。紙のワークフローを完全に維持したまま、AIの恩恵を受けられる設計である。
+
+\subsection{ターゲット}
+
+\textbf{未踏期間中}は、提案者代表の高橋が所属する個別指導塾（講師80名・生徒約500名）に限定して検証する。ETSUZAN期間で実証実験を行っており、校長の承認も得ている。
+
+\textbf{未踏期間後}は、2つのフェーズで展開する。
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Phase 1（地域展開）}：同地域の塾への横展開。新潟県公立高校入試に特化した問題DBと志望校別の出題傾向分析が差別化要素となる。
+  \item \textbf{Phase 2（全国展開）}：各都道府県の入試問題・統一模試データをDBに取り込み、地域ごとの特徴を反映させた全国対応版を提供する。
+\end{enumerate}
+
+\subsection{学術的な発表}
+
+本提案では、個別最適化された問題生成と、手書きの解答を採点するという挑戦的な課題を掲げている。ユーザーから得られるフィードバックによる検証など、学術的な価値があると判断した際は積極的に学会へ論文を投稿したい。
+
+未踏に応募する理由は、\textbf{PMの指導のもとで技術を磨き、未踏コミュニティの力を借りて展開を加速したい}からである。自分の塾だけなら未踏なしでも開発を続けられるが、全国の塾に展開するためには、PM・先輩クリエータからのフィードバックと、未踏ブランドによる信頼獲得が不可欠だと考えている。未踏期間後は未踏アドバンストへの進出も視野に入れる。
+
+% ============================================================
+\section{斬新さの主張、期待される効果など}
+
+\subsection{既存サービスとの違い}
+
+国内EdTech市場にはatama+（4,500教室導入）やQubena（100万人以上）といった先行サービスが存在する。しかし、これらは\textbf{タブレット完結型}であり、問題供給はDB内の既存問題の\textbf{検索・提供}にとどまる。モンジェネは知識グラフを用いて生徒の根本原因を特定した上で、その苦手に特化した問題をLLMで\textbf{動的に生成}するという本質的な違いがある。
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X X}
+\toprule
+比較軸 & atama+\,/\,Qubena & モンジェネ（本提案） \\
+\midrule
+入力方式 & タブレット操作のみ & \textbf{紙の手書き答案OK} \\
+問題供給 & 自社DB内の既存問題を選択 & \textbf{AIが無限に新規生成} \\
+エラー分析 & 正誤＋解答時間＋迷い挙動 & \textbf{途中式レベルの4種類分類} \\
+講師の役割 & 見守り（コーチ） & \textbf{主役（AIのFBを元に解説）} \\
+講師の知見還元 & なし（一方通行） & \textbf{FBへのFBでDB改善} \\
+導入コスト & 高い（タブレット＋月額） & \textbf{低い（紙＋撮影＋従量課金）} \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\begin{highlightbox}
+\textbf{一言で表すなら}：atama+は「タブレットの中の完璧な先生」、モンジェネは「紙の現場に溶け込むAIアシスタント」。既存の紙ベースの指導を活かしたまま、採点と問題生成をAIが肩代わりする。塾の指導モデルを置き換えるのではなく、\textbf{講師が生徒と向き合う時間を最大化する}。
+\end{highlightbox}
+
+\noindent
+加えて、\textbf{開発者自身が5年間の塾講師}であり、「生徒がどこでつまずくか」という肌感覚がシステム設計に直接反映されている点が、技術だけでは到達できない本提案の強みである。
+
+\subsection{期待される効果}
+
+\begin{itemize}
+  \item \textbf{生徒の学力向上}：AI駆動型ITSのシステマティックレビュー\,[7]では、従来の教師主導指導に対し中〜大の効果量で優位性が確認されている。生成AIチューターは対面指導の2倍の学習効率を数百分の一のコストで達成した事例もある\,[2]。
+  \item \textbf{講師の負担軽減}：1コマ40分のうち問題探しに費やす約10分を1分以下に短縮し、\textbf{指導時間を25\%増加}させる。講師80名に展開すれば、塾全体で月間数百時間の指導時間が生まれる。
+  \item \textbf{教育格差の縮小}：1対1の個別指導は高コストだが、AIがその品質を1対多で再現することで、経済的理由で質の高い指導を受けられなかった生徒にも届けられる。
+\end{itemize}
+
+\subsection{先行事例との効果の比較}
+
+類似のAI教育システムの実績として、以下が報告されている。
+\begin{itemize}
+  \item \textbf{Qubena}（COMPASS社）：経産省の実証事業で、中学校数学の標準授業時間62時間分を\textbf{34時間で完了}し、理解度・テスト得点は向上した。
+  \item \textbf{atama+}：長野県のある塾で、国公立大学合格者が2020年度の6名から2024年度の\textbf{42名へ約7倍}に増加した事例が報告されている。
+\end{itemize}
+
+これらはタブレット完結型のシステムであるが、モンジェネは紙ベースの現場に適用可能な点で\textbf{より広い対象に展開できるポテンシャル}を持つ。
+
+なお、LLMを用いた教育システムに関する最新のサーベイ\,[6]を精査した上で、「知識グラフによる根本原因分析」と「LLMによる問題の動的生成」を\textbf{紙の手書き答案}に対して統合的に適用するシステムは、国内外の学術研究・商用サービスを含めて確認されていない。
+
+% ============================================================
+\section{具体的な進め方と予算}
+
+\subsection{技術スタックと開発体制}
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X}
+\toprule
+領域 & 技術 \\
+\midrule
+バックエンド & Go (Golang), Python, FastAPI \\
+フロントエンド & TypeScript, Next.js \\
+AI/ML & OpenAI API (GPT-5.4), Gemini API, BKT, FSRS v6 \\
+インフラ/DB & AWS or GCP, Supabase (PostgreSQL + pgvector), Vercel \\
+認証/決済 & Clerk, Stripe \\
+デザイン & Figma \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\subsection{開発チームと役割分担}
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l l X}
+\toprule
+氏名 & 所属 & 担当 \\
+\midrule
+高橋創真 & \parbox[t]{3cm}{長岡技術科学大学\\大学院 M1} & チームマネジメント、ユーザヒアリング、要件定義 \\[4pt]
+若月耕紀 & \parbox[t]{3cm}{長岡技術科学大学\\大学院 M1} & フロントエンド・バックエンド実装全般 \\[4pt]
+小武壮太 & \parbox[t]{3cm}{長岡技術科学大学\\大学院 M1} & UI/UXデザイン、システムデザイン \\[4pt]
+舛田　岳 & \parbox[t]{3cm}{新潟大学\\大学院 M1} & LLM・ML・インフラ/システム開発全般 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\subsection{開発スケジュール}
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l X}
+\toprule
+期間 & マイルストーン \\
+\midrule
+5月--6月 & 採点エンジンの精度向上。手書き答案のエラー分類精度を検証。統一模試データの取り込みとDB基盤構築 \\
+7月--8月 & 苦手プロファイル蓄積機能の実装。知識グラフ（数学の前提概念DAG）構築。塾講師によるアノテーション開始 \\
+9月--10月 & 個別最適化問題生成エンジン実装。BKT・FSRSによる適応的出題。LLM生成問題の数学的検証パイプライン構築 \\
+11月--12月 & 教師向けFBダッシュボード実装。完全習得学習フロー（マスタリー判定・矯正問題自動生成）の統合 \\
+1月--2月 & 塾での実証実験（講師80名・生徒500名規模）。A/Bテストによる学習効果の定量評価と改善サイクル \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\noindent
+各マイルストーンではPM面談でのデモを通じてフィードバックを受け、方針を柔軟に修正する。特に1月--2月の実証実験では、「現場で本当に使われるか」を最重要KPIとして検証する。
+
+\subsection{計算機環境・開発時間}
+
+\noindent\textbf{計算機環境：}Google Cloud（Cloud Run, Ubuntu）上で開発・デプロイ。メンバーはMacBook Pro等ノートPCを使用。
+
+\noindent\textbf{開発時間：}チームは大学院生4名で構成され、全員が授業単位を取得済みで修士研究のみを抱える状態である。1名あたり週10時間、36週、4名$\times$360時間$=$\textbf{1,440時間}の開発工数を投入する。平日夜間および土日を中心に開発し、1月--2月の実証実験期は塾での検証に時間を重点配分する。
+
+\subsection{予算内訳}
+
+\begin{footnotesize}\noindent
+\begin{tabularx}{\linewidth}{>{\bfseries}l r X}
+\toprule
+費目 & 金額 & 内訳 \\
+\midrule
+人件費 & 3,024,000円 & 4名 $\times$ 360h $\times$ 2,100円/h \\
+クラウド・API利用料 & 200,000円 & LLM API（OpenAI, Gemini等）のトークン消費 \\
+サーバー・DB維持費 & 100,000円 & 本番/開発環境のインフラ費用 \\
+\midrule
+\textbf{合計} & \textbf{3,324,000円} & 上限超過分は私費で賄い、\textbf{3,024,000円}を申請 \\
+\bottomrule
+\end{tabularx}
+\end{footnotesize}
+
+\subsection{準備状況}
+
+ETSUZANで開発した「モンジェネ」はデプロイ済みであり、問題生成機能は実稼働している。また、採点システム「ScoGene」のプロトタイプも構築が完了している（\url{https://scogene.vercel.app}）。
+
+\begin{graybox}
+\scriptsize\sffamily
+\textbf{モンジェネ体験用：}\url{https://mon-gene.wakatsuki.app/login}\quad ID: 77777 / Pass: 20260312\\
+\textbf{サンプル問題：}\url{https://drive.google.com/drive/folders/1IaukQ5o0XN11K0-HFi_p95K5nkjOLgd1}\\
+\textbf{採点「ScoGene」：}\url{https://scogene.vercel.app}（現状ログインなし）
+\end{graybox}
+
+\noindent\textbf{モンジェネの使い方：}ログイン→問題生成ページでサンプル問題の問題と解答をアップロード→類似問題生成→完了後すぐ印刷可能
+
+\noindent\textbf{スコジェネの使い方：}ブラウザで開く→サンプル問題と解答をアップロード→採点開始→完了後、フィードバックが出力
+
+\begin{figure*}[t]
+  \centering
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{docs-scogene-overview.png}
+    \caption{手書き答案の\\AI採点画面}
+    \label{fig:grading_overview}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{docs-scogene-detail1.png}
+    \caption{採点結果の\\詳細フィードバック}
+    \label{fig:grading_detail}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{docs-scogene-detail2.png}
+    \caption{途中式評価と\\改善アドバイス}
+    \label{fig:grading_feedback}
+  \end{minipage}
+\end{figure*}
+
+図\ref{fig:grading_overview}--\ref{fig:grading_feedback}に採点プロトタイプの画面を示す。問題文と答案のみを入力し（模範解答は渡していない状態でも）、LLMが自力で正答を計算し、生徒の手書き答案を正確に読み取っている。各問題に対して正誤判定、途中式・プロセスの評価、部分点の理由、改善アドバイスを構造化して出力する。
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.75\columnwidth]{mongene-ui.png}
+  \caption{モンジェネの問題生成画面：問題・解答をアップロードし、未習単元を選択して生成}
+  \label{fig:mongene_ui}
+\end{figure}
+
+% ============================================================
+\section{提案者（たち）の腕前を証明できるもの}
+
+本チームは、ドメイン知識（塾講師5年）、フルスタック開発力、デザイン力、AI/MLエンジニアリングの4つの専門性がバランスよく揃った構成である。全員が経産省AKATSUKI事業 ETSUZANの採択者であり、開発・発表の実績を持つ。
+
+\begin{graybox}
+\scriptsize\sffamily
+\textbf{ETSUZAN Makers：}\url{https://meikan.etsuzan.org/}\\
+\textbf{発表動画：}モンジェネ \url{https://youtu.be/PCIbYSYGWrI} / SakeScope \url{https://youtu.be/noTHRUNfiwA}\\
+\textbf{テレビ放映（舛田 独占取材）：}\url{https://youtu.be/LLsKAEKmDJ4}
+\end{graybox}
+
+\begin{figure*}[t]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{etsuzan-team.png}
+    \caption{ETSUZANでの開発風景}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{akatsuki-masuda.jpg}
+    \caption{AKATSUKIカンファレンスで\\舛田が代表登壇}
+  \end{minipage}
+\end{figure*}
+
+\subsection*{高橋 創真}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.65\columnwidth]{docs-robocon.jpg}
+  \caption{NHK高専ロボコン2021関東甲信越地区大会}
+\end{figure}
+
+ETSUZAN採択 無限問題生成AI「モンジェネ」チームリーダー（\url{https://youtu.be/PCIbYSYGWrI}）
+
+\begin{itemize}
+  \item \textbf{塾講師アルバイト}：新潟県長岡市の個別指導塾で高専4年次から5年目。現在は塾講師80名を束ねるリーダーとして、生徒の将来の選択肢の広がりを提供している。
+  \item \textbf{学園祭実行委員長}：長岡技術科学大学学園祭「技大祭」第43回実行委員長。約200名の組織のトップとして責任ある立場を全うした。（広報誌掲載 \url{https://www.nagaokaut.ac.jp/outline/pr/assets/VOS231web.pdf}）
+  \item \textbf{NHK高専ロボコン}：高専1年から4年まで出場。4年次にチームリーダー兼部長として「ターザンロボット」を開発。地区大会で本田技研工業株式会社特別賞を受賞。（\url{https://www.nagaoka-ct.ac.jp/58563/}）
+\end{itemize}
+
+\subsection*{若月 耕紀}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.65\columnwidth]{docs-nutmeg.png}
+  \caption{NUTMEG（技大祭実行委員会 情報局）メンバー}
+\end{figure}
+
+\textbf{【開発実績】}
+\begin{itemize}
+  \item \textbf{NUTMEG}（学園祭実行委員会の開発部門）：Next.jsやRailsなどを用いた学園祭を支えるアプリケーションの開発。開発団体の代表として複数プロジェクトをまとめ上げた。（\url{https://blog.nutmeg.cloud/}）
+  \item \textbf{長岡インターンシップサイト}（業務委託）：要件定義から実装、デプロイまでを1.5ヶ月で完遂。
+  \item \textbf{モンジェネ}（経産省AKATSUKI事業）：LLMで数学の入試対策問題を無限に生成するアプリケーションを開発。数値計算プログラムや図形描画プログラムを生成させることで、信頼性の高い問題を生成。
+\end{itemize}
+
+\textbf{【研究実績】}
+\begin{itemize}
+  \item 修士研究：「GraphVAEを用いたSlackチャットログに基づく組織構造再構成に関する研究」（長岡技科大 機械学習理論研究室）。深層生成モデルで組織内のコミュニケーション構造を可視化・再構成する研究。
+\end{itemize}
+
+\subsection*{小武 壮太}
+
+グラフィックデザインを主軸に、イベントの広報物制作や空間演出のディレクションを行ってきた。現在はFigmaを用いたUI/UX設計や、生成AIを活用したフロントエンドのプロトタイピングを行っている。
+
+\begin{itemize}
+  \item \textbf{モンジェネのUI設計}（ETSUZAN採択）：講師の認知負荷と操作コストを下げるため、検索以外のフローをクリック操作のみで完結させるUIを設計。生成AIを活用してフロントエンドコードを出力・検証し、開発効率を向上させた。
+  \item \textbf{NUTMEG}での開発：学内団体管理システム「GM2」のフロントエンドを担当。（使用技術: Vue.js, TypeScript）FigmaデザインのUI実装に加え、CSV/PDF出力機能の追加や権限管理の修正などを行った。
+\end{itemize}
+
+\subsection*{舛田 岳}
+
+\textbf{【開発実績】}
+\begin{itemize}
+  \item \textbf{マーケティングAIエージェントシステム}（株式会社b\&qで開発中）：100以上のツール（GWS, GA4, Ahrefs, GSC, Meta Ads等）を統合。Multi-Agent Architecture設計・実装。
+  \item \textbf{SEO記事生成SaaS}（株式会社新大陸でテックリード）：LLM、エージェントSDKを活用した記事自動生成システム。月間数千記事の生成実績。
+  \item \textbf{SakeScope}（AI日本酒ソムリエ）（経産省AKATSUKI事業）：マルチモーダルLLMによる日本酒推薦システム。（\url{https://youtu.be/noTHRUNfiwA}）テレビ放映（独占取材）：\url{https://youtu.be/LLsKAEKmDJ4}
+\end{itemize}
+
+\textbf{【研究実績】}
+\begin{itemize}
+  \item 修士研究：「進化的群知能に基づくLLMエージェント集団の協調最適化」（新潟大学 計算知能研究室）。複数のLLMエージェントを進化的アルゴリズムで最適化する研究。
+\end{itemize}
+
+% ============================================================
+\section{プロジェクト遂行にあたっての特記事項}
+
+高橋、若月、小武は長岡技術科学大学大学院情報・経営システム工学分野修士1年、舛田は新潟大学大学院自然科学研究科修士1年に所属しており、来年度修士2年に進級する。全員が大学院の授業単位をすべて取り切っており、修士研究を抱えるだけである。研究室の指導教員との関係も良好であり、未踏の応募についても容認されている。
+
+開発場所は長岡技術科学大学 機械学習理論研究室居室、および新潟大学 計算知能研究室を使用する。高橋は塾に週複数日出勤しており、開発と実証実験のサイクルを高速に回すことが可能である。
+
+\noindent\textbf{チームの経緯：}高橋・若月・小武は長岡技術科学大学の同期であり、学園祭実行委員会（NUTMEG）での開発活動を通じて技術的な信頼関係を構築した。舛田は新潟大学の大学院生で、経産省AKATSUKI事業 ETSUZANにて新潟県の同期採択者として出会い、互いのプロジェクト（モンジェネ・SakeScope）を通じて協力関係を深めた。全員がETSUZAN修了生であり、開発・発表を共にした仲間である。
+
+% ============================================================
+\section{IT以外の勉強、特技、生活、趣味}
+
+\subsection*{高橋 創真}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\columnwidth,height=4.5cm,keepaspectratio]{docs-hobby-takahashi.png}
+  \caption{地域ナイター杯で準優勝}
+\end{figure}
+
+趣味は野球である。小学校3年生から始め、大学院修士1年となった現在も軟式野球部に所属し、精力的に活動している。昨年は、約40チームが出場する地域のナイター杯において、チーム一丸となり準優勝を果たした。プレー面では、体格を活かしたバッティングを持ち味とし、5番レフトとしてチームの勝利に貢献している。もともと私は体力がなく、持久走が大の苦手だったが、鬼監督の厳しい練習を通じて、粘り強い体力と困難に立ち向かう気合を培った。現在は野球に加え、バスケットボールやバレーボールにも挑戦するなど、スポーツ全般を楽しんでいる。今後もスポーツを通じて、心身のタフさを磨き続けたい。
+
+\subsection*{若月 耕紀}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\columnwidth]{docs-hobby-wakatsuki.png}
+  \caption{実家の犬}
+\end{figure}
+
+趣味は動物鑑賞である。実家が動物病院を経営しており、生まれた時から動物に囲まれて育った。当時は、犬が9匹、猫が6匹、インコが2羽、うさぎが1羽いた。現在は一人暮らしをしているため、部屋に動物がいない生活を送っている。その反動か、ペットショップや猫カフェなどに行くことが増えた。言葉の通じない生き物を相手にすることを、生まれた時から行っていたことが、今のマネジメントスキルにも活きていると考えている。相手が言葉にすることのできない裏側を想像し、引き出す能力につながっていると言える。
+
+\subsection*{小武 壮太}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\columnwidth,height=4.5cm,keepaspectratio]{docs-hobby-kotake.png}
+  \caption{技大祭の広報デザイン制作}
+\end{figure}
+
+趣味はデザイン制作である。技大祭実行委員の広報として、Instagramの画像作成や運用といった活動も行っている。依頼者へのヒアリングを通じて企画の意図を深く汲み取り、それを受け手がどう感じるか想像力を巡らせて形にすることにこだわりがある。ぜひ公式アカウント(\url{https://www.instagram.com/nutfes})をご覧いただきたい。この活動で養った「相手の想いを翻訳する力」は、現在のUI/UX設計の根幹を支えている。
+
+\subsection*{舛田 岳}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.55\columnwidth,height=4.5cm,keepaspectratio]{docs-hobby-masuda.jpg}
+  \caption{高校バレーボール部時代}
+\end{figure}
+
+趣味はバレーボールである。小・中・高と部活動を続け、JOCで秋田県選抜になった経験がある。現在も友人やサークルなどでプレーを続けており、競技としての楽しさはもちろん、チームで連携して結果を出す面白さを大切にしている。
+
+もう一つの趣味は映像制作である。最初は純粋に作ること自体が楽しく、構成・撮影・編集を試しながら学んでいたが、気づけば様々な場面で自然と活用するようになっていた。例えば、バレー部の紹介動画や活動の記録映像、イベントのダイジェストなどを、自ら企画し、撮影し、編集して形にしてきた。「何を、どの順序で、どう見せれば伝わるか」を考えながら制作することは、対象の魅力を引き出し、伝えたい内容を届く形に整える力につながっていると感じている。
+
+% ============================================================
+\section{将来のITについて思うこと・期すること}
+
+AIの発展とその応用で様々な作業が効率化しており、省人化無人化になった業務も多いだろう。
+人間の学習作業「教育」でもその利用は進んでいるが、教育と人は切り離すことはできない。
+
+誰しも、学生のころ、「この先生の話はちゃんと聞こうかな、、」なんて考えたことがあると思う。この現象は、先生との関係性によって生まれるものである。
+
+教育×ITの取り組みは様々ある。例えば、英語学習を効率的に行えるアプリや常時質問可能なAIチャットがある。いつでもどこでも質問できるなら、もはや先生なんていらないのでは？と考えてしまう。しかし、生徒の「モチベーション管理」はIT/AIが踏み込めない領域と考える。感情、非合理的な判断、人間関係は機械的なものでは構築・理解はできない。AIは生徒と対話できても、真にコミュニケーションを取っているとは言えない。憧れ・夢を抱かせることもできない。
+
+\begin{highlightbox}
+\textbf{「憧れや夢は、人と人との関わりのなかで創発する。」}
+私はそう考える。
+人工知能的な1対1対応（Aと聞いたらBと返ってくる）のAIとの対話は閉じた世界であり、私が言う憧れ/夢は外部から『やってくる』ことはないだろう。人と人との無限の可能性に満ちた宇宙でこそ、真の教育は生まれる。教育ITは、\textbf{Human-in-the-Loop}のシステムでなくてはならない。
+\end{highlightbox}
+
+モンジェネは、AIが講師を\textbf{置き換える}のではなく、講師が生徒と向き合う時間を\textbf{最大化する}ためのツールである。採点や問題探しという機械的な作業をAIに任せ、解説・動機づけ・進路相談といった「人にしかできない教育」に講師が集中できる世界を、私たちは実現したい。
+
+% ============================================================
+\vspace{0.3em}
+{\scriptsize\noindent\textbf{参考文献}\\[2pt]
+{[1]}\,Bloom (1984). The 2 Sigma Problem. \textit{Educ.\,Researcher}, 13(6), 4--16.\quad
+{[2]}\,Raman (2025). GenAI \& the 2-Sigma Problem. \textit{ResearchGate}.\quad
+{[3]}\,Corbett \& Anderson (1994). Knowledge Tracing. \textit{UMUAI}, 4, 253--278.\quad
+{[4]}\,Cho et~al. (2024). KT \& LLMs in Education. \textit{arXiv:2412.09248}.\quad
+{[5]}\,Newman (1977). Errors on Written Math Tasks.\quad
+{[6]}\,Wang et~al. (2024). LLMs for Education. \textit{arXiv:2403.18105}.\quad
+{[7]}\,L\'{e}tourneau et~al. (2025). AI-Driven ITS in K-12. \textit{npj Sci.\,Learn.}, 10, 29.\quad
+{[8]}\,Otieno et~al. (2025). LLMs to Classify Student Errors. \textit{ResearchGate}.}
+
+\end{document}
